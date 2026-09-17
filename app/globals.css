@@ -1390,3 +1390,318 @@ a {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+/* -------------------------------------------------------
+   E-COMMERCE CASE STUDY
+------------------------------------------------------- */
+
+.ecommerce-case-visual {
+  margin-top: 90px;
+
+  padding: 100px 7%;
+
+  background: #d9d2c6;
+}
+
+.ecommerce-browser {
+  overflow: hidden;
+
+  background: #f7f3eb;
+
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.18);
+}
+
+/* Browser */
+
+.ecommerce-browser-bar {
+  height: 46px;
+
+  display: grid;
+  grid-template-columns: 120px 1fr 120px;
+
+  align-items: center;
+
+  background: #ece8df;
+
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.browser-dots {
+  display: flex;
+
+  gap: 6px;
+
+  padding-left: 18px;
+}
+
+.browser-dots span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #aaa69f;
+}
+
+.browser-address {
+  justify-self: center;
+
+  min-width: 270px;
+
+  padding: 7px 30px;
+
+  border-radius: 20px;
+
+  background: #f7f4ed;
+
+  color: #8a877f;
+
+  text-align: center;
+
+  font-size: 9px;
+}
+
+/* Navigation */
+
+.store-nav {
+  height: 80px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 40px;
+
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+}
+
+.store-nav strong {
+  letter-spacing: 0.16em;
+}
+
+.store-nav > div {
+  display: flex;
+
+  gap: 28px;
+
+  font-size: 10px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Hero */
+
+.store-hero {
+  min-height: 470px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+}
+
+.store-hero-copy {
+  padding: 65px 45px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.store-hero-copy > span {
+  color: #777269;
+
+  font-size: 9px;
+
+  letter-spacing: 0.12em;
+}
+
+.store-hero-copy h2 {
+  margin: 35px 0;
+
+  font-size: clamp(42px, 5vw, 76px);
+
+  font-weight: 450;
+
+  line-height: 0.95;
+
+  letter-spacing: -0.055em;
+}
+
+.store-hero-copy button {
+  width: fit-content;
+
+  border: 1px solid #111;
+
+  background: transparent;
+
+  padding: 13px 20px;
+
+  font-family: inherit;
+
+  font-size: 9px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+}
+
+.store-hero-image {
+  position: relative;
+
+  overflow: hidden;
+
+  background: #c6beb1;
+}
+
+/* Abstract products */
+
+.product-object {
+  position: absolute;
+
+  background: #efeae0;
+}
+
+.object-one {
+  width: 190px;
+  height: 290px;
+
+  left: 24%;
+  bottom: -20px;
+
+  border-radius: 100px 100px 15px 15px;
+
+  transform: rotate(-8deg);
+
+  box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
+}
+
+.object-two {
+  width: 145px;
+  height: 220px;
+
+  right: 18%;
+  bottom: 45px;
+
+  border-radius: 50% 50% 18px 18px;
+
+  background: #807c73;
+
+  transform: rotate(8deg);
+}
+
+/* Products */
+
+.store-products {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+
+  padding: 50px 40px;
+}
+
+.store-product-image {
+  aspect-ratio: 0.95;
+
+  margin-bottom: 14px;
+
+  background: #dad3c7;
+}
+
+.product-b {
+  background: #b5afa5;
+}
+
+.product-c {
+  background: #d5c2ae;
+}
+
+.store-products span {
+  display: block;
+
+  font-size: 10px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.06em;
+}
+
+.store-products small {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #76736d;
+
+  font-size: 9px;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .ecommerce-case-visual {
+    padding: 60px 4%;
+  }
+
+  .store-hero {
+    min-height: 400px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .ecommerce-case-visual {
+    margin-top: 60px;
+
+    padding: 30px 12px;
+  }
+
+  .ecommerce-browser-bar {
+    grid-template-columns: 70px 1fr 70px;
+  }
+
+  .browser-address {
+    min-width: 0;
+
+    width: 100%;
+  }
+
+  .store-nav {
+    height: 60px;
+
+    padding: 0 18px;
+  }
+
+  .store-nav > div {
+    gap: 10px;
+
+    font-size: 7px;
+  }
+
+  .store-hero {
+    grid-template-columns: 1fr;
+
+    min-height: 0;
+  }
+
+  .store-hero-copy {
+    min-height: 380px;
+
+    padding: 40px 25px;
+  }
+
+  .store-hero-image {
+    min-height: 350px;
+  }
+
+  .store-products {
+    padding: 30px 18px;
+
+    gap: 8px;
+  }
+}
