@@ -1,224 +1,414 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import styles from "./identidad.module.css";
 
-export default function NiwaCaseStudy() {
+export default function IdentidadCoPage() {
+  const [isEntering, setIsEntering] = useState(false);
+
+  const playTransition = (scrollAfter = false) => {
+    setIsEntering(true);
+
+    if (scrollAfter) {
+      window.setTimeout(() => {
+        document
+          .getElementById("identidad-overview")
+          ?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+      }, 750);
+    }
+
+    window.setTimeout(() => {
+      setIsEntering(false);
+    }, 1450);
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("enter") === "1") {
+      const timer = window.setTimeout(() => {
+        playTransition(false);
+      }, 100);
+
+      return () => window.clearTimeout(timer);
+    }
+  }, []);
+
   return (
-    <main className="niwa-page">
-      <div className="site-container">
+    <main className={styles.page}>
+      {/* TRANSITION */}
 
-        <header className="case-nav niwa-nav">
-          <Link href="/" className="brand">
+      <div
+        className={`${styles.transition} ${
+          isEntering ? styles.transitionActive : ""
+        }`}
+        aria-hidden="true"
+      >
+        <div className={`${styles.transitionBand} ${styles.bandYellow}`} />
+        <div className={`${styles.transitionBand} ${styles.bandBlue}`} />
+        <div className={`${styles.transitionBand} ${styles.bandRed}`} />
+
+        <div className={styles.transitionBean}>
+          <span />
+        </div>
+
+        <span className={styles.transitionWordmark}>
+          IDENTIDAD.CO
+        </span>
+      </div>
+
+      <div className="site-container">
+        {/* NAV */}
+
+        <header className={styles.nav}>
+          <Link href="/" className={styles.brand}>
             Sebastián Yopasá
           </Link>
 
-          <Link href="/#work" className="case-back">
+          <Link href="/#work" className={styles.back}>
             ← Back to work
           </Link>
         </header>
 
-        {/* INTRO */}
+        {/* HERO */}
 
-        <section className="niwa-intro">
-          <div className="niwa-eyebrow">
-            <span>03 / Independent Concept</span>
-            <span>Brand / UX / UI / Development</span>
+        <section className={styles.hero}>
+          <div className={styles.eyebrow}>
+            <span>03 / Cultural Digital Experience</span>
+            <span>VR + Web / Colombian Identity</span>
           </div>
 
-          <h1>NIWA</h1>
+          <div className={styles.heroGrid}>
+            <div className={styles.heroCopy}>
+              <p className={styles.kicker}>
+                Identidad.CO
+              </p>
 
-          <div className="niwa-intro-bottom">
-            <p>
-              A digital brand concept exploring how visual identity,
-              interaction and front-end development can become one
-              cohesive experience.
-            </p>
-
-            <span>Objects for modern living.</span>
-          </div>
-        </section>
-
-        {/* EXPERIENCE */}
-
-        <section className="niwa-experience">
-          <nav className="niwa-store-nav">
-            <strong>NIWA</strong>
-
-            <div>
-              <span>Objects</span>
-              <span>Journal</span>
-              <span>About</span>
-              <span>Bag (0)</span>
-            </div>
-          </nav>
-
-          <div className="niwa-store-hero">
-            <div className="niwa-product-scene">
-              <div className="niwa-sun" />
-              <div className="niwa-vase niwa-vase-large" />
-              <div className="niwa-vase niwa-vase-small" />
-              <div className="niwa-floor" />
-            </div>
-
-            <div className="niwa-store-copy">
-              <span>Collection 01</span>
-
-              <h2>
-                Quiet objects
+              <h1>
+                BUILDING
                 <br />
-                for everyday spaces.
-              </h2>
+                COLOMBIAN
+                <br />
+                IDENTITY
+                <br />
 
-              <p>
-                A collection shaped around simplicity, material and
-                thoughtful living.
+                <span>
+                  THROUGH
+                  <br />
+                  IMMERSIVE DIGITAL
+                  <br />
+                  MEDIA
+                </span>
+              </h1>
+
+              <p className={styles.intro}>
+                A concept project focused on celebrating Colombian culture
+                through an immersive VR experience and a companion website,
+                using coffee as a symbolic, cultural and economic connector.
               </p>
 
-              <button>Explore objects ↗</button>
+              <div className={styles.actions}>
+                <button
+                  type="button"
+                  className={styles.enterButton}
+                  onClick={() => playTransition(true)}
+                >
+                  <span>Enter Identidad.CO</span>
+                  <span>↗</span>
+                </button>
+
+                <p className={styles.heroMeta}>
+                  Web Experience · VR Storytelling · Cultural Identity
+                </p>
+              </div>
+            </div>
+
+            {/* HERO VISUAL */}
+
+            <div className={styles.heroVisual}>
+              <div className={styles.coffeeLandscape} />
+
+              <div className={styles.mountainLayerOne} />
+              <div className={styles.mountainLayerTwo} />
+
+              <div className={styles.coffeeRows}>
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
+
+              <div className={styles.beanOrbitLarge} />
+              <div className={styles.beanOrbitSmall} />
+
+              <div className={styles.coffeeBean}>
+                <span className={styles.beanCut} />
+                <span className={styles.beanHighlight} />
+              </div>
+
+              <div className={`${styles.floatingCard} ${styles.cardBlue}`}>
+                <small>01</small>
+                <strong>Immersive Media</strong>
+                <span>VR + Web Experience</span>
+              </div>
+
+              <div className={`${styles.floatingCard} ${styles.cardYellow}`}>
+                <small>02</small>
+                <strong>Identity</strong>
+                <span>Culture / Story / Memory</span>
+              </div>
+
+              <div className={`${styles.floatingCard} ${styles.cardRed}`}>
+                <small>03</small>
+                <strong>Coffee</strong>
+                <span>Symbol / Product / Connection</span>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* OVERVIEW */}
+        {/* ABOUT */}
 
-        <section className="case-section niwa-case-section">
-          <div className="case-section-number">01</div>
+        <section
+          className={styles.about}
+          id="identidad-overview"
+        >
+          <SectionHeading
+            number="01"
+            title="About the Project"
+            secondary="Overview"
+          />
 
-          <div className="case-section-content">
-            <p className="case-section-label">The Concept</p>
-
+          <div className={styles.editorialGrid}>
             <h2>
-              What happens when the brand and the interface are designed
-              together?
+              Designing an immersive narrative around Colombian identity.
             </h2>
 
-            <div className="case-text-columns">
-              <p>
-                NIWA began as an exercise in creating a digital identity
-                without separating branding from the product experience.
+            <div className={styles.editorialCopy}>
+              <p className={styles.lead}>
+                Identidad.CO was conceived as a digital experience that
+                highlights Colombian culture through one of its most
+                meaningful products: coffee.
               </p>
 
               <p>
-                Typography, spacing, product presentation, interaction and
-                responsive behavior are treated as parts of the same system.
+                The project combines a website and a virtual reality concept
+                to create an experience that feels educational, emotional and
+                visually memorable.
               </p>
             </div>
           </div>
         </section>
 
-        {/* IDENTITY */}
+        {/* MISSION */}
 
-        <section className="niwa-identity">
-          <div className="niwa-identity-title">
-            <span>02 / Visual Direction</span>
-            <h2>NIWA</h2>
-          </div>
+        <section className={styles.mission}>
+          <SectionHeading
+            number="02"
+            title="Mission"
+            secondary="Purpose"
+          />
 
-          <div className="niwa-palette">
-            <div>
-              <span>Warm White</span>
-              <small>#F1EEE5</small>
-            </div>
+          <div className={styles.editorialGrid}>
+            <h2>
+              Using immersive media to present Colombian culture in a
+              positive and engaging way.
+            </h2>
 
-            <div>
-              <span>Clay</span>
-              <small>#B66F4D</small>
-            </div>
+            <div className={styles.editorialCopy}>
+              <p className={styles.lead}>
+                The mission is to foster a stronger and more positive
+                Colombian digital identity through immersive technology,
+                cultural storytelling and research-based design.
+              </p>
 
-            <div>
-              <span>Garden</span>
-              <small>#35463B</small>
-            </div>
+              <ul className={styles.missionList}>
+                <li>
+                  <span>01</span>
+                  Strengthen cultural identity through digital narratives
+                </li>
 
-            <div>
-              <span>Ink</span>
-              <small>#161616</small>
+                <li>
+                  <span>02</span>
+                  Highlight coffee as a national and cultural symbol
+                </li>
+
+                <li>
+                  <span>03</span>
+                  Promote positive storytelling around Colombia
+                </li>
+
+                <li>
+                  <span>04</span>
+                  Connect visual design, research and technology
+                </li>
+              </ul>
             </div>
           </div>
         </section>
 
-        {/* PRODUCT GRID */}
+        {/* DELIVERABLES */}
 
-        <section className="case-section niwa-case-section">
-          <div className="case-section-number">03</div>
+        <section className={styles.deliverables}>
+          <SectionHeading
+            number="03"
+            title="Deliverables"
+            secondary="What I Built"
+          />
 
-          <div className="case-section-content">
-            <p className="case-section-label">Digital Experience</p>
+          <div className={styles.deliverableGrid}>
+            <article className={`${styles.deliverableCard} ${styles.blueTop}`}>
+              <div className={styles.cardNumber}>01</div>
 
-            <h2>
-              A flexible visual system built around the product.
-            </h2>
+              <div className={`${styles.iconBox} ${styles.blueIcon}`}>
+                <div className={styles.vrIcon} />
+              </div>
 
-            <div className="niwa-product-grid">
-              <article>
-                <div className="niwa-object-card card-one">
-                  <div className="mini-object object-tall" />
-                </div>
+              <div className={styles.deliverableContent}>
+                <h3>Immersive VR Experience</h3>
 
-                <div className="niwa-product-info">
-                  <span>01 / Kanso Vase</span>
-                  <span>$120</span>
-                </div>
-              </article>
+                <p>
+                  An immersive concept that guides users through the story
+                  of Colombian coffee, its regions and its cultural
+                  significance.
+                </p>
+              </div>
+            </article>
 
-              <article>
-                <div className="niwa-object-card card-two">
-                  <div className="mini-object object-round" />
-                </div>
+            <article
+              className={`${styles.deliverableCard} ${styles.yellowTop}`}
+            >
+              <div className={styles.cardNumber}>02</div>
 
-                <div className="niwa-product-info">
-                  <span>02 / Sora Vessel</span>
-                  <span>$95</span>
-                </div>
-              </article>
-            </div>
+              <div className={`${styles.iconBox} ${styles.yellowIcon}`}>
+                <div className={styles.webIcon} />
+              </div>
+
+              <div className={styles.deliverableContent}>
+                <h3>Companion Website</h3>
+
+                <p>
+                  A digital platform communicating the concept, mission,
+                  research and visual direction through a cohesive web
+                  experience.
+                </p>
+              </div>
+            </article>
+
+            <article className={`${styles.deliverableCard} ${styles.redTop}`}>
+              <div className={styles.cardNumber}>03</div>
+
+              <div className={`${styles.iconBox} ${styles.redIcon}`}>
+                <div className={styles.narrativeIcon} />
+              </div>
+
+              <div className={styles.deliverableContent}>
+                <h3>Visual + Narrative System</h3>
+
+                <p>
+                  A visual language based on Colombian color, clear
+                  typography and symbolic elements that reinforce the
+                  cultural narrative.
+                </p>
+              </div>
+            </article>
           </div>
         </section>
 
-        {/* DEVELOPMENT */}
+        {/* RESULTS */}
 
-        <section className="case-section niwa-case-section">
-          <div className="case-section-number">04</div>
+        <section className={styles.results}>
+          <SectionHeading
+            number="04"
+            title="Results"
+            secondary="What the Project Demonstrates"
+          />
 
-          <div className="case-section-content">
-            <p className="case-section-label">Front-End</p>
+          <div className={styles.resultsGrid}>
+            <article className={`${styles.resultCard} ${styles.resultBlue}`}>
+              <span>01</span>
 
-            <h2>
-              The visual concept becomes a working responsive interface.
-            </h2>
+              <h3>Versatility</h3>
 
-            <p className="case-large-text">
-              Rather than stopping at a static mockup, the concept is
-              translated into reusable components, responsive layouts and
-              working interactions in the browser.
-            </p>
+              <p>
+                Concept development, UX/UI, visual design, immersive thinking
+                and web presentation.
+              </p>
+            </article>
 
-            <div className="tech-grid">
-              <span>Next.js</span>
-              <span>React</span>
-              <span>TypeScript</span>
-              <span>Responsive Design</span>
-              <span>CSS</span>
-              <span>Interaction Design</span>
-            </div>
+            <article
+              className={`${styles.resultCard} ${styles.resultYellow}`}
+            >
+              <span>02</span>
+
+              <h3>Clear Identity</h3>
+
+              <p>
+                A culturally grounded visual direction supported by a strong
+                storytelling system.
+              </p>
+            </article>
+
+            <article className={`${styles.resultCard} ${styles.resultRed}`}>
+              <span>03</span>
+
+              <h3>Interactive Thinking</h3>
+
+              <p>
+                Motion, transitions and symbolic interactions reinforce the
+                meaning of the experience.
+              </p>
+            </article>
           </div>
         </section>
 
         {/* END */}
 
-        <section className="niwa-ending">
-          <span>End of selected work</span>
+        <section className={styles.end}>
+          <span>End / Identidad.CO</span>
 
           <h2>
-            Different problems.
+            CULTURE.
             <br />
-            Different solutions.
+            STORY.
+            <br />
+            TECHNOLOGY.
           </h2>
 
           <Link href="/#about">
             About me <span>↓</span>
           </Link>
         </section>
-
       </div>
     </main>
+  );
+}
+
+type SectionHeadingProps = {
+  number: string;
+  title: string;
+  secondary: string;
+};
+
+function SectionHeading({
+  number,
+  title,
+  secondary,
+}: SectionHeadingProps) {
+  return (
+    <div className={styles.sectionHeading}>
+      <div>
+        <span className={styles.sectionDot} />
+        <span>{number}</span>
+        <strong>{title}</strong>
+      </div>
+
+      <span>{secondary}</span>
+    </div>
   );
 }

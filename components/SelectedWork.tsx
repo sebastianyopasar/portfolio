@@ -33,10 +33,10 @@ export default function SelectedWork() {
 
         <ProjectCard
           number="03"
-          title="NIWA"
-          category="Concept · Brand · Web Development"
-          description="A digital brand and commerce concept exploring visual direction, responsive design and front-end development."
-          href="/work/niwa"
+          title="Identidad.CO"
+          category="Immersive Media · Web · Cultural Experience"
+          description="A digital experience combining web design and virtual reality storytelling to explore Colombian identity through coffee."
+          href="/work/niwa?enter=1"
           visual="concept"
         />
       </div>
