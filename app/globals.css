@@ -2664,3 +2664,343 @@ a {
     text-align: left;
   }
 }
+/* =======================================================
+   RESPONSIVE QA FIXES
+   Prevent horizontal overflow and clipped content
+======================================================= */
+
+/* Global width safety */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.site-container {
+  width: 100%;
+  max-width: var(--max-width);
+
+  margin-inline: auto;
+  padding-inline: 32px;
+}
+
+/* Allow flex/grid children to actually shrink */
+
+.navbar > *,
+.navbar-right > *,
+.hero-intro > *,
+.hero-main > *,
+.hero-footer > *,
+.section-heading > *,
+.project-card > *,
+.project-topline > *,
+.case-nav > *,
+.case-eyebrow > *,
+.case-introduction > *,
+.case-meta > *,
+.case-section > *,
+.case-text-columns > *,
+.store-nav > *,
+.niwa-eyebrow > *,
+.niwa-store-nav > *,
+.niwa-intro-bottom > *,
+.experience-row > *,
+.contact-bottom > *,
+.footer > * {
+  min-width: 0;
+}
+
+/* Text safety */
+
+p,
+span,
+a,
+strong {
+  max-width: 100%;
+}
+
+/* =======================================================
+   TABLET
+======================================================= */
+
+@media (max-width: 900px) {
+  .site-container {
+    padding-inline: 20px;
+  }
+
+  /* NAV */
+
+  .navbar-right {
+    gap: 24px;
+  }
+
+  .nav-links {
+    gap: 18px;
+  }
+
+  /* HOME HERO */
+
+  .hero-intro {
+    gap: 20px;
+  }
+
+  .hero-number {
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .hero-message {
+    width: min(280px, 100%);
+  }
+
+  /* CASE STUDIES */
+
+  .case-nav {
+    gap: 24px;
+  }
+
+  .case-back {
+    flex-shrink: 0;
+  }
+
+  .case-eyebrow {
+    gap: 30px;
+  }
+
+  .case-eyebrow span:last-child {
+    text-align: right;
+  }
+
+  /* Two-column intro becomes one column earlier.
+     This is much cleaner around 768px. */
+
+  .case-introduction {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+  }
+
+  .case-introduction p {
+    max-width: 620px;
+  }
+
+  /* Reduce oversized case-study title */
+
+  .case-hero h1 {
+    font-size: clamp(68px, 10vw, 110px);
+  }
+
+  /* Ecommerce title specifically */
+
+  .ecommerce-case .case-hero h1 {
+    font-size: clamp(64px, 9vw, 100px);
+  }
+
+  /* Store navigation */
+
+  .store-nav {
+    padding-inline: 24px;
+  }
+
+  .store-nav > div {
+    gap: 18px;
+  }
+
+  /* NIWA navigation */
+
+  .niwa-store-nav {
+    padding-inline: 24px;
+  }
+
+  .niwa-store-nav div {
+    gap: 18px;
+  }
+}
+
+/* =======================================================
+   MOBILE
+======================================================= */
+
+@media (max-width: 600px) {
+  .site-container {
+    padding-inline: 16px;
+  }
+
+  /* NAV */
+
+  .navbar {
+    gap: 20px;
+  }
+
+  .brand {
+    flex-shrink: 0;
+
+    font-size: 11px;
+  }
+
+  .nav-links {
+    gap: 14px;
+
+    font-size: 10px;
+  }
+
+  /* HOME HERO */
+
+  .hero-intro {
+    display: block;
+  }
+
+  .hero-main {
+    gap: 40px;
+  }
+
+  .hero-message {
+    width: 100%;
+    max-width: 280px;
+
+    margin-left: 0;
+  }
+
+  .hero-footer {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 30px;
+  }
+
+  .scroll-link {
+    align-self: flex-end;
+  }
+
+  /* PROJECT CARDS */
+
+  .project-topline {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+
+  .project-topline span:last-child {
+    text-align: left;
+  }
+
+  /* CASE STUDY NAV */
+
+  .case-nav {
+    gap: 16px;
+
+    font-size: 10px;
+  }
+
+  .case-back {
+    text-align: right;
+
+    white-space: nowrap;
+  }
+
+  /* Case study eyebrow no longer forced into
+     two tiny columns */
+
+  .case-eyebrow {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 8px;
+  }
+
+  .case-eyebrow span:last-child {
+    text-align: left;
+  }
+
+  /* Generic case title */
+
+  .case-hero h1 {
+    margin: 70px 0 45px;
+
+    font-size: clamp(54px, 18vw, 72px);
+
+    line-height: 0.88;
+
+    max-width: 100%;
+  }
+
+  /* E-Commerce needs a slightly smaller title
+     because the word is unusually long */
+
+  .ecommerce-case .case-hero h1 {
+    font-size: clamp(52px, 15vw, 62px);
+
+    white-space: nowrap;
+  }
+
+  /* Metadata */
+
+  .case-meta {
+    column-gap: 25px;
+    row-gap: 35px;
+  }
+
+  /* Commerce nav */
+
+  .store-nav {
+    height: auto;
+
+    min-height: 60px;
+
+    padding: 15px 16px;
+
+    gap: 15px;
+  }
+
+  .store-nav > div {
+    flex-wrap: wrap;
+
+    justify-content: flex-end;
+
+    gap: 7px 12px;
+  }
+
+  /* NIWA nav */
+
+  .niwa-store-nav {
+    height: auto;
+
+    min-height: 65px;
+
+    padding: 15px 16px;
+
+    gap: 15px;
+  }
+
+  .niwa-store-nav div {
+    flex-wrap: wrap;
+
+    justify-content: flex-end;
+
+    gap: 7px 12px;
+  }
+
+  /* About */
+
+  .about-heading {
+    gap: 25px;
+  }
+
+  .about-statement h2 {
+    font-size: clamp(48px, 15vw, 70px);
+  }
+
+  /* Contact */
+
+  .contact-links {
+    flex-wrap: wrap;
+
+    gap: 18px 28px;
+  }
+}

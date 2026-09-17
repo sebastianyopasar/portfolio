@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function EcommerceCaseStudy() {
   return (
-    <main className="case-study">
+    <main className="case-study ecommerce-case">
       <div className="site-container">
 
         {/* NAVIGATION */}
