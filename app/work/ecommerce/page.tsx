@@ -1,13 +1,47 @@
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 
-export default function EcommerceCaseStudy() {
+const construction = [
+  {
+    number: "01",
+    title: "Product data",
+    text: "Build a clear foundation with SKU, pricing, category, size and product attributes.",
+  },
+  {
+    number: "02",
+    title: "Content",
+    text: "Turn technical information into product descriptions, applications and useful customer-facing content.",
+  },
+  {
+    number: "03",
+    title: "Trust",
+    text: "Support buying decisions with documentation, availability, reviews and value-focused tools.",
+  },
+  {
+    number: "04",
+    title: "Search",
+    text: "Structure product information so customers and search platforms can understand what is being sold.",
+  },
+];
+
+const promotionFlow = [
+  "Campaign",
+  "Homepage",
+  "Collection",
+  "Product",
+  "Order",
+  "Tracking",
+];
+
+export default function EcommercePage() {
   return (
-    <main className="case-study ecommerce-case">
+    <main className="ecom-page">
       <div className="site-container">
+        {/* =====================================================
+            NAVIGATION
+        ====================================================== */}
 
-        {/* NAVIGATION */}
-
-        <header className="case-nav">
+        <nav className="case-nav">
           <Link href="/" className="brand">
             Sebastián Yopasá
           </Link>
@@ -15,331 +49,435 @@ export default function EcommerceCaseStudy() {
           <Link href="/#work" className="case-back">
             ← Back to work
           </Link>
-        </header>
+        </nav>
 
-        {/* HERO */}
+        {/* =====================================================
+            HERO
+        ====================================================== */}
 
-        <section className="case-hero">
-          <div className="case-eyebrow">
-            <span>02 / E-Commerce Experience</span>
-            <span>Digital Commerce / UX / UI</span>
+        <section className="ecom-hero">
+          <div className="ecom-eyebrow">
+            <span>E-Commerce</span>
+            <span>Shopify · UX · Conversion · SEO</span>
           </div>
 
-          <h1>E-Commerce</h1>
+          <Reveal>
+            <div className="ecom-hero-layout">
+              <h1>
+                E-
+                <span>COMMERCE</span>
+              </h1>
 
-          <div className="case-introduction">
-            <p className="case-lead">
-              Designing commerce experiences that make products easier to
-              discover, understand and buy.
-            </p>
+              <div className="ecom-hero-copy">
+                <i />
 
-            <p>
-              This project explores the relationship between visual design,
-              product organization, promotions, usability and conversion
-              across modern e-commerce experiences.
-            </p>
+                <p>
+                  Designing the complete path from product construction and
+                  discovery to conversion, promotion and search visibility.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="ecom-meta">
+            <div>
+              <span>Platform</span>
+              <strong>Shopify</strong>
+            </div>
+
+            <div>
+              <span>Focus</span>
+              <strong>Product Experience</strong>
+            </div>
+
+            <div>
+              <span>Commercial</span>
+              <strong>Conversion + Promotions</strong>
+            </div>
+
+            <div>
+              <span>Discovery</span>
+              <strong>SEO + Google</strong>
+            </div>
           </div>
         </section>
 
-        {/* META */}
+        {/* =====================================================
+            01 — PRODUCT CONSTRUCTION
+        ====================================================== */}
 
-        <section className="case-meta">
-          <div>
-            <span>Role</span>
-            <p>
-              UX / UI
-              <br />
-              Digital Marketing
-              <br />
-              E-Commerce
-            </p>
+        <section className="ecom-section">
+          <div className="ecom-section-label">
+            <span>01</span>
+            <span>Product Construction</span>
           </div>
 
-          <div>
-            <span>Platforms</span>
-            <p>
-              Shopify
-              <br />
-              Web
-              <br />
-              Mobile
-            </p>
+          <div className="ecom-heading-grid">
+            <Reveal>
+              <h2>
+                A product is more than
+                <span> a product page.</span>
+              </h2>
+            </Reveal>
+
+            <Reveal delay={90}>
+              <div className="ecom-section-copy">
+                <p className="ecom-lead">
+                  Strong product experiences begin before a customer reaches the
+                  storefront.
+                </p>
+
+                <p>
+                  Product data, merchandising, technical information and search
+                  structure all contribute to how easily a product can be found,
+                  understood and purchased.
+                </p>
+              </div>
+            </Reveal>
           </div>
 
-          <div>
-            <span>Focus</span>
-            <p>
-              Conversion
-              <br />
-              Product Discovery
-              <br />
-              Promotions
-            </p>
-          </div>
-
-          <div>
-            <span>Approach</span>
-            <p>
-              Business + Design
-            </p>
+          <div className="ecom-construction-grid">
+            {construction.map((item, index) => (
+              <Reveal key={item.number} delay={index * 65}>
+                <article>
+                  <span>{item.number}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </section>
 
-        {/* VISUAL */}
+        {/* =====================================================
+            02 — DISCOVERY + CONVERSION
+        ====================================================== */}
 
-        <section className="ecommerce-case-visual">
-          <div className="ecommerce-browser">
+        <section className="ecom-section ecom-discovery-section">
+          <div className="ecom-section-label">
+            <span>02</span>
+            <span>Discovery + Conversion</span>
+          </div>
 
-            <div className="ecommerce-browser-bar">
-              <div className="browser-dots">
-                <span />
-                <span />
-                <span />
+          <Reveal>
+            <div className="ecom-wide-heading">
+              <h2>
+                Make products easier to find.
+                <span> Then easier to choose.</span>
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="ecom-proof-block">
+            <Reveal>
+              <div className="ecom-proof-image">
+                <img
+                  src="/ecommerce/collection.png"
+                  alt="Shopify collection page showing product filters, sorting and commercial product cards."
+                />
               </div>
+            </Reveal>
 
-              <div className="browser-address">
-                store.example.com
+            <Reveal delay={90}>
+              <div className="ecom-proof-copy">
+                <span>Product Discovery</span>
+
+                <h3>Reduce the distance between intent and the right product.</h3>
+
+                <p>
+                  Search, categories, filters, visual product signals and quick
+                  purchase actions help customers narrow a large catalog into a
+                  relevant set of choices.
+                </p>
+
+                <div className="ecom-chip-list">
+                  <span>Search</span>
+                  <span>Categories</span>
+                  <span>Availability</span>
+                  <span>Price</span>
+                  <span>Sorting</span>
+                  <span>Product labels</span>
+                </div>
               </div>
+            </Reveal>
+          </div>
+
+          <div className="ecom-proof-block ecom-proof-reverse">
+            <Reveal>
+              <div className="ecom-proof-copy">
+                <span>Conversion</span>
+
+                <h3>Remove uncertainty before asking for the sale.</h3>
+
+                <p>
+                  The product page answers the questions that can prevent a
+                  purchase: What is it? Is it available? How is it used? Is
+                  technical documentation available? Is the value clear?
+                </p>
+
+                <div className="ecom-chip-list">
+                  <span>Product media</span>
+                  <span>Quantity</span>
+                  <span>Availability</span>
+                  <span>SDS</span>
+                  <span>Reviews</span>
+                  <span>Cost-in-use</span>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={90}>
+              <div className="ecom-proof-image">
+                <img
+                  src="/ecommerce/product.png"
+                  alt="Shopify product detail page showing product photography, add to cart, pickup availability, technical information and customer reviews."
+                />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* =====================================================
+            03 — PROMOTIONS
+        ====================================================== */}
+
+        <section className="ecom-section">
+          <div className="ecom-section-label">
+            <span>03</span>
+            <span>Promotions</span>
+          </div>
+
+          <div className="ecom-heading-grid">
+            <Reveal>
+              <h2>
+                A campaign should connect
+                <span> every customer touchpoint.</span>
+              </h2>
+            </Reveal>
+
+            <Reveal delay={90}>
+              <div className="ecom-section-copy">
+                <p className="ecom-lead">
+                  Promotions are more effective when the message continues
+                  throughout the buying journey.
+                </p>
+
+                <p>
+                  Homepage messaging, campaign collections, product pricing,
+                  promotional codes and order tracking should behave as one
+                  connected commercial experience.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="ecom-promo-layout">
+            <Reveal>
+              <div className="ecom-promo-image">
+                <img
+                  src="/ecommerce/home.png"
+                  alt="Corporate Facility Supply Shopify homepage showing seasonal promotional messaging and product discovery."
+                />
+              </div>
+            </Reveal>
+
+            <Reveal delay={90}>
+              <div className="ecom-promo-system">
+                <span className="ecom-promo-kicker">Campaign System</span>
+
+                <div className="ecom-promo-flow">
+                  {promotionFlow.map((item, index) => (
+                    <div key={item}>
+                      <span>0{index + 1}</span>
+                      <strong>{item}</strong>
+
+                      {index < promotionFlow.length - 1 && <i>↓</i>}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="ecom-campaign-card">
+                  <div>
+                    <span>Campaign</span>
+                    <strong>Fall Specials</strong>
+                  </div>
+
+                  <div>
+                    <span>Code</span>
+                    <strong>FALLCFS2026</strong>
+                  </div>
+
+                  <div>
+                    <span>Journey</span>
+                    <strong>Message → Purchase</strong>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* =====================================================
+            04 — SEO + GOOGLE
+        ====================================================== */}
+
+        <section className="ecom-seo-section">
+          <div className="ecom-seo-inner">
+            <div className="ecom-section-label ecom-section-label-dark">
+              <span>04</span>
+              <span>SEO + Google</span>
             </div>
 
-            <div className="store-nav">
-              <strong>STUDIO</strong>
-
-              <div>
-                <span>New</span>
-                <span>Shop</span>
-                <span>Collections</span>
-                <span>Search</span>
-              </div>
-            </div>
-
-            <div className="store-hero">
-              <div className="store-hero-copy">
-                <span>NEW COLLECTION / 2026</span>
-
+            <Reveal>
+              <div className="ecom-seo-heading">
                 <h2>
-                  Designed for
-                  <br />
-                  everyday living.
+                  Build for people.
+                  <span> Structure for discovery.</span>
                 </h2>
 
-                <button>Explore collection</button>
+                <p>
+                  Product information can be structured so both customers and
+                  search platforms understand what is being offered.
+                </p>
               </div>
+            </Reveal>
 
-              <div className="store-hero-image">
-                <div className="product-object object-one" />
-                <div className="product-object object-two" />
-              </div>
+            <div className="ecom-seo-flow">
+              <Reveal>
+                <article className="ecom-seo-card">
+                  <span>01 / Shopify</span>
+                  <h3>Product information</h3>
+
+                  <div className="ecom-seo-fields">
+                    <div>
+                      <small>Product</small>
+                      <strong>Lemon Neutral - 4L</strong>
+                    </div>
+
+                    <div>
+                      <small>Category</small>
+                      <strong>Cleaners</strong>
+                    </div>
+
+                    <div>
+                      <small>Price</small>
+                      <strong>$20.68</strong>
+                    </div>
+
+                    <div>
+                      <small>Content</small>
+                      <strong>Description + applications</strong>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+
+              <div className="ecom-seo-arrow">→</div>
+
+              <Reveal delay={80}>
+                <article className="ecom-seo-card">
+                  <span>02 / Search Structure</span>
+                  <h3>SEO metadata</h3>
+
+                  <div className="ecom-seo-fields">
+                    <div>
+                      <small>Title</small>
+                      <strong>Lemon Neutral 4L | No-Rinse Cleaner</strong>
+                    </div>
+
+                    <div>
+                      <small>URL</small>
+                      <strong>/products/lemon-neutral-4l</strong>
+                    </div>
+
+                    <div>
+                      <small>Image</small>
+                      <strong>Descriptive alt text</strong>
+                    </div>
+
+                    <div>
+                      <small>Description</small>
+                      <strong>Relevant product intent</strong>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+
+              <div className="ecom-seo-arrow">→</div>
+
+              <Reveal delay={160}>
+                <article className="ecom-google-card">
+                  <span>03 / Google</span>
+
+                  <div className="ecom-google-result">
+                    <small>Corporate Facility Supply</small>
+
+                    <h3>Lemon Neutral 4L | No-Rinse Cleaner</h3>
+
+                    <p>
+                      Commercial neutral pH cleaner for daily maintenance of
+                      floors, walls and washable surfaces.
+                    </p>
+
+                    <strong>$20.68 · In stock</strong>
+                  </div>
+                </article>
+              </Reveal>
             </div>
 
-            <div className="store-products">
-              <div>
-                <div className="store-product-image product-a" />
-                <span>Object 01</span>
-                <small>$120</small>
-              </div>
+            <Reveal>
+              <div className="ecom-measurement">
+                <span>Measurement loop</span>
 
-              <div>
-                <div className="store-product-image product-b" />
-                <span>Object 02</span>
-                <small>$85</small>
-              </div>
+                <div>
+                  <strong>Discovery</strong>
+                  <i>→</i>
+                  <strong>Product View</strong>
+                  <i>→</i>
+                  <strong>Add to Cart</strong>
+                  <i>→</i>
+                  <strong>Checkout</strong>
+                  <i>→</i>
+                  <strong>Purchase</strong>
+                </div>
 
-              <div>
-                <div className="store-product-image product-c" />
-                <span>Object 03</span>
-                <small>$160</small>
+                <small>
+                  Shopify · GA4 · Search Console · Google commerce surfaces
+                </small>
               </div>
-            </div>
-
+            </Reveal>
           </div>
         </section>
 
-        {/* CHALLENGE */}
+        {/* =====================================================
+            PROJECT PRINCIPLE
+        ====================================================== */}
 
-        <section className="case-section">
-          <div className="case-section-number">
-            01
-          </div>
-
-          <div className="case-section-content">
-            <p className="case-section-label">
-              The Challenge
-            </p>
-
-            <h2>
-              E-commerce is not only about displaying products.
-            </h2>
-
-            <div className="case-text-columns">
-              <p>
-                Customers need to understand what is being sold, how products
-                differ and why an offer is relevant without unnecessary
-                friction.
-              </p>
-
-              <p>
-                Navigation, hierarchy, imagery, promotions and product
-                information all influence the shopping experience before a
-                customer ever reaches checkout.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* EXPERIENCE */}
-
-        <section className="case-section">
-          <div className="case-section-number">
-            02
-          </div>
-
-          <div className="case-section-content">
-            <p className="case-section-label">
-              The Experience
-            </p>
-
-            <h2>
-              Reduce friction between discovery and decision.
-            </h2>
-
-            <p className="case-large-text">
-              The experience is designed around clear product hierarchy,
-              understandable promotions and simple paths between browsing,
-              comparing and purchasing.
-            </p>
-          </div>
-        </section>
-
-        {/* SYSTEM */}
-
-        <section className="case-section">
-          <div className="case-section-number">
-            03
-          </div>
-
-          <div className="case-section-content">
-            <p className="case-section-label">
-              Commerce System
-            </p>
-
-            <h2>
-              A consistent experience across the customer journey.
-            </h2>
-
-            <div className="module-grid">
-              <div>
-                <span>01</span>
-                <strong>Navigation</strong>
-              </div>
-
-              <div>
-                <span>02</span>
-                <strong>Collections</strong>
-              </div>
-
-              <div>
-                <span>03</span>
-                <strong>Product Discovery</strong>
-              </div>
-
-              <div>
-                <span>04</span>
-                <strong>Product Pages</strong>
-              </div>
-
-              <div>
-                <span>05</span>
-                <strong>Promotions</strong>
-              </div>
-
-              <div>
-                <span>06</span>
-                <strong>Merchandising</strong>
-              </div>
-
-              <div>
-                <span>07</span>
-                <strong>Mobile UX</strong>
-              </div>
-
-              <div>
-                <span>08</span>
-                <strong>Conversion</strong>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* BUSINESS THINKING */}
-
-        <section className="case-section">
-          <div className="case-section-number">
-            04
-          </div>
-
-          <div className="case-section-content">
-            <p className="case-section-label">
-              Business Thinking
-            </p>
-
-            <h2>
-              Design decisions should support both the customer and the business.
-            </h2>
-
-            <div className="case-text-columns">
-              <p>
-                Promotions need enough visibility to influence purchasing
-                behavior without making the experience feel confusing or
-                overly aggressive.
-              </p>
+        <section className="ecom-principle-section">
+          <Reveal>
+            <div className="ecom-principle">
+              <span>Project principle</span>
 
               <p>
-                Product structure and merchandising can make large catalogs
-                easier to navigate while supporting campaigns, collections and
-                commercial priorities.
+                Make products <strong>easier to find</strong>, easier to
+                understand and <strong>easier to buy.</strong>
               </p>
             </div>
-          </div>
+          </Reveal>
         </section>
 
-        {/* CAPABILITIES */}
+        {/* =====================================================
+            NEXT PROJECT
+        ====================================================== */}
 
-        <section className="case-section">
-          <div className="case-section-number">
-            05
-          </div>
-
-          <div className="case-section-content">
-            <p className="case-section-label">
-              Capabilities
-            </p>
-
-            <h2>
-              Where design, commerce and digital strategy meet.
-            </h2>
-
-            <div className="tech-grid">
-              <span>Shopify</span>
-              <span>UX / UI</span>
-              <span>Product Management</span>
-              <span>Promotions</span>
-              <span>Analytics</span>
-              <span>Digital Marketing</span>
-            </div>
-          </div>
-        </section>
-
-        {/* NEXT */}
-
-        <section className="case-next">
+        <section className="case-next ecom-next">
           <p>Next project</p>
 
           <Link href="/work/niwa?enter=1">
-            Identidad.CO <span>→</span>
+            Identidad.CO
+            <span>↗</span>
           </Link>
         </section>
-
       </div>
     </main>
   );

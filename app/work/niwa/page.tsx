@@ -1,414 +1,223 @@
-"use client";
-
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import Reveal from "@/components/Reveal";
+import IdentidadCardDeck from "../../../components/IdentidadCardDeck";
+import InfographicPanel from "../../../components/InfographicPanel";
+
 import styles from "./identidad.module.css";
 
-export default function IdentidadCoPage() {
-  const [isEntering, setIsEntering] = useState(false);
+const outputs = [
+  {
+    number: "01",
+    title: "Website Experience",
+    description:
+      "A digital entry point introducing the concept, visual identity and cultural narrative of the project.",
+  },
+  {
+    number: "02",
+    title: "Interactive Card Series",
+    description:
+      "A set of immersive visual cards designed to communicate key moments of the coffee journey in a bilingual and experiential format.",
+  },
+  {
+    number: "03",
+    title: "Immersive Visual Assets",
+    description:
+      "3D-inspired scenes, symbolic compositions and visual storytelling pieces connecting coffee, place and identity.",
+  },
+  {
+    number: "04",
+    title: "Research Infographic",
+    description:
+      "A large-format infographic summarizing the project framework, goals, cultural context and immersive direction.",
+  },
+];
 
-  const playTransition = (scrollAfter = false) => {
-    setIsEntering(true);
-
-    if (scrollAfter) {
-      window.setTimeout(() => {
-        document
-          .getElementById("identidad-overview")
-          ?.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-      }, 750);
-    }
-
-    window.setTimeout(() => {
-      setIsEntering(false);
-    }, 1450);
-  };
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-
-    if (params.get("enter") === "1") {
-      const timer = window.setTimeout(() => {
-        playTransition(false);
-      }, 100);
-
-      return () => window.clearTimeout(timer);
-    }
-  }, []);
-
+export default function NiwaPage() {
   return (
-    <main className={styles.page}>
-      {/* TRANSITION */}
-
-      <div
-        className={`${styles.transition} ${
-          isEntering ? styles.transitionActive : ""
-        }`}
-        aria-hidden="true"
-      >
-        <div className={`${styles.transitionBand} ${styles.bandYellow}`} />
-        <div className={`${styles.transitionBand} ${styles.bandBlue}`} />
-        <div className={`${styles.transitionBand} ${styles.bandRed}`} />
-
-        <div className={styles.transitionBean}>
-          <span />
-        </div>
-
-        <span className={styles.transitionWordmark}>
-          IDENTIDAD.CO
-        </span>
-      </div>
-
-      <div className="site-container">
-        {/* NAV */}
-
-        <header className={styles.nav}>
+    <main className={styles.identidadPage}>
+      <div className={styles.siteContainer}>
+        <nav className={styles.caseNav}>
           <Link href="/" className={styles.brand}>
-            Sebastián Yopasá
+            SEBASTIÁN YOPASÁ
           </Link>
 
-          <Link href="/#work" className={styles.back}>
+          <Link href="/#work" className={styles.caseBack}>
             ← Back to work
           </Link>
-        </header>
+        </nav>
 
         {/* HERO */}
-
-        <section className={styles.hero}>
-          <div className={styles.eyebrow}>
-            <span>03 / Cultural Digital Experience</span>
-            <span>VR + Web / Colombian Identity</span>
+        <section className={styles.heroSection}>
+          <div className={styles.heroEyebrow}>
+            <span>03 / IDENTIDAD.CO</span>
+            <span>VR · WEB · CULTURE</span>
           </div>
 
           <div className={styles.heroGrid}>
-            <div className={styles.heroCopy}>
-              <p className={styles.kicker}>
-                Identidad.CO
-              </p>
-
-              <h1>
-                BUILDING
-                <br />
-                COLOMBIAN
-                <br />
-                IDENTITY
-                <br />
-
-                <span>
-                  THROUGH
-                  <br />
-                  IMMERSIVE DIGITAL
-                  <br />
-                  MEDIA
+            <Reveal>
+              <div className={styles.heroCopy}>
+                <span className={styles.heroKicker}>
+                  CULTURAL DIGITAL EXPERIENCE
                 </span>
-              </h1>
 
-              <p className={styles.intro}>
-                A concept project focused on celebrating Colombian culture
-                through an immersive VR experience and a companion website,
-                using coffee as a symbolic, cultural and economic connector.
-              </p>
+                <h1 className={styles.heroTitle}>
+                  IDENTIDAD<span>.CO</span>
+                </h1>
 
-              <div className={styles.actions}>
-                <button
-                  type="button"
-                  className={styles.enterButton}
-                  onClick={() => playTransition(true)}
-                >
-                  <span>Enter Identidad.CO</span>
-                  <span>↗</span>
-                </button>
+                <h2 className={styles.heroSubtitle}>
+                  Colombian culture through
+                  <span> immersive media.</span>
+                </h2>
 
-                <p className={styles.heroMeta}>
-                  Web Experience · VR Storytelling · Cultural Identity
+                <p className={styles.heroDescription}>
+                  A web and VR concept exploring Colombian identity through
+                  coffee, territory and digital storytelling.
                 </p>
+
+                <div className={styles.heroActions}>
+                  <a href="#website-experience" className={styles.primaryButton}>
+                    ENTER THE EXPERIENCE
+                    <span>↓</span>
+                  </a>
+
+                  <span className={styles.heroCaption}>
+                    WEB EXPERIENCE · VR STORYTELLING · CULTURAL IDENTITY
+                  </span>
+                </div>
               </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <div className={styles.heroVisualCard}>
+                <div className={styles.heroVisualInner}>
+                  <Image
+                    src="/identidad/hero-market.png"
+                    alt="Colombian market and community environment representing the cultural experience of Identidad.CO"
+                    fill
+                    className={styles.heroVisualImage}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+
+                <div className={styles.heroVisualMeta}>
+                  <span>CULTURAL IDENTITY</span>
+                  <span>COLOMBIA · COFFEE · MEDIA</span>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className={styles.heroMetaGrid}>
+            <div>
+              <span>Medium</span>
+              <strong>Web + VR</strong>
             </div>
-
-            {/* HERO VISUAL */}
-
-            <div className={styles.heroVisual}>
-              <div className={styles.coffeeLandscape} />
-
-              <div className={styles.mountainLayerOne} />
-              <div className={styles.mountainLayerTwo} />
-
-              <div className={styles.coffeeRows}>
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-              </div>
-
-              <div className={styles.beanOrbitLarge} />
-              <div className={styles.beanOrbitSmall} />
-
-              <div className={styles.coffeeBean}>
-                <span className={styles.beanCut} />
-                <span className={styles.beanHighlight} />
-              </div>
-
-              <div className={`${styles.floatingCard} ${styles.cardBlue}`}>
-                <small>01</small>
-                <strong>Immersive Media</strong>
-                <span>VR + Web Experience</span>
-              </div>
-
-              <div className={`${styles.floatingCard} ${styles.cardYellow}`}>
-                <small>02</small>
-                <strong>Identity</strong>
-                <span>Culture / Story / Memory</span>
-              </div>
-
-              <div className={`${styles.floatingCard} ${styles.cardRed}`}>
-                <small>03</small>
-                <strong>Coffee</strong>
-                <span>Symbol / Product / Connection</span>
-              </div>
+            <div>
+              <span>Focus</span>
+              <strong>Immersive Storytelling</strong>
+            </div>
+            <div>
+              <span>Connector</span>
+              <strong>Colombian Coffee</strong>
+            </div>
+            <div>
+              <span>Objective</span>
+              <strong>Culture → Experience</strong>
             </div>
           </div>
         </section>
 
-        {/* ABOUT */}
-
-        <section
-          className={styles.about}
-          id="identidad-overview"
-        >
-          <SectionHeading
-            number="01"
-            title="About the Project"
-            secondary="Overview"
-          />
-
-          <div className={styles.editorialGrid}>
-            <h2>
-              Designing an immersive narrative around Colombian identity.
-            </h2>
-
-            <div className={styles.editorialCopy}>
-              <p className={styles.lead}>
-                Identidad.CO was conceived as a digital experience that
-                highlights Colombian culture through one of its most
-                meaningful products: coffee.
-              </p>
-
-              <p>
-                The project combines a website and a virtual reality concept
-                to create an experience that feels educational, emotional and
-                visually memorable.
-              </p>
-            </div>
+        {/* WEBSITE EXPERIENCE */}
+        <section id="website-experience" className={styles.contentSection}>
+          <div className={styles.sectionLabel}>
+            <span>01</span>
+            <span>Website Experience</span>
           </div>
-        </section>
 
-        {/* MISSION */}
-
-        <section className={styles.mission}>
-          <SectionHeading
-            number="02"
-            title="Mission"
-            secondary="Purpose"
-          />
-
-          <div className={styles.editorialGrid}>
-            <h2>
-              Using immersive media to present Colombian culture in a
-              positive and engaging way.
-            </h2>
-
-            <div className={styles.editorialCopy}>
-              <p className={styles.lead}>
-                The mission is to foster a stronger and more positive
-                Colombian digital identity through immersive technology,
-                cultural storytelling and research-based design.
-              </p>
-
-              <ul className={styles.missionList}>
-                <li>
-                  <span>01</span>
-                  Strengthen cultural identity through digital narratives
-                </li>
-
-                <li>
-                  <span>02</span>
-                  Highlight coffee as a national and cultural symbol
-                </li>
-
-                <li>
-                  <span>03</span>
-                  Promote positive storytelling around Colombia
-                </li>
-
-                <li>
-                  <span>04</span>
-                  Connect visual design, research and technology
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* DELIVERABLES */}
-
-        <section className={styles.deliverables}>
-          <SectionHeading
-            number="03"
-            title="Deliverables"
-            secondary="What I Built"
-          />
-
-          <div className={styles.deliverableGrid}>
-            <article className={`${styles.deliverableCard} ${styles.blueTop}`}>
-              <div className={styles.cardNumber}>01</div>
-
-              <div className={`${styles.iconBox} ${styles.blueIcon}`}>
-                <div className={styles.vrIcon} />
+          <div className={styles.experienceIntro}>
+            <Reveal>
+              <div className={styles.experienceImageWrap}>
+                <div className={styles.experienceImageInner}>
+                  <Image
+                    src="/identidad/hero-market.png"
+                    alt="Polished Colombian market scene used as the main visual for Identidad.CO"
+                    fill
+                    className={styles.experienceImage}
+                    sizes="(max-width: 1024px) 100vw, 48vw"
+                  />
+                </div>
               </div>
+            </Reveal>
 
-              <div className={styles.deliverableContent}>
-                <h3>Immersive VR Experience</h3>
+            <Reveal delay={90}>
+              <div className={styles.experienceCopy}>
+                <span className={styles.sectionMiniTitle}>
+                  A digital entry point into the cultural story.
+                </span>
+
+                <h3>
+                  A website that introduces the concept, the visual identity and
+                  the immersive direction of the project.
+                </h3>
 
                 <p>
-                  An immersive concept that guides users through the story
-                  of Colombian coffee, its regions and its cultural
-                  significance.
+                  The web experience works as the first layer of the project.
+                  It frames the cultural context, communicates the design
+                  intention and guides users toward the immersive pieces created
+                  around coffee, identity and Colombian storytelling.
                 </p>
+
+                <div className={styles.tagList}>
+                  <span>UX / UI</span>
+                  <span>WEB</span>
+                  <span>STORYTELLING</span>
+                  <span>CULTURE</span>
+                </div>
               </div>
-            </article>
+            </Reveal>
+          </div>
 
-            <article
-              className={`${styles.deliverableCard} ${styles.yellowTop}`}
-            >
-              <div className={styles.cardNumber}>02</div>
+          <Reveal delay={120}>
+            <IdentidadCardDeck />
+          </Reveal>
+        </section>
 
-              <div className={`${styles.iconBox} ${styles.yellowIcon}`}>
-                <div className={styles.webIcon} />
-              </div>
+        {/* OUTPUTS */}
+        <section className={styles.outputsSection}>
+          <div className={styles.sectionLabel}>
+            <span>02</span>
+            <span>What was created</span>
+          </div>
 
-              <div className={styles.deliverableContent}>
-                <h3>Companion Website</h3>
-
-                <p>
-                  A digital platform communicating the concept, mission,
-                  research and visual direction through a cohesive web
-                  experience.
-                </p>
-              </div>
-            </article>
-
-            <article className={`${styles.deliverableCard} ${styles.redTop}`}>
-              <div className={styles.cardNumber}>03</div>
-
-              <div className={`${styles.iconBox} ${styles.redIcon}`}>
-                <div className={styles.narrativeIcon} />
-              </div>
-
-              <div className={styles.deliverableContent}>
-                <h3>Visual + Narrative System</h3>
-
-                <p>
-                  A visual language based on Colombian color, clear
-                  typography and symbolic elements that reinforce the
-                  cultural narrative.
-                </p>
-              </div>
-            </article>
+          <div className={styles.outputsGrid}>
+            {outputs.map((item, index) => (
+              <Reveal key={item.number} delay={index * 60}>
+                <article className={styles.outputCard}>
+                  <span className={styles.outputNumber}>{item.number}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </section>
 
-        {/* RESULTS */}
+        {/* INFOGRAPHIC */}
+        <Reveal>
+          <InfographicPanel />
+        </Reveal>
 
-        <section className={styles.results}>
-          <SectionHeading
-            number="04"
-            title="Results"
-            secondary="What the Project Demonstrates"
-          />
+        {/* NEXT */}
+        <section className={styles.caseNext}>
+          <p>Next project</p>
 
-          <div className={styles.resultsGrid}>
-            <article className={`${styles.resultCard} ${styles.resultBlue}`}>
-              <span>01</span>
-
-              <h3>Versatility</h3>
-
-              <p>
-                Concept development, UX/UI, visual design, immersive thinking
-                and web presentation.
-              </p>
-            </article>
-
-            <article
-              className={`${styles.resultCard} ${styles.resultYellow}`}
-            >
-              <span>02</span>
-
-              <h3>Clear Identity</h3>
-
-              <p>
-                A culturally grounded visual direction supported by a strong
-                storytelling system.
-              </p>
-            </article>
-
-            <article className={`${styles.resultCard} ${styles.resultRed}`}>
-              <span>03</span>
-
-              <h3>Interactive Thinking</h3>
-
-              <p>
-                Motion, transitions and symbolic interactions reinforce the
-                meaning of the experience.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        {/* END */}
-
-        <section className={styles.end}>
-          <span>End / Identidad.CO</span>
-
-          <h2>
-            CULTURE.
-            <br />
-            STORY.
-            <br />
-            TECHNOLOGY.
-          </h2>
-
-          <Link href="/#about">
-            About me <span>↓</span>
+          <Link href="/work/tokyo">
+            Project Tokyo
+            <span>↗</span>
           </Link>
         </section>
       </div>
     </main>
-  );
-}
-
-type SectionHeadingProps = {
-  number: string;
-  title: string;
-  secondary: string;
-};
-
-function SectionHeading({
-  number,
-  title,
-  secondary,
-}: SectionHeadingProps) {
-  return (
-    <div className={styles.sectionHeading}>
-      <div>
-        <span className={styles.sectionDot} />
-        <span>{number}</span>
-        <strong>{title}</strong>
-      </div>
-
-      <span>{secondary}</span>
-    </div>
   );
 }

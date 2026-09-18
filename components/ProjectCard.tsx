@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type ProjectCardProps = {
@@ -8,6 +9,10 @@ type ProjectCardProps = {
   focus: string;
   href: string;
   visual: "dashboard" | "commerce" | "concept";
+
+  imageSrc: string;
+  imageAlt: string;
+  imageLabel: string;
 };
 
 export default function ProjectCard({
@@ -18,6 +23,9 @@ export default function ProjectCard({
   focus,
   href,
   visual,
+  imageSrc,
+  imageAlt,
+  imageLabel,
 }: ProjectCardProps) {
   return (
     <Link
@@ -26,86 +34,25 @@ export default function ProjectCard({
       data-project={visual}
       aria-label={`Explore ${title}`}
     >
-      <div className={`project-visual project-visual-${visual}`}>
-        {visual === "dashboard" && (
-          <div className="dashboard-mockup">
-            <div className="mock-sidebar">
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
+      {/* REAL PROJECT IMAGE */}
 
-            <div className="mock-dashboard">
-              <div className="mock-header">
-                <span />
-                <span />
-              </div>
+      <div className="project-visual project-visual-real">
+        <div className="project-image-frame">
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            sizes="(max-width: 900px) 100vw, 33vw"
+            className="project-card-image"
+          />
+        </div>
 
-              <div className="mock-stats">
-                <span />
-                <span />
-                <span />
-              </div>
-
-              <div className="mock-content">
-                <div />
-                <div />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {visual === "commerce" && (
-          <div className="commerce-mockup">
-            <div className="commerce-header">
-              <span>STORE</span>
-
-              <div>
-                <i />
-                <i />
-                <i />
-              </div>
-            </div>
-
-            <div className="commerce-products">
-              <div>
-                <span />
-                <p>Product 01</p>
-              </div>
-
-              <div>
-                <span />
-                <p>Product 02</p>
-              </div>
-
-              <div>
-                <span />
-                <p>Product 03</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {visual === "concept" && (
-          <div className="concept-mockup">
-            <div className="concept-number">
-              03
-            </div>
-
-            <div className="concept-center">
-              <span>IDENTIDAD.CO</span>
-
-              <p>
-                Culture · Story · Technology
-              </p>
-            </div>
-
-            <div className="concept-circle" />
-          </div>
-        )}
+        <span className="project-image-label">
+          {imageLabel}
+        </span>
       </div>
+
+      {/* PROJECT INFORMATION */}
 
       <div className="project-info">
         <div className="project-topline">

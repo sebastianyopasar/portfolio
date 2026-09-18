@@ -25,6 +25,9 @@ export default function SelectedWork() {
           description="A connected business platform bringing CRM, inventory, sales and operations into one intuitive workspace."
           href="/work/tokyo"
           visual="dashboard"
+          imageSrc="/tokyo/home-dashboard.png"
+          imageAlt="Project Tokyo operational dashboard interface"
+          imageLabel="Live Product"
         />
 
         <ProjectCard
@@ -35,6 +38,9 @@ export default function SelectedWork() {
           description="Digital commerce experiences focused on product discovery, promotions, usability and conversion."
           href="/work/ecommerce"
           visual="commerce"
+          imageSrc="/ecommerce/home.png"
+          imageAlt="Shopify product collection showing product discovery, filtering and merchandising"
+          imageLabel="Shopify Experience"
         />
 
         <ProjectCard
@@ -42,9 +48,12 @@ export default function SelectedWork() {
           title="Identidad.CO"
           category="VR · Web · Culture"
           focus="Immersive Storytelling"
-          description="A web and VR concept exploring Colombian identity through coffee, culture and interactive digital media."
+          description="An immersive web and VR experience exploring Colombian identity through coffee, culture and digital storytelling."
           href="/work/niwa?enter=1"
           visual="concept"
+          imageSrc="/identidad/identidad-co.png"
+          imageAlt="Colombian coffee landscape representing the Identidad.CO cultural experience"
+          imageLabel="Immersive Experience"
         />
       </div>
     </section>
