@@ -335,8 +335,8 @@ export default function EcommerceCaseStudy() {
         <section className="case-next">
           <p>Next project</p>
 
-          <Link href="/work/niwa">
-            NIWA <span>→</span>
+          <Link href="/work/niwa?enter=1">
+            Identidad.CO <span>→</span>
           </Link>
         </section>
 

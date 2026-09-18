@@ -4,11 +4,11 @@ export default function SelectedWork() {
   return (
     <section className="selected-work" id="work">
       <div className="section-heading">
-        <p>Selected Work</p>
+        <p>Selected Work / 03</p>
 
         <p>
-          A selection of digital products combining design, development and
-          business thinking.
+          Three different projects demonstrating product thinking,
+          commercial UX and immersive digital storytelling.
         </p>
       </div>
 
@@ -16,17 +16,19 @@ export default function SelectedWork() {
         <ProjectCard
           number="01"
           title="Project Tokyo"
-          category="Digital Product · UX/UI · Development"
-          description="A connected business platform designed to bring CRM, inventory, sales and operations into one intuitive workspace."
+          category="UX/UI · Development"
+          focus="Complex Product Systems"
+          description="A connected business platform bringing CRM, inventory, sales and operations into one intuitive workspace."
           href="/work/tokyo"
           visual="dashboard"
         />
 
         <ProjectCard
           number="02"
-          title="E-Commerce Experience"
-          category="Shopify · UX/UI · Conversion"
-          description="Designing digital commerce experiences focused on product discovery, promotions, usability and conversion."
+          title="E-Commerce"
+          category="Shopify · Conversion"
+          focus="Commerce Experience"
+          description="Digital commerce experiences focused on product discovery, promotions, usability and conversion."
           href="/work/ecommerce"
           visual="commerce"
         />
@@ -34,8 +36,9 @@ export default function SelectedWork() {
         <ProjectCard
           number="03"
           title="Identidad.CO"
-          category="Immersive Media · Web · Cultural Experience"
-          description="A digital experience combining web design and virtual reality storytelling to explore Colombian identity through coffee."
+          category="VR · Web · Culture"
+          focus="Immersive Storytelling"
+          description="A web and VR concept exploring Colombian identity through coffee, culture and interactive digital media."
           href="/work/niwa?enter=1"
           visual="concept"
         />

@@ -12,8 +12,8 @@ export default function Navbar() {
         </div>
 
         <nav className="nav-links" aria-label="Main navigation">
-          <a href="#work">Work</a>
-          <a href="#about">About</a>
+          <a href="/#work">Work</a>
+            <a href="/#about">About</a>
         </nav>
       </div>
     </header>

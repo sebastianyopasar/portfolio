@@ -3,6 +3,7 @@ type ProjectCardProps = {
   title: string;
   category: string;
   description: string;
+  focus: string;
   href: string;
   visual: "dashboard" | "commerce" | "concept";
 };
@@ -12,28 +13,15 @@ export default function ProjectCard({
   title,
   category,
   description,
+  focus,
   href,
   visual,
 }: ProjectCardProps) {
   return (
-    <article className="project-card">
-      <div className="project-info">
-        <div className="project-topline">
-          <span>{number}</span>
-          <span>{category}</span>
-        </div>
-
-        <div className="project-copy">
-          <h3>{title}</h3>
-          <p>{description}</p>
-
-          <a href={href} className="project-link">
-            Explore project
-            <span>↗</span>
-          </a>
-        </div>
-      </div>
-
+    <article
+      className="project-card"
+      data-project={visual}
+    >
       <div className={`project-visual project-visual-${visual}`}>
         {visual === "dashboard" && (
           <div className="dashboard-mockup">
@@ -101,13 +89,38 @@ export default function ProjectCard({
             <div className="concept-number">03</div>
 
             <div className="concept-center">
-              <span>NIWA</span>
-              <p>Objects for modern living.</p>
+              <span>IDENTIDAD.CO</span>
+              <p>Culture · Story · Technology</p>
             </div>
 
             <div className="concept-circle" />
           </div>
         )}
+      </div>
+
+      <div className="project-info">
+        <div className="project-topline">
+          <span>{number}</span>
+          <span>{category}</span>
+        </div>
+
+        <div className="project-copy">
+          <p className="project-focus">
+            <span>Focus</span>
+            {focus}
+          </p>
+
+          <h3>{title}</h3>
+
+          <p className="project-description">
+            {description}
+          </p>
+
+          <a href={href} className="project-link">
+            Explore project
+            <span>↗</span>
+          </a>
+        </div>
       </div>
     </article>
   );
