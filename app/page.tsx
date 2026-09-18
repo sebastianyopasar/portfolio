@@ -9,7 +9,7 @@ import SelectedWork from "@/components/SelectedWork";
 
 export default function Home() {
   return (
-    <main id="top">
+    <main id="top" className="home-page">
       <div className="site-container">
         <Navbar />
         <Hero />

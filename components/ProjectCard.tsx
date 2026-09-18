@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type ProjectCardProps = {
   number: string;
   title: string;
@@ -18,9 +20,11 @@ export default function ProjectCard({
   visual,
 }: ProjectCardProps) {
   return (
-    <article
+    <Link
+      href={href}
       className="project-card"
       data-project={visual}
+      aria-label={`Explore ${title}`}
     >
       <div className={`project-visual project-visual-${visual}`}>
         {visual === "dashboard" && (
@@ -86,11 +90,16 @@ export default function ProjectCard({
 
         {visual === "concept" && (
           <div className="concept-mockup">
-            <div className="concept-number">03</div>
+            <div className="concept-number">
+              03
+            </div>
 
             <div className="concept-center">
               <span>IDENTIDAD.CO</span>
-              <p>Culture · Story · Technology</p>
+
+              <p>
+                Culture · Story · Technology
+              </p>
             </div>
 
             <div className="concept-circle" />
@@ -116,12 +125,12 @@ export default function ProjectCard({
             {description}
           </p>
 
-          <a href={href} className="project-link">
+          <span className="project-link">
             Explore project
             <span>↗</span>
-          </a>
+          </span>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

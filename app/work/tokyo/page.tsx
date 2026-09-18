@@ -1,13 +1,62 @@
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
+import TokyoDemo from "@/components/TokyoDemo";
 
-export default function TokyoCaseStudy() {
+const principles = [
+  {
+    number: "01",
+    title: "Keep context",
+    description:
+      "Connect customer, sales, inventory and operational information instead of rebuilding context across separate tools.",
+  },
+  {
+    number: "02",
+    title: "Reduce steps",
+    description:
+      "Make frequent actions direct and predictable so the system supports the work instead of adding more work.",
+  },
+  {
+    number: "03",
+    title: "Scale clearly",
+    description:
+      "Use shared product patterns so new workflows can be added without making the experience harder to understand.",
+  },
+];
+
+const evolution = [
+  {
+    number: "01",
+    title: "Define the structure",
+    description:
+      "Map how companies, contacts, products, inventory, sales and service activity connect.",
+  },
+  {
+    number: "02",
+    title: "Build modular systems",
+    description:
+      "Turn each domain into reusable patterns that work independently while remaining part of one product.",
+  },
+  {
+    number: "03",
+    title: "Scale with clarity",
+    description:
+      "Build a foundation that can support new workflows and business contexts while staying familiar to users.",
+  },
+];
+
+const created = [
+  "Connected business workspace",
+  "Modular CRM + inventory structure",
+  "Reusable product architecture",
+  "Scalable operational foundation",
+];
+
+export default function TokyoPage() {
   return (
-    <main className="case-study">
+    <main className="tokyo-page">
       <div className="site-container">
-
         {/* NAVIGATION */}
-
-        <header className="case-nav">
+        <nav className="case-nav">
           <Link href="/" className="brand">
             Sebastián Yopasá
           </Link>
@@ -15,248 +64,268 @@ export default function TokyoCaseStudy() {
           <Link href="/#work" className="case-back">
             ← Back to work
           </Link>
-        </header>
+        </nav>
 
-        {/* HERO */}
-
-        <section className="case-hero">
-          <div className="case-eyebrow">
-            <span>01 / Project Tokyo</span>
-            <span>Digital Product / 2026</span>
+        {/* ======================================================
+            HERO
+        ====================================================== */}
+        <section className="tokyo-hero">
+          <div className="tokyo-eyebrow">
+            <span>Project Tokyo</span>
+            <span>Product Design · UX/UI · Development</span>
           </div>
 
-          <h1>Project Tokyo</h1>
+          <Reveal>
+            <div className="tokyo-hero-layout">
+              <h1>
+                PROJECT
+                <span>TOKYO</span>
+              </h1>
 
-          <div className="case-introduction">
-            <p className="case-lead">
-              Designing and developing a connected business platform from the
-              ground up.
-            </p>
+              <div className="tokyo-hero-copy">
+                <span className="tokyo-square" />
 
-            <p>
-              Project Tokyo explores how CRM, inventory, sales, operations and
-              business activity can live inside one intuitive digital
-              workspace.
-            </p>
-          </div>
-        </section>
-
-        {/* PROJECT INFO */}
-
-        <section className="case-meta">
-          <div>
-            <span>Role</span>
-            <p>Product Design<br />UX / UI<br />Development</p>
-          </div>
-
-          <div>
-            <span>Technology</span>
-            <p>Next.js<br />TypeScript<br />Supabase</p>
-          </div>
-
-          <div>
-            <span>Focus</span>
-            <p>CRM<br />Inventory<br />Business Operations</p>
-          </div>
-
-          <div>
-            <span>Status</span>
-            <p>Active Development</p>
-          </div>
-        </section>
-
-        {/* PRODUCT VISUAL */}
-
-        <section className="case-product-visual">
-          <div className="case-interface">
-            <aside className="case-interface-sidebar">
-              <strong>TOKYO</strong>
-
-              <span>Dashboard</span>
-              <span>Companies</span>
-              <span>Contacts</span>
-              <span>Deals</span>
-              <span>Products</span>
-              <span>Inventory</span>
-              <span>Work Orders</span>
-            </aside>
-
-            <div className="case-interface-main">
-              <div className="interface-title">
-                <div>
-                  <small>DASHBOARD</small>
-                  <h3>Good morning.</h3>
-                </div>
-
-                <span />
+                <p>
+                  A connected business platform designed to make complex
+                  operational workflows easier to understand, use and scale.
+                </p>
               </div>
+            </div>
+          </Reveal>
 
-              <div className="interface-stats">
-                <div>
-                  <small>OPEN DEALS</small>
-                  <strong>24</strong>
-                </div>
+          <div className="tokyo-meta">
+            <div>
+              <span>Role</span>
+              <strong>Product Design + Development</strong>
+            </div>
 
-                <div>
-                  <small>ACTIVE ORDERS</small>
-                  <strong>18</strong>
-                </div>
+            <div>
+              <span>Focus</span>
+              <strong>Business Systems</strong>
+            </div>
 
-                <div>
-                  <small>WORK ORDERS</small>
-                  <strong>07</strong>
-                </div>
-              </div>
+            <div>
+              <span>Platform</span>
+              <strong>Web Application</strong>
+            </div>
 
-              <div className="interface-content">
-                <div />
-                <div />
-              </div>
+            <div>
+              <span>Core idea</span>
+              <strong>Complexity → Clarity</strong>
             </div>
           </div>
         </section>
 
-        {/* CHALLENGE */}
+        {/* ======================================================
+            INTERACTIVE PRODUCT DEMO
+        ====================================================== */}
+        <Reveal>
+          <TokyoDemo />
+        </Reveal>
 
-        <section className="case-section">
-          <div className="case-section-number">
-            01
+        {/* ======================================================
+            01 — PRODUCT QUESTION
+        ====================================================== */}
+        <section className="tokyo-product-question-section">
+          <div className="tokyo-section-label">
+            <span>01</span>
+            <span>Product Question</span>
           </div>
 
-          <div className="case-section-content">
-            <p className="case-section-label">The Challenge</p>
+          <div className="tokyo-question-grid">
+            <Reveal>
+              <h2>
+                How can business teams work in one connected system
+                <span> without increasing complexity?</span>
+              </h2>
+            </Reveal>
 
-            <h2>
-              Business information often lives across disconnected systems.
-            </h2>
+            <Reveal delay={90}>
+              <div className="tokyo-question-copy">
+                <p className="tokyo-lead">
+                  Work becomes harder when context is fragmented across tools,
+                  screens and disconnected processes.
+                </p>
 
-            <div className="case-text-columns">
+                <p>
+                  Tokyo brings CRM, inventory, sales and operations into one
+                  product experience: structured underneath, but simple for the
+                  people using it every day.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="tokyo-principles">
+            {principles.map((principle, index) => (
+              <Reveal key={principle.number} delay={index * 65}>
+                <article className="tokyo-principle">
+                  <span>{principle.number}</span>
+
+                  <h3>{principle.title}</h3>
+
+                  <p>{principle.description}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* ======================================================
+            02 — SYSTEM
+        ====================================================== */}
+        <section className="tokyo-system-section">
+          <div className="tokyo-system-inner">
+            <div className="tokyo-section-label tokyo-section-label-dark">
+              <span>02</span>
+              <span>System</span>
+            </div>
+
+            <div className="tokyo-system-grid">
+              <Reveal>
+                <div className="tokyo-system-copy">
+                  <h2>
+                    Simple on the surface.
+                    <span> Structured underneath.</span>
+                  </h2>
+
+                  <p>
+                    Reusable product patterns sit on top of a structured
+                    technical foundation, allowing Tokyo to grow without
+                    redesigning the experience every time a new workflow is
+                    introduced.
+                  </p>
+                </div>
+              </Reveal>
+
+              <Reveal delay={90}>
+                <div className="tokyo-stack">
+                  <div>
+                    <span>Interface</span>
+                    <strong>Next.js + React</strong>
+                  </div>
+
+                  <i>↓</i>
+
+                  <div>
+                    <span>Product logic</span>
+                    <strong>TypeScript</strong>
+                  </div>
+
+                  <i>↓</i>
+
+                  <div>
+                    <span>Data layer</span>
+                    <strong>Repositories</strong>
+                  </div>
+
+                  <i>↓</i>
+
+                  <div>
+                    <span>Backend</span>
+                    <strong>Supabase</strong>
+                  </div>
+
+                  <i>↓</i>
+
+                  <div>
+                    <span>Foundation</span>
+                    <strong>PostgreSQL</strong>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ======================================================
+            03 — EVOLUTION + RESULT
+        ====================================================== */}
+        <section className="tokyo-evolution-section">
+          <div className="tokyo-section-label">
+            <span>03</span>
+            <span>Evolution + Result</span>
+          </div>
+
+          <div className="tokyo-evolution-heading">
+            <Reveal>
+              <h2>
+                From fragmented workflows to
+                <span> one operational workspace.</span>
+              </h2>
+            </Reveal>
+
+            <Reveal delay={90}>
               <p>
-                CRM information, inventory, sales activity, operational
-                records and customer history can easily become fragmented
-                across different tools.
+                Tokyo evolved incrementally. Each new domain established
+                patterns that could be reused by the next, allowing the product
+                to grow while keeping the experience familiar.
               </p>
+            </Reveal>
+          </div>
+
+          {/* EVOLUTION */}
+          <div className="tokyo-evolution-grid">
+            {evolution.map((step, index) => (
+              <Reveal key={step.number} delay={index * 65}>
+                <article>
+                  <span>{step.number}</span>
+
+                  <h3>{step.title}</h3>
+
+                  <p>{step.description}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* RESULT */}
+          <Reveal>
+            <div className="tokyo-created-block">
+              <div className="tokyo-created-heading">
+                <span>What we created</span>
+
+                <h3>
+                  A clearer way to manage complex business operations.
+                </h3>
+              </div>
+
+              <div className="tokyo-created-grid">
+                {created.map((item, index) => (
+                  <article key={item}>
+                    <span>0{index + 1}</span>
+
+                    <strong>{item}</strong>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          {/* PROJECT PRINCIPLE */}
+          <Reveal>
+            <div className="tokyo-principle-final">
+              <span>Project principle</span>
 
               <p>
-                The objective was to explore how these workflows could become
-                part of one coherent product without making the experience
-                overwhelming.
+                Build systems that <strong>reduce friction</strong>, support
+                growth and <strong>stay easy to use.</strong>
               </p>
             </div>
-          </div>
+          </Reveal>
         </section>
 
-        {/* IDEA */}
-
-        <section className="case-section">
-          <div className="case-section-number">
-            02
-          </div>
-
-          <div className="case-section-content">
-            <p className="case-section-label">The Idea</p>
-
-            <h2>
-              One workspace. One timeline. One source of business context.
-            </h2>
-
-            <p className="case-large-text">
-              Project Tokyo is designed around a simple principle: important
-              business information should be easy to find, understand and act
-              on.
-            </p>
-          </div>
-        </section>
-
-        {/* PRODUCT SYSTEM */}
-
-        <section className="case-section">
-          <div className="case-section-number">
-            03
-          </div>
-
-          <div className="case-section-content">
-            <p className="case-section-label">The Product</p>
-
-            <h2>A modular business operating system.</h2>
-
-            <div className="module-grid">
-              <div>
-                <span>01</span>
-                <strong>Companies</strong>
-              </div>
-
-              <div>
-                <span>02</span>
-                <strong>Contacts</strong>
-              </div>
-
-              <div>
-                <span>03</span>
-                <strong>Deals</strong>
-              </div>
-
-              <div>
-                <span>04</span>
-                <strong>Quotes</strong>
-              </div>
-
-              <div>
-                <span>05</span>
-                <strong>Products</strong>
-              </div>
-
-              <div>
-                <span>06</span>
-                <strong>Inventory</strong>
-              </div>
-
-              <div>
-                <span>07</span>
-                <strong>Warehouses</strong>
-              </div>
-
-              <div>
-                <span>08</span>
-                <strong>Work Orders</strong>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* DEVELOPMENT */}
-
-        <section className="case-section case-development">
-          <div className="case-section-number">
-            04
-          </div>
-
-          <div className="case-section-content">
-            <p className="case-section-label">Development</p>
-
-            <h2>Designed as a product. Built as a real application.</h2>
-
-            <div className="tech-grid">
-              <span>Next.js</span>
-              <span>React</span>
-              <span>TypeScript</span>
-              <span>Supabase</span>
-              <span>PostgreSQL</span>
-              <span>Realtime</span>
-            </div>
-          </div>
-        </section>
-
-        {/* NEXT */}
-
-        <section className="case-next">
+        {/* ======================================================
+            NEXT PROJECT
+        ====================================================== */}
+        <section className="case-next tokyo-next">
           <p>Next project</p>
 
           <Link href="/work/ecommerce">
-            E-Commerce Experience <span>→</span>
+            E-Commerce
+            <span>↗</span>
           </Link>
         </section>
-
       </div>
     </main>
   );

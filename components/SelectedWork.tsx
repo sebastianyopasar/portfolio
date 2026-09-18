@@ -2,13 +2,17 @@ import ProjectCard from "./ProjectCard";
 
 export default function SelectedWork() {
   return (
-    <section className="selected-work" id="work">
+    <section
+      className="selected-work"
+      id="work"
+    >
       <div className="section-heading">
         <p>Selected Work / 03</p>
 
         <p>
-          Three different projects demonstrating product thinking,
-          commercial UX and immersive digital storytelling.
+          Three different projects demonstrating
+          product thinking, commercial UX and
+          immersive digital storytelling.
         </p>
       </div>
 
