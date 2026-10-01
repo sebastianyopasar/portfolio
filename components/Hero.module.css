@@ -1,0 +1,1700 @@
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  --ink: #11110f;
+  --paper: #f3efe5;
+  --coral: #ef5e49;
+  --amber: #efad45;
+  --green: #82d377;
+  --line: rgba(17, 17, 15, 0.14);
+
+  position: relative;
+
+  left: 50%;
+
+  width: 100vw;
+
+  margin-left: -50vw;
+
+  padding: 12px 0 24px;
+
+  background: var(--paper);
+
+  color: var(--ink);
+}
+
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.grid {
+  width: 100%;
+
+  min-height: calc(100svh - 105px);
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.48fr)
+    minmax(0, 0.52fr);
+
+  overflow: hidden;
+
+  border-top:
+    1px solid
+    var(--line);
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+  background: var(--paper);
+}
+
+
+/* =========================================================
+   LEFT PANEL
+========================================================= */
+
+.visual {
+  --pointer-x: 50%;
+  --pointer-y: 42%;
+
+  position: relative;
+
+  min-width: 0;
+
+  min-height:
+    calc(100svh - 105px);
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  color: #f5f0e6;
+
+  background:
+    radial-gradient(
+      circle 360px
+      at
+      var(--pointer-x)
+      var(--pointer-y),
+
+      rgba(
+        239,
+        94,
+        73,
+        0.14
+      ),
+
+      rgba(
+        239,
+        94,
+        73,
+        0.045
+      )
+      40%,
+
+      transparent
+      72%
+    ),
+    #181a17;
+
+  border-right:
+    1px solid
+    var(--line);
+
+  isolation: isolate;
+}
+
+
+/* SUBTLE GRID */
+
+.visual::before {
+  content: "";
+
+  position: absolute;
+
+  z-index: 0;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.18;
+
+  background-image:
+    linear-gradient(
+      rgba(
+        255,
+        255,
+        255,
+        0.03
+      )
+      1px,
+
+      transparent
+      1px
+    ),
+    linear-gradient(
+      90deg,
+
+      rgba(
+        255,
+        255,
+        255,
+        0.025
+      )
+      1px,
+
+      transparent
+      1px
+    );
+
+  background-size:
+    42px
+    42px;
+}
+
+
+/* =========================================================
+   LEFT TOP
+========================================================= */
+
+.visualTop {
+  position: relative;
+
+  z-index: 10;
+
+  flex: 0 0 auto;
+
+  min-height: 70px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding:
+    0
+    32px;
+
+  border-bottom:
+    1px solid
+    rgba(
+      245,
+      240,
+      230,
+      0.13
+    );
+
+  color:
+    rgba(
+      245,
+      240,
+      230,
+      0.82
+    );
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   IDENTITY AREA
+========================================================= */
+
+.identityArea {
+  position: relative;
+
+  z-index: 3;
+
+  flex: 1 1 auto;
+
+  width: 100%;
+
+  min-height: 560px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding:
+    52px
+    34px
+    46px;
+}
+
+
+/* =========================================================
+   SY MONOGRAM
+========================================================= */
+
+.monogram {
+  position: relative;
+
+  z-index: 7;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: fit-content;
+
+  margin: 0;
+
+  padding-right: 0.08em;
+
+  font-size:
+    clamp(
+      165px,
+      15.5vw,
+      285px
+    );
+
+  font-weight: 760;
+
+  line-height: 0.78;
+
+  letter-spacing: -0.13em;
+
+  user-select: none;
+}
+
+
+.monogram span {
+  position: relative;
+
+  display: block;
+
+  transition:
+    text-shadow
+    0.35s
+    ease;
+}
+
+
+.monogram span:first-child {
+  color: #f5f0e6;
+}
+
+
+.monogram span:last-child {
+  color: var(--coral);
+}
+
+
+/* SMALL PRINT-REGISTRATION HOVER */
+
+.visual:hover
+.monogram
+span:first-child {
+  text-shadow:
+    -2px
+    2px
+    0
+    rgba(
+      239,
+      173,
+      69,
+      0.1
+    );
+}
+
+
+.visual:hover
+.monogram
+span:last-child {
+  text-shadow:
+    2px
+    -2px
+    0
+    rgba(
+      239,
+      94,
+      73,
+      0.12
+    );
+}
+
+
+/* =========================================================
+   RETRO LED TICKER — SHELL
+========================================================= */
+
+.tickerShell {
+  position: relative;
+
+  z-index: 8;
+
+  width:
+    min(
+      690px,
+      84%
+    );
+
+  /*
+     Important:
+     keeps ticker visually BELOW monogram
+  */
+
+  margin-top: 48px;
+
+  padding: 7px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #353630,
+      #242521
+    );
+
+  border:
+    1px solid
+    rgba(
+      245,
+      240,
+      230,
+      0.24
+    );
+
+  box-shadow:
+    0
+    11px
+    25px
+    rgba(
+      0,
+      0,
+      0,
+      0.3
+    ),
+
+    inset
+    0
+    1px
+    0
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+}
+
+
+/* thin metal highlight */
+
+.tickerShell::before {
+  content: "";
+
+  position: absolute;
+
+  top: 3px;
+
+  left: 12px;
+
+  right: 12px;
+
+  height: 1px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+}
+
+
+/* =========================================================
+   LED SCREEN
+========================================================= */
+
+.tickerScreen {
+  position: relative;
+
+  width: 100%;
+
+  height: 54px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #080a07,
+      #0e110c
+    );
+
+  border:
+    1px solid
+    rgba(
+      239,
+      173,
+      69,
+      0.18
+    );
+
+  box-shadow:
+    inset
+    0
+    0
+    22px
+    rgba(
+      0,
+      0,
+      0,
+      0.95
+    );
+}
+
+
+/* OLD LED DOT MATRIX */
+
+.tickerScreen::before {
+  content: "";
+
+  position: absolute;
+
+  z-index: 5;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.22;
+
+  background-image:
+    radial-gradient(
+      circle,
+
+      rgba(
+        239,
+        173,
+        69,
+        0.26
+      )
+      0.65px,
+
+      transparent
+      0.9px
+    );
+
+  background-size:
+    4px
+    4px;
+
+  mix-blend-mode: screen;
+}
+
+
+/* DARK EDGES */
+
+.tickerScreen::after {
+  content: "";
+
+  position: absolute;
+
+  z-index: 6;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  box-shadow:
+    inset
+    25px
+    0
+    28px
+    #080a07,
+
+    inset
+    -25px
+    0
+    28px
+    #080a07;
+}
+
+
+/* =========================================================
+   TICKER MOVEMENT
+========================================================= */
+
+.tickerTrack {
+  position: relative;
+
+  z-index: 3;
+
+  display: flex;
+
+  width: max-content;
+
+  height: 100%;
+
+  animation:
+    tickerMove
+    58s
+    linear
+    infinite;
+}
+
+
+/* PAUSE TO READ */
+
+.tickerScreen:hover
+.tickerTrack {
+  animation-play-state:
+    paused;
+}
+
+
+.tickerGroup {
+  display: flex;
+
+  align-items: center;
+
+  flex-shrink: 0;
+
+  height: 100%;
+}
+
+
+.tickerItem {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  flex-shrink: 0;
+
+  height: 100%;
+
+  padding:
+    0
+    23px;
+
+  white-space: nowrap;
+
+  border-right:
+    1px solid
+    rgba(
+      239,
+      173,
+      69,
+      0.12
+    );
+
+  font-family:
+    "Courier New",
+    Courier,
+    monospace;
+}
+
+
+/* IMPORTANT:
+   matches Hero.tsx
+*/
+
+.tickerCode {
+  color:
+    rgba(
+      239,
+      173,
+      69,
+      0.4
+    );
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+.tickerItem strong {
+  color: #f0b34c;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.075em;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0
+    0
+    4px
+    rgba(
+      239,
+      173,
+      69,
+      0.65
+    ),
+
+    0
+    0
+    11px
+    rgba(
+      239,
+      173,
+      69,
+      0.2
+    );
+}
+
+
+/* IMPORTANT:
+   matches Hero.tsx
+*/
+
+.ledAmber {
+  color: #ef624c;
+
+  font-size: 11px;
+
+  text-shadow:
+    0
+    0
+    6px
+    rgba(
+      239,
+      98,
+      76,
+      0.72
+    );
+}
+
+
+.ledGreen {
+  color: var(--green);
+
+  font-size: 9px;
+
+  text-shadow:
+    0
+    0
+    6px
+    rgba(
+      130,
+      211,
+      119,
+      0.72
+    );
+}
+
+
+@keyframes tickerMove {
+  from {
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+  }
+
+  to {
+    transform:
+      translate3d(
+        -50%,
+        0,
+        0
+      );
+  }
+}
+
+
+/* =========================================================
+   DESIGN · TECHNOLOGY · BUSINESS
+========================================================= */
+
+.leftStatement {
+  position: relative;
+
+  z-index: 8;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 15px;
+
+  margin-top: 36px;
+
+  color:
+    rgba(
+      245,
+      240,
+      230,
+      0.64
+    );
+
+  font-size: 13px;
+
+  font-weight: 650;
+
+  letter-spacing: 0.11em;
+
+  text-transform: uppercase;
+}
+
+
+.leftStatement i {
+  display: block;
+
+  width: 4px;
+
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: var(--coral);
+
+  box-shadow:
+    0
+    0
+    7px
+    rgba(
+      239,
+      94,
+      73,
+      0.45
+    );
+}
+
+
+/* =========================================================
+   LEFT BOTTOM
+========================================================= */
+
+.visualBottom {
+  position: relative;
+
+  z-index: 10;
+
+  flex: 0 0 auto;
+
+  min-height: 58px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding:
+    0
+    32px;
+
+  border-top:
+    1px solid
+    rgba(
+      245,
+      240,
+      230,
+      0.13
+    );
+
+  color:
+    rgba(
+      245,
+      240,
+      230,
+      0.5
+    );
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.09em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   RIGHT PANEL
+========================================================= */
+
+.intro {
+  min-width: 0;
+
+  min-height:
+    calc(100svh - 105px);
+
+  display: flex;
+
+  flex-direction: column;
+
+  background: var(--paper);
+
+  color: var(--ink);
+}
+
+
+/* =========================================================
+   RIGHT TOP
+========================================================= */
+
+.introTop {
+  flex: 0 0 auto;
+
+  min-height: 70px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding:
+    0
+    32px;
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+  color:
+    rgba(
+      17,
+      17,
+      15,
+      0.53
+    );
+
+  font-size: 10px;
+
+  font-weight: 550;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+
+.status {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+.status i {
+  width: 8px;
+
+  height: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--green);
+
+  box-shadow:
+    0
+    0
+    0
+    4px
+    rgba(
+      130,
+      211,
+      119,
+      0.1
+    );
+}
+
+
+/* =========================================================
+   INTRO MAIN
+========================================================= */
+
+.introMain {
+  flex: 1 1 auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  padding:
+    58px
+    clamp(
+      48px,
+      5.5vw,
+      100px
+    );
+}
+
+
+.eyebrow {
+  margin:
+    0
+    0
+    20px;
+
+  color: var(--coral);
+
+  font-size: 13px;
+
+  font-weight: 750;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   NAME
+========================================================= */
+
+.name {
+  margin: 0;
+
+  font-size:
+    clamp(
+      82px,
+      8vw,
+      148px
+    );
+
+  font-weight: 700;
+
+  line-height: 0.82;
+
+  letter-spacing: -0.075em;
+
+  color: #090909;
+}
+
+
+.name span {
+  color: var(--coral);
+}
+
+
+/* =========================================================
+   ROLE
+========================================================= */
+
+.role {
+  margin:
+    44px
+    0
+    0;
+
+  font-size:
+    clamp(
+      39px,
+      3.7vw,
+      66px
+    );
+
+  font-weight: 590;
+
+  line-height: 0.97;
+
+  letter-spacing: -0.055em;
+
+  color: #090909;
+}
+
+
+.role span {
+  color: #df5846;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.description {
+  max-width: 620px;
+
+  margin:
+    37px
+    0
+    0;
+
+  color:
+    rgba(
+      17,
+      17,
+      15,
+      0.66
+    );
+
+  font-size:
+    clamp(
+      18px,
+      1.25vw,
+      22px
+    );
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   RIGHT PILLS
+========================================================= */
+
+.pillars {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 34px;
+}
+
+
+.pillars span {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 38px;
+
+  padding:
+    0
+    17px;
+
+  border:
+    1px solid
+    rgba(
+      17,
+      17,
+      15,
+      0.18
+    );
+
+  border-radius: 999px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.065em;
+
+  text-transform: uppercase;
+
+  transition:
+    background
+    0.22s
+    ease,
+
+    color
+    0.22s
+    ease,
+
+    border-color
+    0.22s
+    ease,
+
+    transform
+    0.22s
+    ease;
+}
+
+
+.pillars span:hover {
+  transform:
+    translateY(
+      -2px
+    );
+}
+
+
+.pillars span:nth-child(1):hover {
+  color: var(--paper);
+
+  background: #191a18;
+
+  border-color: #191a18;
+}
+
+
+.pillars span:nth-child(2):hover {
+  color: #191a18;
+
+  background: var(--coral);
+
+  border-color: var(--coral);
+}
+
+
+.pillars span:nth-child(3):hover {
+  color: #191a18;
+
+  background: var(--amber);
+
+  border-color: var(--amber);
+}
+
+
+/* =========================================================
+   RIGHT FOOTER
+========================================================= */
+
+.introFooter {
+  flex: 0 0 auto;
+
+  min-height: 68px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 38px;
+
+  padding:
+    0
+    32px;
+
+  border-top:
+    1px solid
+    var(--line);
+}
+
+
+/* IMPORTANT:
+   Hero.tsx explicitly uses styles.explore
+*/
+
+.explore {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  flex-shrink: 0;
+
+  width: fit-content;
+
+  color: var(--ink);
+
+  font-size: 11px;
+
+  font-weight: 750;
+
+  letter-spacing: 0.065em;
+
+  text-transform: uppercase;
+
+  text-decoration: none;
+}
+
+
+.explore span {
+  color: var(--coral);
+
+  font-size: 17px;
+
+  transition:
+    transform
+    0.22s
+    ease;
+}
+
+
+.explore:hover span {
+  transform:
+    translateY(
+      4px
+    );
+}
+
+
+/* =========================================================
+   PROCESS PREVIEW
+========================================================= */
+
+/* IMPORTANT:
+   matches styles.processPreview
+*/
+
+.processPreview {
+  max-width: 510px;
+
+  margin-left: auto;
+
+  text-align: right;
+}
+
+
+.processPreview > span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color:
+    rgba(
+      17,
+      17,
+      15,
+      0.36
+    );
+
+  font-size: 8px;
+
+  font-weight: 650;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+
+.processPreview p {
+  margin: 0;
+
+  color:
+    rgba(
+      17,
+      17,
+      15,
+      0.48
+    );
+
+  font-size: 9px;
+
+  line-height: 1.45;
+
+  letter-spacing: 0.035em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   MEDIUM DESKTOP
+========================================================= */
+
+@media (max-width: 1250px) {
+
+  .grid {
+    grid-template-columns:
+      46%
+      54%;
+  }
+
+  .identityArea {
+    padding-left: 24px;
+
+    padding-right: 24px;
+  }
+
+  .monogram {
+    font-size:
+      clamp(
+        155px,
+        16vw,
+        235px
+      );
+  }
+
+  .tickerShell {
+    width: 82%;
+  }
+
+  .introMain {
+    padding-left: 48px;
+
+    padding-right: 48px;
+  }
+
+  .name {
+    font-size:
+      clamp(
+        75px,
+        8vw,
+        118px
+      );
+  }
+
+  .role {
+    font-size:
+      clamp(
+        35px,
+        4vw,
+        54px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .hero {
+    left: auto;
+
+    width: 100%;
+
+    margin-left: 0;
+
+    padding:
+      0
+      0
+      20px;
+  }
+
+
+  .grid {
+    display: block;
+
+    min-height: auto;
+  }
+
+
+  .visual,
+  .intro {
+    min-height: auto;
+  }
+
+
+  .visual {
+    border-right: 0;
+  }
+
+
+  .identityArea {
+    min-height: 570px;
+
+    padding:
+      70px
+      22px
+      60px;
+  }
+
+
+  .monogram {
+    font-size:
+      clamp(
+        175px,
+        38vw,
+        290px
+      );
+  }
+
+
+  .tickerShell {
+    width:
+      min(
+        680px,
+        84%
+      );
+
+    margin-top: 44px;
+  }
+
+
+  .introMain {
+    padding:
+      78px
+      30px
+      90px;
+  }
+
+
+  .name {
+    font-size:
+      clamp(
+        80px,
+        16vw,
+        128px
+      );
+  }
+
+
+  .role {
+    font-size:
+      clamp(
+        40px,
+        8vw,
+        68px
+      );
+  }
+
+
+  .introFooter {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    min-height: auto;
+
+    padding:
+      22px
+      30px;
+  }
+
+
+  .processPreview {
+    margin-left: 0;
+
+    text-align: left;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+
+  .visualTop {
+    min-height: 58px;
+
+    padding:
+      0
+      18px;
+
+    font-size: 9px;
+  }
+
+
+  .visualTop
+  span:last-child {
+    display: none;
+  }
+
+
+  .identityArea {
+    min-height: 470px;
+
+    padding:
+      52px
+      15px
+      45px;
+  }
+
+
+  .monogram {
+    font-size:
+      clamp(
+        135px,
+        45vw,
+        200px
+      );
+  }
+
+
+  .tickerShell {
+    width: 92%;
+
+    margin-top: 35px;
+
+    padding: 5px;
+  }
+
+
+  .tickerScreen {
+    height: 47px;
+  }
+
+
+  .tickerItem {
+    padding:
+      0
+      16px;
+  }
+
+
+  .tickerItem strong {
+    font-size: 11px;
+  }
+
+
+  .tickerCode {
+    font-size: 8px;
+  }
+
+
+  .leftStatement {
+    gap: 8px;
+
+    margin-top: 27px;
+
+    font-size: 8px;
+  }
+
+
+  .visualBottom {
+    min-height: 50px;
+
+    padding:
+      0
+      18px;
+
+    font-size: 8px;
+  }
+
+
+  .visualBottom
+  span:last-child {
+    display: none;
+  }
+
+
+  .introTop {
+    min-height: 58px;
+
+    padding:
+      0
+      18px;
+
+    font-size: 8px;
+  }
+
+
+  .introTop
+  > span:first-child {
+    display: none;
+  }
+
+
+  .introMain {
+    padding:
+      65px
+      20px
+      75px;
+  }
+
+
+  .eyebrow {
+    font-size: 11px;
+  }
+
+
+  .name {
+    font-size:
+      clamp(
+        62px,
+        19vw,
+        90px
+      );
+  }
+
+
+  .role {
+    margin-top: 32px;
+
+    font-size:
+      clamp(
+        34px,
+        10vw,
+        48px
+      );
+  }
+
+
+  .description {
+    margin-top: 29px;
+
+    font-size: 16px;
+  }
+
+
+  .pillars {
+    margin-top: 29px;
+  }
+
+
+  .pillars span {
+    min-height: 34px;
+
+    padding:
+      0
+      13px;
+
+    font-size: 8px;
+  }
+
+
+  .introFooter {
+    padding:
+      20px;
+  }
+
+
+  .processPreview p {
+    font-size: 8px;
+  }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+
+  .tickerTrack {
+    animation: none;
+  }
+
+
+  .monogram span,
+  .pillars span,
+  .explore span {
+    transition: none;
+  }
+
+}
