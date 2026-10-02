@@ -1,24 +1,32 @@
 const experience = [
   {
     period: "2025 — Present",
-    company: "Corporate Facility Supply",
-    role: "Marketing / Digital",
+    company:
+      "Corporate Facility Supply",
+    role:
+      "Digital / UX / E-Commerce",
     description:
-      "Digital campaigns, e-commerce, CRM, web experiences and internal business systems.",
+      "Digital campaigns, e-commerce experiences, CRM, website optimization and internal business systems.",
   },
+
   {
     period: "Independent",
-    company: "Digital Product Development",
-    role: "UX/UI + Development",
+    company:
+      "Digital Experience Development",
+    role:
+      "UX/UI + Development",
     description:
-      "Designing and building digital products, interfaces and web experiences from concept to implementation.",
+      "Designing and building interfaces and digital experiences from research and concept through implementation.",
   },
+
   {
     period: "Ongoing",
-    company: "Project Tokyo",
-    role: "Product Designer + Developer",
+    company:
+      "Project Tokyo",
+    role:
+      "UX/UI Designer + Developer",
     description:
-      "Building a connected CRM, inventory and business operations platform from the ground up.",
+      "Designing and building a connected CRM, inventory and business operations platform from the ground up.",
   },
 ];
 
@@ -26,7 +34,9 @@ export default function Experience() {
   return (
     <section className="experience-section">
       <div className="experience-heading">
-        <span>Experience</span>
+        <span>
+          Selected experience
+        </span>
 
         <h2>
           Working across
@@ -37,15 +47,27 @@ export default function Experience() {
 
       <div className="experience-list">
         {experience.map((item) => (
-          <article className="experience-row" key={item.company}>
-            <span className="experience-period">{item.period}</span>
+          <article
+            className="experience-row"
+            key={item.company}
+          >
+            <span className="experience-period">
+              {item.period}
+            </span>
 
             <div>
-              <strong>{item.company}</strong>
-              <span>{item.role}</span>
+              <strong>
+                {item.company}
+              </strong>
+
+              <span>
+                {item.role}
+              </span>
             </div>
 
-            <p>{item.description}</p>
+            <p>
+              {item.description}
+            </p>
           </article>
         ))}
       </div>

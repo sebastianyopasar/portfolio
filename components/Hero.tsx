@@ -5,351 +5,257 @@ import {
   type PointerEvent,
 } from "react";
 
-import styles from "./Hero.module.css";
+import {
+  useLanguage,
+} from "./LanguageProvider";
 
-const tickerItems = [
-  {
-    label: "UX / UI",
-    type: "up",
-    symbol: "▲",
-  },
-  {
-    label: "USER FLOWS",
-    type: "live",
-    symbol: "●",
-  },
-  {
-    label: "PROTOTYPING",
-    type: "up",
-    symbol: "▲",
-  },
-  {
-    label: "INTERACTION",
-    type: "live",
-    symbol: "●",
-  },
-  {
-    label: "DEVELOPMENT",
-    type: "up",
-    symbol: "▲",
-  },
-  {
-    label: "E-COMMERCE",
-    type: "live",
-    symbol: "●",
-  },
-  {
-    label: "DESIGN SYSTEMS",
-    type: "up",
-    symbol: "▲",
-  },
-  {
-    label: "BUSINESS THINKING",
-    type: "live",
-    symbol: "●",
-  },
-  {
-    label: "ITERATE",
-    type: "up",
-    symbol: "▲",
-  },
-];
+import styles from "./Hero.module.css";
 
 export default function Hero() {
   const visualRef =
-    useRef<HTMLDivElement | null>(null);
+    useRef<HTMLDivElement | null>(
+      null
+    );
+
+  const { copy } =
+    useLanguage();
 
   const handlePointerMove = (
     event: PointerEvent<HTMLDivElement>
   ) => {
-    const visual =
+    const element =
       visualRef.current;
 
-    if (!visual) return;
+    if (!element) return;
 
     const rect =
-      visual.getBoundingClientRect();
+      element.getBoundingClientRect();
 
     const x =
-      ((event.clientX - rect.left) /
+      ((event.clientX -
+        rect.left) /
         rect.width) *
       100;
 
     const y =
-      ((event.clientY - rect.top) /
+      ((event.clientY -
+        rect.top) /
         rect.height) *
       100;
 
-    visual.style.setProperty(
+    element.style.setProperty(
       "--pointer-x",
       `${x}%`
     );
 
-    visual.style.setProperty(
+    element.style.setProperty(
       "--pointer-y",
       `${y}%`
     );
   };
 
-  const handlePointerLeave = () => {
-    const visual =
-      visualRef.current;
+  const handlePointerLeave =
+    () => {
+      const element =
+        visualRef.current;
 
-    if (!visual) return;
+      if (!element) return;
 
-    visual.style.setProperty(
-      "--pointer-x",
-      "50%"
-    );
+      element.style.setProperty(
+        "--pointer-x",
+        "50%"
+      );
 
-    visual.style.setProperty(
-      "--pointer-y",
-      "42%"
-    );
-  };
+      element.style.setProperty(
+        "--pointer-y",
+        "50%"
+      );
+    };
 
   return (
-    <section className={styles.hero}>
-      <div className={styles.grid}>
-        {/* =================================================
-            LEFT SIDE
-        ================================================= */}
+    <section
+      className={styles.hero}
+      id="identity"
+      aria-labelledby="hero-title"
+    >
+      {/* =========================
+          IDENTITY
+      ========================= */}
 
+      <div
+        ref={visualRef}
+        className={styles.visual}
+        onPointerMove={
+          handlePointerMove
+        }
+        onPointerLeave={
+          handlePointerLeave
+        }
+      >
         <div
-          ref={visualRef}
-          className={styles.visual}
-          onPointerMove={
-            handlePointerMove
-          }
-          onPointerLeave={
-            handlePointerLeave
+          className={
+            styles.identityArea
           }
         >
           <div
             className={
-              styles.visualTop
+              styles.monogram
             }
+            aria-hidden="true"
           >
-            <span>
-              Portfolio / 2026
-            </span>
+            <span>S</span>
 
-            <span>
-              UX/UI + Development
-            </span>
+            <span>Y</span>
           </div>
 
           <div
             className={
-              styles.identityArea
+              styles.tickerShell
             }
           >
-            {/* MONOGRAM */}
-
             <div
               className={
-                styles.monogram
-              }
-              aria-label="SY"
-            >
-              <span>S</span>
-              <span>Y</span>
-            </div>
-
-            {/* RETRO LED TICKER */}
-
-            <div
-              className={
-                styles.tickerShell
+                styles.tickerScreen
               }
             >
               <div
                 className={
-                  styles.tickerScreen
+                  styles.tickerTrack
                 }
               >
-                <div
-                  className={
-                    styles.tickerTrack
+                <TickerGroup
+                  items={
+                    copy.ticker
                   }
-                >
-                  <TickerGroup />
+                />
 
-                  <TickerGroup
-                    duplicate
-                  />
-                </div>
+                <TickerGroup
+                  items={
+                    copy.ticker
+                  }
+                  duplicate
+                />
               </div>
             </div>
-
-            {/* IDENTITY PILLARS */}
-
-            <div
-              className={
-                styles.leftStatement
-              }
-            >
-              <span>Design</span>
-
-              <i />
-
-              <span>
-                Technology
-              </span>
-
-              <i />
-
-              <span>Business</span>
-            </div>
-          </div>
-
-          <div
-            className={
-              styles.visualBottom
-            }
-          >
-            <span>
-              Digital experiences
-            </span>
-
-            <span>
-              Built with intention
-            </span>
           </div>
         </div>
+      </div>
 
-        {/* =================================================
-            RIGHT SIDE
-        ================================================= */}
+      {/* =========================
+          INTRO
+      ========================= */}
 
+      <div
+        className={styles.intro}
+      >
         <div
-          className={styles.intro}
+          className={
+            styles.introMain
+          }
         >
-          <div
+          <p
             className={
-              styles.introTop
+              styles.eyebrow
             }
           >
+            {
+              copy.hero
+                .eyebrow
+            }
+          </p>
+
+          <h1
+            id="hero-title"
+            className={
+              styles.name
+            }
+          >
+            Sebastián
+            <span>.</span>
+          </h1>
+
+          <h2
+            className={
+              styles.role
+            }
+          >
+            {
+              copy.hero.role
+            }
+
+            <br />
+
             <span>
-              Ontario, Canada
-            </span>
-
-            <span
-              className={
-                styles.status
+              {
+                copy.hero
+                  .builder
               }
-            >
-              <i />
-
-              Open to opportunities
             </span>
-          </div>
+          </h2>
+
+          <p
+            className={
+              styles.description
+            }
+          >
+            {
+              copy.hero
+                .description
+            }
+          </p>
 
           <div
             className={
-              styles.introMain
+              styles.pillars
             }
           >
-            <p
-              className={
-                styles.eyebrow
-              }
-            >
-              Hi, I&apos;m
-            </p>
-
-            <h1
-              className={styles.name}
-            >
-              Sebastián
-              <span>.</span>
-            </h1>
-
-            <h2
-              className={styles.role}
-            >
-              UX/UI Designer
-              <br />
-
-              <span>
-                who also builds.
-              </span>
-            </h2>
-
-            <p
-              className={
-                styles.description
-              }
-            >
-              I design intuitive
-              digital experiences by
-              connecting user needs,
-              technology and business
-              goals — then I help build
-              them.
-            </p>
-
-            <div
-              className={
-                styles.pillars
-              }
-            >
-              <span>
-                UX / UI
-              </span>
-
-              <span>
-                Development
-              </span>
-
-              <span>
-                E-Commerce
-              </span>
-            </div>
-          </div>
-
-          <div
-            className={
-              styles.introFooter
-            }
-          >
-            <a
-              href="#work"
-              className={
-                styles.explore
-              }
-            >
-              Explore selected work
-
-              <span>↓</span>
-            </a>
-
-            <div
-              className={
-                styles.processPreview
-              }
-            >
-              <span>
-                My process
-              </span>
-
-              <p>
-                Identify → Propose →
-                Prototype → Evaluate →
-                Refine → Launch →
-                Iterate
-              </p>
-            </div>
+            {copy.hero.pillars.map(
+              (pillar) => (
+                <span
+                  key={pillar}
+                >
+                  {pillar}
+                </span>
+              )
+            )}
           </div>
         </div>
+
+        <button
+          type="button"
+          className={
+            styles.explore
+          }
+          onClick={() => {
+            document
+              .querySelector(
+                '[data-station-id="work"]'
+              )
+              ?.scrollIntoView({
+                behavior:
+                  "smooth",
+              });
+          }}
+        >
+          {
+            copy.hero
+              .explore
+          }
+
+          <span>↓</span>
+        </button>
       </div>
     </section>
   );
 }
 
 function TickerGroup({
+  items,
   duplicate = false,
 }: {
+  items:
+    readonly string[];
+
   duplicate?: boolean;
 }) {
   return (
@@ -363,13 +269,13 @@ function TickerGroup({
           : undefined
       }
     >
-      {tickerItems.map(
+      {items.map(
         (item, index) => (
           <div
             className={
               styles.tickerItem
             }
-            key={`${item.label}-${index}`}
+            key={`${item}-${index}`}
           >
             <span
               className={
@@ -385,17 +291,19 @@ function TickerGroup({
             </span>
 
             <strong>
-              {item.label}
+              {item}
             </strong>
 
             <span
               className={
-                item.type === "up"
-                  ? styles.ledAmber
-                  : styles.ledGreen
+                index % 2 === 0
+                  ? styles.amber
+                  : styles.green
               }
             >
-              {item.symbol}
+              {index % 2 === 0
+                ? "▲"
+                : "●"}
             </span>
           </div>
         )

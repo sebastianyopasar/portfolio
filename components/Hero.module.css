@@ -1,39 +1,6 @@
-/* =========================================================
-   HERO
-========================================================= */
-
 .hero {
-  --ink: #11110f;
-  --paper: #f3efe5;
-  --coral: #ef5e49;
-  --amber: #efad45;
-  --green: #82d377;
-  --line: rgba(17, 17, 15, 0.14);
-
-  position: relative;
-
-  left: 50%;
-
-  width: 100vw;
-
-  margin-left: -50vw;
-
-  padding: 12px 0 24px;
-
-  background: var(--paper);
-
-  color: var(--ink);
-}
-
-
-/* =========================================================
-   MAIN GRID
-========================================================= */
-
-.grid {
   width: 100%;
-
-  min-height: calc(100svh - 105px);
+  min-height: 100svh;
 
   display: grid;
 
@@ -43,90 +10,75 @@
 
   overflow: hidden;
 
-  border-top:
-    1px solid
-    var(--line);
-
-  border-bottom:
-    1px solid
-    var(--line);
-
-  background: var(--paper);
+  background: #f2f0e8;
 }
 
 
 /* =========================================================
-   LEFT PANEL
+   LEFT
 ========================================================= */
 
 .visual {
   --pointer-x: 50%;
-  --pointer-y: 42%;
+  --pointer-y: 50%;
 
   position: relative;
 
-  min-width: 0;
-
-  min-height:
-    calc(100svh - 105px);
+  min-height: 100svh;
 
   display: flex;
 
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   overflow: hidden;
 
-  color: #f5f0e6;
+  border-right:
+    1px solid
+    rgba(
+      17,
+      17,
+      17,
+      0.18
+    );
 
   background:
     radial-gradient(
-      circle 360px
+      circle 250px
       at
       var(--pointer-x)
       var(--pointer-y),
 
       rgba(
-        239,
-        94,
-        73,
+        255,
+        92,
+        77,
         0.14
       ),
 
       rgba(
-        239,
-        94,
-        73,
-        0.045
+        255,
+        92,
+        77,
+        0.035
       )
-      40%,
+      45%,
 
       transparent
       72%
     ),
-    #181a17;
-
-  border-right:
-    1px solid
-    var(--line);
-
-  isolation: isolate;
+    #171916;
 }
 
-
-/* SUBTLE GRID */
-
-.visual::before {
+.visual::after {
   content: "";
 
   position: absolute;
-
-  z-index: 0;
-
   inset: 0;
 
-  pointer-events: none;
+  opacity: 0.12;
 
-  opacity: 0.18;
+  pointer-events: none;
 
   background-image:
     linear-gradient(
@@ -134,562 +86,252 @@
         255,
         255,
         255,
-        0.03
+        0.028
       )
       1px,
-
       transparent
       1px
     ),
     linear-gradient(
       90deg,
-
       rgba(
         255,
         255,
         255,
-        0.025
+        0.028
       )
       1px,
-
       transparent
       1px
     );
 
   background-size:
-    42px
-    42px;
+    34px 34px;
 }
-
-
-/* =========================================================
-   LEFT TOP
-========================================================= */
-
-.visualTop {
-  position: relative;
-
-  z-index: 10;
-
-  flex: 0 0 auto;
-
-  min-height: 70px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 30px;
-
-  padding:
-    0
-    32px;
-
-  border-bottom:
-    1px solid
-    rgba(
-      245,
-      240,
-      230,
-      0.13
-    );
-
-  color:
-    rgba(
-      245,
-      240,
-      230,
-      0.82
-    );
-
-  font-size: 11px;
-
-  font-weight: 700;
-
-  letter-spacing: 0.08em;
-
-  text-transform: uppercase;
-}
-
-
-/* =========================================================
-   IDENTITY AREA
-========================================================= */
 
 .identityArea {
   position: relative;
 
-  z-index: 3;
-
-  flex: 1 1 auto;
+  z-index: 2;
 
   width: 100%;
-
-  min-height: 560px;
 
   display: flex;
 
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   padding:
-    52px
-    34px
-    46px;
+    50px
+    40px;
 }
 
 
 /* =========================================================
-   SY MONOGRAM
+   SY
 ========================================================= */
 
 .monogram {
-  position: relative;
-
-  z-index: 7;
-
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
-  width: fit-content;
-
-  margin: 0;
-
-  padding-right: 0.08em;
+  font-family:
+    var(--font-syne),
+    sans-serif;
 
   font-size:
     clamp(
-      165px,
-      15.5vw,
-      285px
+      180px,
+      23vw,
+      370px
     );
 
-  font-weight: 760;
+  font-weight: 700;
 
-  line-height: 0.78;
+  line-height: 0.72;
 
-  letter-spacing: -0.13em;
+  letter-spacing:
+    -0.16em;
 
   user-select: none;
 }
 
-
-.monogram span {
-  position: relative;
-
-  display: block;
-
-  transition:
-    text-shadow
-    0.35s
-    ease;
-}
-
-
 .monogram span:first-child {
-  color: #f5f0e6;
+  color: #f2f0e8;
 }
-
 
 .monogram span:last-child {
-  color: var(--coral);
-}
-
-
-/* SMALL PRINT-REGISTRATION HOVER */
-
-.visual:hover
-.monogram
-span:first-child {
-  text-shadow:
-    -2px
-    2px
-    0
-    rgba(
-      239,
-      173,
-      69,
-      0.1
-    );
-}
-
-
-.visual:hover
-.monogram
-span:last-child {
-  text-shadow:
-    2px
-    -2px
-    0
-    rgba(
-      239,
-      94,
-      73,
-      0.12
-    );
+  color: #ff5c4d;
 }
 
 
 /* =========================================================
-   RETRO LED TICKER — SHELL
+   RETRO TICKER
 ========================================================= */
 
 .tickerShell {
-  position: relative;
-
-  z-index: 8;
-
   width:
     min(
-      690px,
-      84%
+      74%,
+      670px
     );
 
-  /*
-     Important:
-     keeps ticker visually BELOW monogram
-  */
-
-  margin-top: 48px;
-
-  padding: 7px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #353630,
-      #242521
+  margin-top:
+    clamp(
+      55px,
+      7vh,
+      90px
     );
+
+  padding: 8px;
 
   border:
     1px solid
     rgba(
-      245,
       240,
-      230,
-      0.24
+      179,
+      76,
+      0.26
     );
+
+  background:
+    #25251f;
 
   box-shadow:
     0
-    11px
-    25px
+    16px
+    35px
     rgba(
       0,
       0,
       0,
-      0.3
+      0.28
     ),
-
     inset
     0
-    1px
     0
+    18px
     rgba(
-      255,
-      255,
-      255,
-      0.07
+      240,
+      179,
+      76,
+      0.05
     );
 }
-
-
-/* thin metal highlight */
-
-.tickerShell::before {
-  content: "";
-
-  position: absolute;
-
-  top: 3px;
-
-  left: 12px;
-
-  right: 12px;
-
-  height: 1px;
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      0.07
-    );
-}
-
-
-/* =========================================================
-   LED SCREEN
-========================================================= */
 
 .tickerScreen {
-  position: relative;
-
-  width: 100%;
-
-  height: 54px;
-
   overflow: hidden;
-
-  background:
-    linear-gradient(
-      180deg,
-      #080a07,
-      #0e110c
-    );
 
   border:
     1px solid
     rgba(
-      239,
-      173,
-      69,
-      0.18
+      240,
+      179,
+      76,
+      0.15
     );
 
-  box-shadow:
-    inset
-    0
-    0
-    22px
-    rgba(
-      0,
-      0,
-      0,
-      0.95
-    );
-}
-
-
-/* OLD LED DOT MATRIX */
-
-.tickerScreen::before {
-  content: "";
-
-  position: absolute;
-
-  z-index: 5;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  opacity: 0.22;
-
-  background-image:
-    radial-gradient(
-      circle,
-
+  background:
+    repeating-linear-gradient(
+      0deg,
       rgba(
-        239,
-        173,
-        69,
-        0.26
+        255,
+        255,
+        255,
+        0.018
       )
-      0.65px,
-
+      0,
+      rgba(
+        255,
+        255,
+        255,
+        0.018
+      )
+      1px,
       transparent
-      0.9px
-    );
-
-  background-size:
-    4px
-    4px;
-
-  mix-blend-mode: screen;
+      1px,
+      transparent
+      3px
+    ),
+    #070906;
 }
-
-
-/* DARK EDGES */
-
-.tickerScreen::after {
-  content: "";
-
-  position: absolute;
-
-  z-index: 6;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  box-shadow:
-    inset
-    25px
-    0
-    28px
-    #080a07,
-
-    inset
-    -25px
-    0
-    28px
-    #080a07;
-}
-
-
-/* =========================================================
-   TICKER MOVEMENT
-========================================================= */
 
 .tickerTrack {
-  position: relative;
-
-  z-index: 3;
+  width: max-content;
 
   display: flex;
 
-  width: max-content;
-
-  height: 100%;
-
   animation:
     tickerMove
-    58s
+    72s
     linear
     infinite;
 }
 
-
-/* PAUSE TO READ */
-
-.tickerScreen:hover
-.tickerTrack {
-  animation-play-state:
-    paused;
-}
-
-
 .tickerGroup {
   display: flex;
-
-  align-items: center;
-
-  flex-shrink: 0;
-
-  height: 100%;
 }
 
-
 .tickerItem {
+  min-height: 47px;
+
   display: flex;
 
   align-items: center;
 
   gap: 11px;
 
-  flex-shrink: 0;
-
-  height: 100%;
-
   padding:
     0
-    23px;
+    20px;
 
   white-space: nowrap;
 
-  border-right:
-    1px solid
-    rgba(
-      239,
-      173,
-      69,
-      0.12
-    );
-
   font-family:
-    "Courier New",
-    Courier,
+    var(--font-space-mono),
     monospace;
+
+  font-size: 12px;
+
+  letter-spacing:
+    0.04em;
 }
-
-
-/* IMPORTANT:
-   matches Hero.tsx
-*/
 
 .tickerCode {
   color:
     rgba(
-      239,
-      173,
-      69,
-      0.4
+      240,
+      179,
+      76,
+      0.42
     );
 
   font-size: 10px;
-
-  font-weight: 700;
 }
-
 
 .tickerItem strong {
-  color: #f0b34c;
-
-  font-size: 14px;
+  color: #d99d43;
 
   font-weight: 700;
 
-  letter-spacing: 0.075em;
-
-  text-transform: uppercase;
-
   text-shadow:
     0
     0
-    4px
+    5px
     rgba(
-      239,
-      173,
-      69,
-      0.65
-    ),
-
-    0
-    0
-    11px
-    rgba(
-      239,
-      173,
-      69,
-      0.2
-    );
-}
-
-
-/* IMPORTANT:
-   matches Hero.tsx
-*/
-
-.ledAmber {
-  color: #ef624c;
-
-  font-size: 11px;
-
-  text-shadow:
-    0
-    0
-    6px
-    rgba(
-      239,
-      98,
+      240,
+      179,
       76,
-      0.72
+      0.35
     );
 }
 
-
-.ledGreen {
-  color: var(--green);
+.amber {
+  color: #ff6b4f;
 
   font-size: 9px;
 
@@ -698,385 +340,172 @@ span:last-child {
     0
     6px
     rgba(
-      130,
-      211,
-      119,
-      0.72
+      255,
+      92,
+      77,
+      0.8
     );
 }
 
+.green {
+  color: #75dd68;
+
+  font-size: 9px;
+
+  text-shadow:
+    0
+    0
+    6px
+    rgba(
+      117,
+      221,
+      104,
+      0.8
+    );
+}
 
 @keyframes tickerMove {
   from {
     transform:
-      translate3d(
-        0,
-        0,
-        0
-      );
+      translateX(0);
   }
 
   to {
     transform:
-      translate3d(
-        -50%,
-        0,
-        0
-      );
+      translateX(-50%);
   }
 }
 
 
 /* =========================================================
-   DESIGN · TECHNOLOGY · BUSINESS
-========================================================= */
-
-.leftStatement {
-  position: relative;
-
-  z-index: 8;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  flex-wrap: wrap;
-
-  gap: 15px;
-
-  margin-top: 36px;
-
-  color:
-    rgba(
-      245,
-      240,
-      230,
-      0.64
-    );
-
-  font-size: 13px;
-
-  font-weight: 650;
-
-  letter-spacing: 0.11em;
-
-  text-transform: uppercase;
-}
-
-
-.leftStatement i {
-  display: block;
-
-  width: 4px;
-
-  height: 4px;
-
-  border-radius: 50%;
-
-  background: var(--coral);
-
-  box-shadow:
-    0
-    0
-    7px
-    rgba(
-      239,
-      94,
-      73,
-      0.45
-    );
-}
-
-
-/* =========================================================
-   LEFT BOTTOM
-========================================================= */
-
-.visualBottom {
-  position: relative;
-
-  z-index: 10;
-
-  flex: 0 0 auto;
-
-  min-height: 58px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 30px;
-
-  padding:
-    0
-    32px;
-
-  border-top:
-    1px solid
-    rgba(
-      245,
-      240,
-      230,
-      0.13
-    );
-
-  color:
-    rgba(
-      245,
-      240,
-      230,
-      0.5
-    );
-
-  font-size: 10px;
-
-  font-weight: 600;
-
-  letter-spacing: 0.09em;
-
-  text-transform: uppercase;
-}
-
-
-/* =========================================================
-   RIGHT PANEL
+   RIGHT
 ========================================================= */
 
 .intro {
-  min-width: 0;
-
-  min-height:
-    calc(100svh - 105px);
+  min-height: 100svh;
 
   display: flex;
 
   flex-direction: column;
-
-  background: var(--paper);
-
-  color: var(--ink);
-}
-
-
-/* =========================================================
-   RIGHT TOP
-========================================================= */
-
-.introTop {
-  flex: 0 0 auto;
-
-  min-height: 70px;
-
-  display: flex;
-
-  align-items: center;
 
   justify-content: space-between;
 
-  gap: 30px;
-
   padding:
-    0
-    32px;
-
-  border-bottom:
-    1px solid
-    var(--line);
-
-  color:
-    rgba(
-      17,
-      17,
-      15,
-      0.53
-    );
-
-  font-size: 10px;
-
-  font-weight: 550;
-
-  letter-spacing: 0.08em;
-
-  text-transform: uppercase;
-}
-
-
-.status {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 10px;
-}
-
-
-.status i {
-  width: 8px;
-
-  height: 8px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: var(--green);
-
-  box-shadow:
-    0
-    0
-    0
-    4px
-    rgba(
-      130,
-      211,
-      119,
-      0.1
-    );
-}
-
-
-/* =========================================================
-   INTRO MAIN
-========================================================= */
-
-.introMain {
-  flex: 1 1 auto;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: flex-start;
-
-  justify-content: center;
-
-  padding:
-    58px
+    clamp(
+      70px,
+      8vh,
+      115px
+    )
     clamp(
       48px,
-      5.5vw,
-      100px
+      6vw,
+      110px
+    )
+    clamp(
+      42px,
+      5vh,
+      70px
     );
+
+  background: #f2f0e8;
 }
 
+.introMain {
+  width: 100%;
+
+  max-width: 770px;
+
+  margin: auto 0;
+}
 
 .eyebrow {
   margin:
     0
     0
-    20px;
+    28px;
 
-  color: var(--coral);
+  color: #ff5c4d;
 
-  font-size: 13px;
+  font-size: 14px;
 
-  font-weight: 750;
-
-  letter-spacing: 0.1em;
+  font-weight: 650;
 
   text-transform: uppercase;
+
+  letter-spacing:
+    0.07em;
 }
-
-
-/* =========================================================
-   NAME
-========================================================= */
 
 .name {
   margin: 0;
 
+  font-family:
+    var(--font-geist),
+    sans-serif;
+
   font-size:
     clamp(
-      82px,
-      8vw,
-      148px
+      88px,
+      9vw,
+      172px
     );
 
-  font-weight: 700;
+  font-weight: 630;
 
-  line-height: 0.82;
+  line-height: 0.83;
 
-  letter-spacing: -0.075em;
-
-  color: #090909;
+  letter-spacing:
+    -0.075em;
 }
-
 
 .name span {
-  color: var(--coral);
+  color: #ff5c4d;
 }
-
-
-/* =========================================================
-   ROLE
-========================================================= */
 
 .role {
   margin:
-    44px
+    46px
     0
     0;
 
   font-size:
     clamp(
-      39px,
-      3.7vw,
-      66px
+      43px,
+      4.15vw,
+      72px
     );
 
-  font-weight: 590;
+  font-weight: 540;
 
-  line-height: 0.97;
+  line-height: 0.94;
 
-  letter-spacing: -0.055em;
-
-  color: #090909;
+  letter-spacing:
+    -0.055em;
 }
-
 
 .role span {
-  color: #df5846;
+  color: #e65542;
 }
 
-
-/* =========================================================
-   DESCRIPTION
-========================================================= */
-
 .description {
-  max-width: 620px;
+  max-width: 660px;
 
   margin:
-    37px
+    45px
     0
     0;
 
-  color:
-    rgba(
-      17,
-      17,
-      15,
-      0.66
-    );
+  color: #5f5d57;
 
   font-size:
     clamp(
-      18px,
+      17px,
       1.25vw,
-      22px
+      21px
     );
 
-  line-height: 1.55;
+  line-height: 1.62;
 }
-
-
-/* =========================================================
-   RIGHT PILLS
-========================================================= */
 
 .pillars {
   display: flex;
@@ -1088,285 +517,92 @@ span:last-child {
   margin-top: 34px;
 }
 
-
 .pillars span {
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  min-height: 38px;
-
   padding:
-    0
-    17px;
+    10px
+    15px;
 
   border:
     1px solid
     rgba(
       17,
       17,
-      15,
+      17,
       0.18
     );
 
-  border-radius: 999px;
+  border-radius:
+    999px;
 
-  font-size: 10px;
+  font-size: 12px;
 
-  font-weight: 700;
+  font-weight: 600;
 
-  letter-spacing: 0.065em;
+  letter-spacing:
+    0.04em;
 
   text-transform: uppercase;
 
   transition:
-    background
-    0.22s
-    ease,
-
-    color
-    0.22s
-    ease,
-
-    border-color
-    0.22s
-    ease,
-
-    transform
-    0.22s
-    ease;
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
-
 
 .pillars span:hover {
+  background: #111111;
+
+  color: #f2f0e8;
+
   transform:
-    translateY(
-      -2px
-    );
+    translateY(-2px);
 }
 
-
-.pillars span:nth-child(1):hover {
-  color: var(--paper);
-
-  background: #191a18;
-
-  border-color: #191a18;
-}
-
-
-.pillars span:nth-child(2):hover {
-  color: #191a18;
-
-  background: var(--coral);
-
-  border-color: var(--coral);
-}
-
-
-.pillars span:nth-child(3):hover {
-  color: #191a18;
-
-  background: var(--amber);
-
-  border-color: var(--amber);
-}
-
-
-/* =========================================================
-   RIGHT FOOTER
-========================================================= */
-
-.introFooter {
-  flex: 0 0 auto;
-
-  min-height: 68px;
+.explore {
+  width: fit-content;
 
   display: flex;
 
   align-items: center;
 
-  justify-content: space-between;
-
-  gap: 38px;
+  gap: 15px;
 
   padding:
-    0
-    32px;
+    12px 0;
 
-  border-top:
-    1px solid
-    var(--line);
-}
+  border: 0;
 
+  background: transparent;
 
-/* IMPORTANT:
-   Hero.tsx explicitly uses styles.explore
-*/
+  color: #111111;
 
-.explore {
-  display: inline-flex;
+  font-family: inherit;
 
-  align-items: center;
-
-  gap: 13px;
-
-  flex-shrink: 0;
-
-  width: fit-content;
-
-  color: var(--ink);
-
-  font-size: 11px;
-
-  font-weight: 750;
-
-  letter-spacing: 0.065em;
-
-  text-transform: uppercase;
-
-  text-decoration: none;
-}
-
-
-.explore span {
-  color: var(--coral);
-
-  font-size: 17px;
-
-  transition:
-    transform
-    0.22s
-    ease;
-}
-
-
-.explore:hover span {
-  transform:
-    translateY(
-      4px
-    );
-}
-
-
-/* =========================================================
-   PROCESS PREVIEW
-========================================================= */
-
-/* IMPORTANT:
-   matches styles.processPreview
-*/
-
-.processPreview {
-  max-width: 510px;
-
-  margin-left: auto;
-
-  text-align: right;
-}
-
-
-.processPreview > span {
-  display: block;
-
-  margin-bottom: 5px;
-
-  color:
-    rgba(
-      17,
-      17,
-      15,
-      0.36
-    );
-
-  font-size: 8px;
+  font-size: 13px;
 
   font-weight: 650;
 
-  letter-spacing: 0.1em;
-
   text-transform: uppercase;
+
+  letter-spacing:
+    0.06em;
+
+  cursor: pointer;
 }
 
+.explore span {
+  color: #ff5c4d;
 
-.processPreview p {
-  margin: 0;
+  font-size: 19px;
 
-  color:
-    rgba(
-      17,
-      17,
-      15,
-      0.48
-    );
-
-  font-size: 9px;
-
-  line-height: 1.45;
-
-  letter-spacing: 0.035em;
-
-  text-transform: uppercase;
+  transition:
+    transform 0.25s ease;
 }
 
-
-/* =========================================================
-   MEDIUM DESKTOP
-========================================================= */
-
-@media (max-width: 1250px) {
-
-  .grid {
-    grid-template-columns:
-      46%
-      54%;
-  }
-
-  .identityArea {
-    padding-left: 24px;
-
-    padding-right: 24px;
-  }
-
-  .monogram {
-    font-size:
-      clamp(
-        155px,
-        16vw,
-        235px
-      );
-  }
-
-  .tickerShell {
-    width: 82%;
-  }
-
-  .introMain {
-    padding-left: 48px;
-
-    padding-right: 48px;
-  }
-
-  .name {
-    font-size:
-      clamp(
-        75px,
-        8vw,
-        118px
-      );
-  }
-
-  .role {
-    font-size:
-      clamp(
-        35px,
-        4vw,
-        54px
-      );
-  }
-
+.explore:hover span,
+.explore:focus-visible span {
+  transform:
+    translateY(5px);
 }
 
 
@@ -1374,306 +610,210 @@ span:last-child {
    TABLET
 ========================================================= */
 
-@media (max-width: 900px) {
-
+@media (max-width: 1100px) {
   .hero {
-    left: auto;
-
-    width: 100%;
-
-    margin-left: 0;
-
-    padding:
-      0
-      0
-      20px;
+    grid-template-columns:
+      46% 54%;
   }
 
-
-  .grid {
-    display: block;
-
-    min-height: auto;
-  }
-
-
-  .visual,
   .intro {
-    min-height: auto;
+    padding-inline:
+      50px;
   }
-
-
-  .visual {
-    border-right: 0;
-  }
-
-
-  .identityArea {
-    min-height: 570px;
-
-    padding:
-      70px
-      22px
-      60px;
-  }
-
-
-  .monogram {
-    font-size:
-      clamp(
-        175px,
-        38vw,
-        290px
-      );
-  }
-
-
-  .tickerShell {
-    width:
-      min(
-        680px,
-        84%
-      );
-
-    margin-top: 44px;
-  }
-
-
-  .introMain {
-    padding:
-      78px
-      30px
-      90px;
-  }
-
 
   .name {
     font-size:
       clamp(
-        80px,
-        16vw,
-        128px
+        82px,
+        9vw,
+        120px
       );
   }
-
-
-  .role {
-    font-size:
-      clamp(
-        40px,
-        8vw,
-        68px
-      );
-  }
-
-
-  .introFooter {
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    min-height: auto;
-
-    padding:
-      22px
-      30px;
-  }
-
-
-  .processPreview {
-    margin-left: 0;
-
-    text-align: left;
-  }
-
 }
 
 
 /* =========================================================
-   MOBILE
+   MOBILE / TABLET
 ========================================================= */
 
-@media (max-width: 560px) {
+@media (max-width: 900px) {
+  .hero {
+    min-height: 100svh;
 
-  .visualTop {
-    min-height: 58px;
+    grid-template-columns:
+      1fr;
 
-    padding:
-      0
-      18px;
-
-    font-size: 9px;
+    grid-template-rows:
+      42svh
+      auto;
   }
 
+  .visual {
+    min-height: 42svh;
 
-  .visualTop
-  span:last-child {
-    display: none;
+    border-right: 0;
+
+    border-bottom:
+      1px solid
+      rgba(
+        17,
+        17,
+        17,
+        0.18
+      );
   }
-
 
   .identityArea {
-    min-height: 470px;
-
     padding:
-      52px
-      15px
-      45px;
+      30px
+      24px;
   }
-
 
   .monogram {
     font-size:
       clamp(
-        135px,
-        45vw,
-        200px
+        120px,
+        34vw,
+        230px
       );
   }
 
-
   .tickerShell {
-    width: 92%;
+    width:
+      min(
+        85%,
+        620px
+      );
 
-    margin-top: 35px;
-
-    padding: 5px;
+    margin-top:
+      28px;
   }
-
-
-  .tickerScreen {
-    height: 47px;
-  }
-
 
   .tickerItem {
+    min-height: 40px;
+
     padding:
       0
-      16px;
-  }
+      15px;
 
-
-  .tickerItem strong {
     font-size: 11px;
   }
 
-
-  .tickerCode {
-    font-size: 8px;
-  }
-
-
-  .leftStatement {
-    gap: 8px;
-
-    margin-top: 27px;
-
-    font-size: 8px;
-  }
-
-
-  .visualBottom {
-    min-height: 50px;
+  .intro {
+    min-height: 58svh;
 
     padding:
-      0
-      18px;
-
-    font-size: 8px;
+      54px
+      24px
+      38px;
   }
-
-
-  .visualBottom
-  span:last-child {
-    display: none;
-  }
-
-
-  .introTop {
-    min-height: 58px;
-
-    padding:
-      0
-      18px;
-
-    font-size: 8px;
-  }
-
-
-  .introTop
-  > span:first-child {
-    display: none;
-  }
-
 
   .introMain {
-    padding:
-      65px
-      20px
-      75px;
+    margin:
+      0
+      0
+      55px;
   }
-
-
-  .eyebrow {
-    font-size: 11px;
-  }
-
 
   .name {
     font-size:
       clamp(
-        62px,
+        70px,
+        18vw,
+        108px
+      );
+  }
+
+  .role {
+    margin-top: 34px;
+
+    font-size:
+      clamp(
+        38px,
+        9vw,
+        56px
+      );
+  }
+
+  .description {
+    margin-top: 32px;
+
+    font-size: 17px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+  .hero {
+    grid-template-rows:
+      38svh
+      auto;
+  }
+
+  .visual {
+    min-height: 38svh;
+  }
+
+  .monogram {
+    font-size:
+      clamp(
+        110px,
+        37vw,
+        180px
+      );
+  }
+
+  .tickerShell {
+    width: 92%;
+
+    margin-top: 22px;
+  }
+
+  .tickerItem {
+    font-size: 10px;
+  }
+
+  .intro {
+    min-height: 62svh;
+
+    padding-top: 42px;
+  }
+
+  .eyebrow {
+    margin-bottom: 20px;
+
+    font-size: 12px;
+  }
+
+  .name {
+    font-size:
+      clamp(
+        64px,
         19vw,
         90px
       );
   }
 
-
   .role {
-    margin-top: 32px;
-
     font-size:
       clamp(
         34px,
         10vw,
-        48px
+        46px
       );
   }
 
-
   .description {
-    margin-top: 29px;
-
     font-size: 16px;
   }
 
-
-  .pillars {
-    margin-top: 29px;
-  }
-
-
   .pillars span {
-    min-height: 34px;
-
-    padding:
-      0
-      13px;
-
-    font-size: 8px;
+    font-size: 11px;
   }
-
-
-  .introFooter {
-    padding:
-      20px;
-  }
-
-
-  .processPreview p {
-    font-size: 8px;
-  }
-
 }
 
 
@@ -1685,16 +825,12 @@ span:last-child {
   prefers-reduced-motion:
   reduce
 ) {
-
   .tickerTrack {
     animation: none;
   }
 
-
-  .monogram span,
   .pillars span,
   .explore span {
     transition: none;
   }
-
 }
