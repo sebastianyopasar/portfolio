@@ -31,32 +31,39 @@ export default function SectionRail({
     () => [
       {
         id: "identity",
+        number: "01",
         label: copy.rail.identity,
       },
       {
         id: "work",
+        number: "02",
         label: copy.rail.work,
       },
       {
         id: "process",
+        number: "03",
         label: copy.rail.process,
       },
       {
         id: "capabilities",
+        number: "04",
         label:
           copy.rail.capabilities,
       },
       {
         id: "about",
+        number: "05",
         label: copy.rail.about,
       },
       {
         id: "experience",
+        number: "06",
         label:
           copy.rail.experience,
       },
       {
         id: "contact",
+        number: "07",
         label: copy.rail.contact,
       },
     ],
@@ -78,60 +85,118 @@ export default function SectionRail({
         )
       );
 
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
-          let mostVisible:
-            | IntersectionObserverEntry
-            | undefined;
+    if (!elements.length) return;
 
-          for (const entry of entries) {
-            if (
-              !entry.isIntersecting
-            ) {
-              continue;
-            }
+    let frame = 0;
 
-            if (
-              !mostVisible ||
-              entry.intersectionRatio >
-                mostVisible.intersectionRatio
-            ) {
-              mostVisible = entry;
-            }
-          }
+    const updateActive = () => {
+      frame = 0;
 
-          if (!mostVisible) return;
+      const rootRect =
+        root.getBoundingClientRect();
 
-          const element =
-            mostVisible.target as HTMLElement;
+      const anchorY =
+        rootRect.top +
+        root.clientHeight * 0.46;
 
-          const stationId =
-            element.dataset.stationId;
+      let bestId =
+        elements[0].dataset
+          .stationId ?? "identity";
 
-          if (stationId) {
-            setActive(stationId);
-          }
-        },
-        {
-          root,
-          threshold: [
-            0.15,
-            0.3,
-            0.5,
-            0.7,
-          ],
+      let bestDistance =
+        Number.POSITIVE_INFINITY;
+
+      for (
+        const element
+        of elements
+      ) {
+        const rect =
+          element.getBoundingClientRect();
+
+        const stationId =
+          element.dataset.stationId;
+
+        if (!stationId) continue;
+
+        /*
+          If our viewport anchor is
+          inside the station, this is
+          the active station.
+        */
+
+        if (
+          anchorY >= rect.top &&
+          anchorY <= rect.bottom
+        ) {
+          bestId = stationId;
+          bestDistance = 0;
+          break;
         }
-      );
 
-    elements.forEach(
-      (element) => {
-        observer.observe(element);
+        const center =
+          rect.top +
+          rect.height / 2;
+
+        const distance =
+          Math.abs(
+            center - anchorY
+          );
+
+        if (
+          distance <
+          bestDistance
+        ) {
+          bestDistance =
+            distance;
+
+          bestId =
+            stationId;
+        }
+      }
+
+      setActive(bestId);
+    };
+
+    const requestUpdate = () => {
+      if (frame) return;
+
+      frame =
+        window.requestAnimationFrame(
+          updateActive
+        );
+    };
+
+    updateActive();
+
+    root.addEventListener(
+      "scroll",
+      requestUpdate,
+      {
+        passive: true,
       }
     );
 
+    window.addEventListener(
+      "resize",
+      requestUpdate
+    );
+
     return () => {
-      observer.disconnect();
+      root.removeEventListener(
+        "scroll",
+        requestUpdate
+      );
+
+      window.removeEventListener(
+        "resize",
+        requestUpdate
+      );
+
+      if (frame) {
+        window.cancelAnimationFrame(
+          frame
+        );
+      }
     };
   }, []);
 
@@ -158,9 +223,17 @@ export default function SectionRail({
     });
   };
 
+  const darkSection =
+    active === "process";
+
   return (
     <aside
       className={styles.rail}
+      data-tone={
+        darkSection
+          ? "dark"
+          : "light"
+      }
       aria-label="Portfolio sections"
     >
       <div
@@ -183,7 +256,7 @@ export default function SectionRail({
                 goTo(section.id)
               }
               aria-label={
-                section.label
+                `Go to ${section.label}`
               }
               aria-current={
                 active ===
@@ -199,6 +272,10 @@ export default function SectionRail({
               />
 
               <strong>
+                <small>
+                  {section.number}
+                </small>
+
                 {section.label}
               </strong>
             </button>
@@ -215,6 +292,11 @@ export default function SectionRail({
           onToggleGuided
         }
         aria-pressed={guided}
+        aria-label={
+          guided
+            ? "Switch to free scrolling"
+            : "Switch to guided scrolling"
+        }
       >
         <span>
           {guided ? "◉" : "○"}

@@ -14,37 +14,58 @@ export default function LanguageSwitcher() {
   const {
     locale,
     setLocale,
-  } = useLanguage();
+    copy,
+  } =
+    useLanguage();
 
   return (
     <nav
-      className={styles.switcher}
-      aria-label="Language"
+      className={
+        styles.switcher
+      }
+      aria-label={
+        copy.ui.languageLabel
+      }
     >
       {languageOptions.map(
-        (language) => (
-          <button
-            type="button"
-            key={language.code}
-            className={
-              locale ===
-              language.code
-                ? styles.active
-                : ""
-            }
-            onClick={() =>
-              setLocale(
+        (language) => {
+          const isActive =
+            locale ===
+            language.code;
+
+          return (
+            <button
+              type="button"
+              key={
                 language.code
-              )
-            }
-            aria-pressed={
-              locale ===
-              language.code
-            }
-          >
-            {language.short}
-          </button>
-        )
+              }
+              className={
+                isActive
+                  ? styles.active
+                  : ""
+              }
+              onClick={() =>
+                setLocale(
+                  language.code
+                )
+              }
+              aria-pressed={
+                isActive
+              }
+              aria-label={`${copy.ui.useLanguage} ${language.label}`}
+              title={
+                language.label
+              }
+              lang={
+                language.code
+              }
+            >
+              {
+                language.short
+              }
+            </button>
+          );
+        }
       )}
     </nav>
   );

@@ -1,64 +1,35 @@
+"use client";
+
+import {
+  useState,
+} from "react";
+
 import Reveal from "./Reveal";
 
-const capabilities = [
-  {
-    number: "01",
-    title: "UX / UI",
-    summary:
-      "Designing intuitive digital experiences.",
-    items: [
-      "User Experience",
-      "Interface Design",
-      "Information Architecture",
-      "Responsive Design",
-      "Prototyping",
-    ],
-  },
-
-  {
-    number: "02",
-    title: "Development",
-    summary:
-      "Turning design decisions into working interfaces.",
-    items: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "HTML / CSS",
-      "Supabase",
-    ],
-  },
-
-  {
-    number: "03",
-    title: "E-Commerce",
-    summary:
-      "Connecting customer experience with commercial goals.",
-    items: [
-      "Shopify",
-      "Product Experience",
-      "Promotions",
-      "Conversion",
-      "Digital Merchandising",
-    ],
-  },
-
-  {
-    number: "04",
-    title: "Digital",
-    summary:
-      "Understanding the business behind the interface.",
-    items: [
-      "Digital Marketing",
-      "Analytics",
-      "CRM",
-      "Content",
-      "Business Systems",
-    ],
-  },
-];
+import {
+  useLanguage,
+} from "./LanguageProvider";
 
 export default function Capabilities() {
+  const { copy } =
+    useLanguage();
+
+  const content =
+    copy.capabilities;
+
+  const capabilities =
+    content.entries;
+
+  const [
+    activeIndex,
+    setActiveIndex,
+  ] = useState(0);
+
+  const active =
+    capabilities[
+      activeIndex
+    ];
+
   return (
     <section
       className="capabilities-section home-station"
@@ -68,111 +39,211 @@ export default function Capabilities() {
         <header className="station-intro station-intro-capabilities">
           <div className="station-intro-meta">
             <span>
-              04 / What I Bring
+              {
+                content.meta
+              }
             </span>
 
             <span>
-              Design · Technology · Business
+              {
+                content.metaContext
+              }
             </span>
           </div>
 
           <div className="station-intro-main">
             <h2>
-              Design thinking.
+              {
+                content.title
+              }
+
               <br />
+
               <span>
-                Technical execution.
+                {
+                  content.titleAccent
+                }
               </span>
             </h2>
 
             <p>
-              I&apos;m comfortable moving
-              between interface decisions,
-              implementation, e-commerce
-              and the business context
-              surrounding the experience.
+              {
+                content.description
+              }
             </p>
           </div>
         </header>
       </Reveal>
 
-      {/* DESKTOP */}
+      <Reveal delay={100}>
+        <div className="capability-workbench">
+          <div
+            className="capability-tabs"
+            role="tablist"
+            aria-label={
+              content.meta
+            }
+          >
+            <div className="capability-tabs-heading">
+              <span>
+                {
+                  content.areas
+                }
+              </span>
 
-      <div className="capabilities-accordion">
-        {capabilities.map(
-          (capability) => (
-            <details
-              className="capability-accordion-item"
-              key={capability.number}
-            >
-              <summary>
-                <span className="capability-number">
-                  {capability.number}
-                </span>
-
-                <h3>
-                  {capability.title}
-                </h3>
-
-                <p>
-                  {capability.summary}
-                </p>
-
-                <span className="capability-toggle">
-                  +
-                </span>
-              </summary>
-
-              <div className="capability-accordion-content">
-                <div />
-
-                <div className="capability-accordion-list">
-                  {capability.items.map(
-                    (item) => (
-                      <span key={item}>
-                        {item}
-                      </span>
-                    )
-                  )}
-                </div>
-              </div>
-            </details>
-          )
-        )}
-      </div>
-
-      {/* MOBILE / TABLET */}
-
-      <div className="capabilities-mobile-grid">
-        {capabilities.map(
-          (capability) => (
-            <article
-              className="capability"
-              key={capability.number}
-            >
-              <div className="capability-title">
-                <span>
-                  {capability.number}
-                </span>
-
-                <h3>
-                  {capability.title}
-                </h3>
-              </div>
-
-              <div className="capability-list">
-                {capability.items.map(
-                  (item) => (
-                    <span key={item}>
-                      {item}
-                    </span>
-                  )
+              <strong>
+                {String(
+                  activeIndex + 1
+                ).padStart(
+                  2,
+                  "0"
                 )}
-              </div>
-            </article>
-          )
-        )}
-      </div>
+                {" / "}
+                {String(
+                  capabilities.length
+                ).padStart(
+                  2,
+                  "0"
+                )}
+              </strong>
+            </div>
+
+            {capabilities.map(
+              (
+                capability,
+                index
+              ) => {
+                const isActive =
+                  index ===
+                  activeIndex;
+
+                return (
+                  <button
+                    id={`capability-tab-${index}`}
+                    key={
+                      capability.number
+                    }
+                    type="button"
+                    role="tab"
+                    aria-selected={
+                      isActive
+                    }
+                    aria-controls="capability-panel"
+                    className={
+                      isActive
+                        ? "capability-tab active"
+                        : "capability-tab"
+                    }
+                    onMouseEnter={() =>
+                      setActiveIndex(
+                        index
+                      )
+                    }
+                    onFocus={() =>
+                      setActiveIndex(
+                        index
+                      )
+                    }
+                    onClick={() =>
+                      setActiveIndex(
+                        index
+                      )
+                    }
+                  >
+                    <span>
+                      {
+                        capability.number
+                      }
+                    </span>
+
+                    <strong>
+                      {
+                        capability.title
+                      }
+                    </strong>
+
+                    <i
+                      aria-hidden="true"
+                    >
+                      →
+                    </i>
+                  </button>
+                );
+              }
+            )}
+          </div>
+
+          <div
+            id="capability-panel"
+            className="capability-panel"
+            role="tabpanel"
+            aria-labelledby={`capability-tab-${activeIndex}`}
+            key={`${active.number}-${active.title}`}
+          >
+            <div className="capability-panel-top">
+              <span>
+                {
+                  content.currentCapability
+                }
+              </span>
+
+              <strong>
+                {
+                  active.number
+                }
+              </strong>
+            </div>
+
+            <div className="capability-panel-main">
+              <h3>
+                {
+                  active.title
+                }
+              </h3>
+
+              <p className="capability-panel-summary">
+                {
+                  active.summary
+                }
+              </p>
+
+              <p className="capability-panel-context">
+                {
+                  active.context
+                }
+              </p>
+            </div>
+
+            <div className="capability-panel-list">
+              {active.items.map(
+                (
+                  item,
+                  index
+                ) => (
+                  <span
+                    key={
+                      item
+                    }
+                  >
+                    <small>
+                      {String(
+                        index + 1
+                      ).padStart(
+                        2,
+                        "0"
+                      )}
+                    </small>
+
+                    {
+                      item
+                    }
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }

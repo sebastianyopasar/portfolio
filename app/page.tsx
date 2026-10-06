@@ -91,9 +91,7 @@ export default function Home() {
         <div
           data-station-id="contact"
         >
-          <div className="site-container">
-            <Contact />
-          </div>
+          <Contact />
         </div>
       </HomeExperience>
     </main>

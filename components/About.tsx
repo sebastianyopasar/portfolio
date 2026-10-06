@@ -1,127 +1,223 @@
+"use client";
+
+import { Fragment } from "react";
+
 import Reveal from "./Reveal";
 
+import {
+  useLanguage,
+} from "./LanguageProvider";
+
 export default function About() {
+  const { copy } =
+    useLanguage();
+
+  const content =
+    copy.about;
+
   return (
     <section
       className="about-section home-station"
       id="about"
     >
-      <Reveal>
-        <header className="station-intro">
-          <div className="station-intro-meta">
-            <span>
-              05 / About
-            </span>
+      <div className="about-single-meta">
+        <span>
+          {
+            content.meta
+          }
+        </span>
 
-            <span>
-              Design · Technology · Business
-            </span>
-          </div>
-
-          <div className="station-intro-main">
-            <h2>
-              Different disciplines.
-              <br />
-              <span>
-                One connected approach.
-              </span>
-            </h2>
-
-            <p>
-              My background lets me look
-              beyond the interface and
-              understand how user
-              experience, implementation
-              and business goals connect.
-            </p>
-          </div>
-        </header>
-      </Reveal>
+        <span>
+          {
+            content.locationTop
+          }
+        </span>
+      </div>
 
       <div className="about-compact-layout">
         <Reveal>
-          <h2 className="about-compact-title">
-            I work between{" "}
-            <span>design</span>,
-            <br />
-            technology
-            <br />
-            and{" "}
-            <span>business.</span>
-          </h2>
+          <div className="about-statement">
+            <span className="about-statement-label">
+              {
+                content.statementLabel
+              }
+            </span>
+
+            <h2 className="about-compact-title">
+              {
+                content.prefix
+              }{" "}
+
+              <span>
+                {
+                  content.design
+                }
+              </span>
+              ,
+
+              <br />
+
+              {
+                content.technology
+              }
+
+              <br />
+
+              {
+                content.connector
+              }{" "}
+
+              <span>
+                {
+                  content.business
+                }
+              </span>
+            </h2>
+          </div>
         </Reveal>
 
         <Reveal delay={100}>
           <div className="about-compact-copy">
             <p className="about-lead">
-              I&apos;m Sebastián, a UX/UI
-              designer focused on creating
-              useful, intuitive and visually
-              clear digital experiences.
+              {
+                content.lead
+              }
             </p>
 
             <p>
-              My work combines UX/UI, web
-              development, e-commerce and
-              digital strategy — allowing me
-              to approach projects from both
-              the user experience and
-              technical sides.
+              {
+                content.paragraph1
+              }
             </p>
 
             <p>
-              I&apos;m especially interested
-              in understanding complex
-              processes and turning them into
-              experiences that feel simpler,
-              clearer and easier to use.
+              {
+                content.paragraph2
+              }
+            </p>
+
+            <p>
+              {
+                content.paragraph3
+              }
             </p>
           </div>
         </Reveal>
       </div>
 
-      <div className="about-meta-strip">
-        <div>
-          <span>
-            01 / Location
+      <Reveal delay={130}>
+        <div className="about-approach">
+          <span className="about-approach-label">
+            {
+              content.approach
+            }
           </span>
 
-          <strong>
-            Ontario, Canada
-          </strong>
+          <div className="about-approach-flow">
+            {content.approachSteps.map(
+              (
+                step,
+                index
+              ) => (
+                <Fragment
+                  key={step}
+                >
+                  <div>
+                    <small>
+                      {String(
+                        index + 1
+                      ).padStart(
+                        2,
+                        "0"
+                      )}
+                    </small>
+
+                    <strong>
+                      {
+                        step
+                      }
+                    </strong>
+                  </div>
+
+                  {index <
+                    content
+                      .approachSteps
+                      .length -
+                      1 && (
+                    <i
+                      aria-hidden="true"
+                    >
+                      →
+                    </i>
+                  )}
+                </Fragment>
+              )
+            )}
+          </div>
         </div>
+      </Reveal>
 
-        <div>
-          <span>
-            02 / Focus
-          </span>
+      <Reveal delay={160}>
+        <div className="about-meta-strip">
+          <div>
+            <span>
+              {
+                content.locationLabel
+              }
+            </span>
 
-          <strong>
-            UX/UI Design
-          </strong>
+            <strong>
+              {
+                content.location
+              }
+            </strong>
+          </div>
+
+          <div>
+            <span>
+              {
+                content.focusLabel
+              }
+            </span>
+
+            <strong>
+              {
+                content.focus
+              }
+            </strong>
+          </div>
+
+          <div>
+            <span>
+              {
+                content.buildLabel
+              }
+            </span>
+
+            <strong>
+              {
+                content.build
+              }
+            </strong>
+          </div>
+
+          <div>
+            <span>
+              {
+                content.statusLabel
+              }
+            </span>
+
+            <strong className="about-status">
+              <i />
+
+              {
+                content.status
+              }
+            </strong>
+          </div>
         </div>
-
-        <div>
-          <span>
-            03 / Work
-          </span>
-
-          <strong>
-            Design + Development
-          </strong>
-        </div>
-
-        <div>
-          <span>
-            04 / Status
-          </span>
-
-          <strong className="about-status">
-            <i />
-            Open to opportunities
-          </strong>
-        </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

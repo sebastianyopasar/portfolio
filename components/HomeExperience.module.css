@@ -5,53 +5,106 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  scroll-behavior: smooth;
+  scroll-behavior:
+    smooth;
+
+  scroll-padding-top:
+    0;
 
   overscroll-behavior-y:
     contain;
 
-  scrollbar-width: thin;
+  scrollbar-width:
+    thin;
 
-  background: #f2f0e8;
+  scrollbar-gutter:
+    stable;
+
+  background:
+    #f2f0e8;
 }
+
+
+/* =========================================
+   GUIDED MODE
+
+   Sections gently snap when close,
+   without trapping the user inside
+   large sections.
+========================================= */
 
 .guided {
   scroll-snap-type:
     y proximity;
 }
 
+
+/* =========================================
+   FREE MODE
+========================================= */
+
 .free {
-  scroll-snap-type: none;
+  scroll-snap-type:
+    none;
 }
+
 
 .content {
   width: 100%;
+
+  min-width: 0;
 }
 
-.content > [data-station-id] {
+
+.content >
+[data-station-id] {
   position: relative;
 
-  scroll-snap-align: start;
+  width: 100%;
 
-  scroll-snap-stop: normal;
+  min-width: 0;
+
+  scroll-snap-align:
+    start;
+
+  scroll-snap-stop:
+    normal;
 }
+
 
 @media (min-width: 901px) {
   .content >
   [data-station-id] {
-    min-height: 100svh;
+    min-height:
+      100svh;
   }
 }
+
+
+@media (max-width: 900px) {
+  .guided {
+    scroll-snap-type:
+      y proximity;
+  }
+
+  .content >
+  [data-station-id] {
+    min-height: 0;
+  }
+}
+
 
 @media (
   prefers-reduced-motion:
   reduce
 ) {
   .scroller {
-    scroll-behavior: auto;
+    scroll-behavior:
+      auto;
   }
 
   .guided {
-    scroll-snap-type: none;
+    scroll-snap-type:
+      none;
   }
 }

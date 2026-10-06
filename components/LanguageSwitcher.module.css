@@ -3,16 +3,18 @@
 
   z-index: 90;
 
-  top: 22px;
+  top: 20px;
   right: 84px;
 
   display: flex;
+
+  gap: 2px;
 
   padding: 4px;
 
   border:
     1px solid
-    rgba(17,17,17,0.14);
+    rgba(17, 17, 17, 0.14);
 
   border-radius: 999px;
 
@@ -21,27 +23,47 @@
       242,
       240,
       232,
-      0.86
+      0.9
+    );
+
+  box-shadow:
+    0
+    6px
+    24px
+    rgba(
+      17,
+      17,
+      17,
+      0.055
     );
 
   backdrop-filter:
-    blur(12px);
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
 }
 
 .switcher button {
-  min-width: 38px;
-  height: 32px;
+  min-width: 44px;
+  height: 40px;
+
+  display: grid;
+
+  place-items: center;
 
   padding:
-    0 9px;
+    0 10px;
 
   border: 0;
 
   border-radius: 999px;
 
-  background: transparent;
+  background:
+    transparent;
 
-  color: #706e66;
+  color:
+    #625f57;
 
   font-family:
     var(--font-space-mono),
@@ -49,22 +71,58 @@
 
   font-size: 11px;
 
+  font-weight: 600;
+
+  letter-spacing:
+    0.04em;
+
   cursor: pointer;
 
   transition:
-    color 0.2s ease,
-    background 0.2s ease;
+    color
+    0.2s ease,
+    background
+    0.2s ease,
+    transform
+    0.2s ease;
 }
 
-.switcher button:hover,
+.switcher button:hover {
+  color:
+    #111111;
+
+  background:
+    rgba(
+      255,
+      92,
+      77,
+      0.08
+    );
+}
+
 .switcher button:focus-visible {
-  color: #111111;
+  outline:
+    3px solid
+    #ff5c4d;
+
+  outline-offset:
+    3px;
 }
 
 .switcher .active {
-  background: #111111;
+  background:
+    #181a17;
 
-  color: #f2f0e8;
+  color:
+    #f2f0e8;
+}
+
+.switcher .active:hover {
+  background:
+    #181a17;
+
+  color:
+    #f2f0e8;
 }
 
 @media (max-width: 900px) {
@@ -74,10 +132,21 @@
   }
 
   .switcher button {
-    min-width: 34px;
+    min-width: 42px;
+    height: 38px;
 
-    height: 30px;
+    padding:
+      0 8px;
 
     font-size: 10px;
+  }
+}
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+  .switcher button {
+    transition: none;
   }
 }

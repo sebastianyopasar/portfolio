@@ -1,44 +1,79 @@
+"use client";
+
 import ProjectCard from "./ProjectCard";
 import Reveal from "./Reveal";
 
+import {
+  useLanguage,
+} from "./LanguageProvider";
+
 export default function SelectedWork() {
+  const { copy } =
+    useLanguage();
+
+  const content =
+    copy.selectedWork;
+
   return (
     <section
       className="selected-work home-station"
       id="work"
     >
       <Reveal>
-        <header className="station-intro">
+        <header className="station-intro work-intro">
           <div className="station-intro-meta">
             <span>
-              02 / Selected Work
+              {content.meta}
             </span>
 
             <span>
-              Three projects · Three contexts
+              {
+                content.metaContext
+              }
             </span>
           </div>
 
           <div className="station-intro-main">
             <h2>
-              Three projects.
+              {
+                content.title
+              }
+
               <br />
+
               <span>
-                Three different
-                kinds of problems.
+                {
+                  content.titleAccent
+                }
               </span>
             </h2>
 
             <p>
-              From complex business
-              systems to commerce and
-              immersive storytelling,
-              each project required a
-              different way of thinking,
-              designing and building.
+              {
+                content.description
+              }
             </p>
           </div>
         </header>
+      </Reveal>
+
+      <Reveal delay={70}>
+        <div
+          className="work-interaction-note"
+          aria-hidden="true"
+        >
+          <span>
+            {
+              content.selectedCases
+            }
+          </span>
+
+          <span>
+            {
+              content.interactionHint
+            }
+          </span>
+        </div>
       </Reveal>
 
       <div className="projects-list">
@@ -48,54 +83,167 @@ export default function SelectedWork() {
         >
           <ProjectCard
             number="01"
-            title="Project Tokyo"
-            category="UX/UI · Development"
-            focus="Complex Product Systems"
-            description="A connected business platform bringing CRM, inventory, sales and operations into one intuitive workspace."
+            title={
+              content.projects
+                .tokyo.title
+            }
+            category={
+              content.projects
+                .tokyo.category
+            }
+            focus={
+              content.projects
+                .tokyo.focus
+            }
+            focusLabel={
+              content.focusLabel
+            }
+            description={
+              content.projects
+                .tokyo.description
+            }
             href="/work/tokyo"
             visual="dashboard"
             imageSrc="/tokyo/home-dashboard.png"
-            imageAlt="Project Tokyo operational dashboard interface"
-            imageLabel="Live Product"
+            imageAlt={
+              content.projects
+                .tokyo.imageAlt
+            }
+            imageLabel={
+              content.projects
+                .tokyo.imageLabel
+            }
+            openLabel={
+              content.openCaseStudy
+            }
+            openingLabel={
+              content.openingCaseStudy
+            }
+            exploreAriaLabel={
+              content.projects
+                .tokyo.aria
+            }
           />
         </Reveal>
 
         <Reveal
           className="project-reveal"
-          delay={90}
+          delay={80}
         >
           <ProjectCard
             number="02"
-            title="E-Commerce"
-            category="Shopify · Conversion"
-            focus="Commerce Experience"
-            description="Digital commerce experiences focused on product discovery, promotions, usability and conversion."
+            title={
+              content.projects
+                .ecommerce.title
+            }
+            category={
+              content.projects
+                .ecommerce.category
+            }
+            focus={
+              content.projects
+                .ecommerce.focus
+            }
+            focusLabel={
+              content.focusLabel
+            }
+            description={
+              content.projects
+                .ecommerce.description
+            }
             href="/work/ecommerce"
             visual="commerce"
             imageSrc="/ecommerce/home.png"
-            imageAlt="Shopify product collection showing product discovery, filtering and merchandising"
-            imageLabel="Shopify Experience"
+            imageAlt={
+              content.projects
+                .ecommerce.imageAlt
+            }
+            imageLabel={
+              content.projects
+                .ecommerce.imageLabel
+            }
+            openLabel={
+              content.openCaseStudy
+            }
+            openingLabel={
+              content.openingCaseStudy
+            }
+            exploreAriaLabel={
+              content.projects
+                .ecommerce.aria
+            }
           />
         </Reveal>
 
         <Reveal
           className="project-reveal"
-          delay={180}
+          delay={160}
         >
           <ProjectCard
             number="03"
-            title="Identidad.CO"
-            category="VR · Web · Culture"
-            focus="Immersive Storytelling"
-            description="An immersive web and VR experience exploring Colombian identity through coffee, culture and digital storytelling."
+            title={
+              content.projects
+                .identidad.title
+            }
+            category={
+              content.projects
+                .identidad.category
+            }
+            focus={
+              content.projects
+                .identidad.focus
+            }
+            focusLabel={
+              content.focusLabel
+            }
+            description={
+              content.projects
+                .identidad.description
+            }
             href="/work/niwa?enter=1"
             visual="concept"
             imageSrc="/identidad/identidad-co.png"
-            imageAlt="Colombian coffee landscape representing the Identidad.CO cultural experience"
-            imageLabel="Immersive Experience"
+            imageAlt={
+              content.projects
+                .identidad.imageAlt
+            }
+            imageLabel={
+              content.projects
+                .identidad.imageLabel
+            }
+            openLabel={
+              content.openCaseStudy
+            }
+            openingLabel={
+              content.openingCaseStudy
+            }
+            exploreAriaLabel={
+              content.projects
+                .identidad.aria
+            }
           />
         </Reveal>
       </div>
+
+      <Reveal delay={180}>
+        <div className="work-process-bridge">
+          <span>
+            {
+              content.bridge
+            }
+          </span>
+
+          <a href="#process">
+            {
+              content.processLink
+            }
+
+            <span>
+              ↓
+            </span>
+          </a>
+        </div>
+      </Reveal>
     </section>
   );
 }

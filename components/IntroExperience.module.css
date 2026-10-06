@@ -4,30 +4,45 @@
 
   z-index: 9999;
 
+  overflow: hidden;
+
   background: #141613;
   color: #f2f0e8;
-
-  overflow: hidden;
 
   font-family:
     var(--font-geist),
     Arial,
     sans-serif;
-
-  transition:
-    opacity 0.6s ease,
-    visibility 0.6s ease;
 }
+
+/* ======================================================
+   MAIN SPLIT
+====================================================== */
 
 .grid {
   width: 100%;
   height: 100%;
 
   display: grid;
+
   grid-template-columns:
     minmax(0, 1.1fr)
     minmax(420px, 0.9fr);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
+
+/* ======================================================
+   LEFT SIDE
+====================================================== */
 
 .identity {
   position: relative;
@@ -65,13 +80,13 @@
 
   background-image:
     linear-gradient(
-      rgba(255,255,255,0.025)
+      rgba(255, 255, 255, 0.025)
       1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(255,255,255,0.025)
+      rgba(255, 255, 255, 0.025)
       1px,
       transparent 1px
     );
@@ -130,8 +145,10 @@
 }
 
 .signal {
-  display: flex;
+  position: relative;
+  z-index: 2;
 
+  display: flex;
   align-items: center;
 
   gap: 13px;
@@ -142,9 +159,10 @@
     var(--font-space-mono),
     monospace;
 
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 500;
 
-  letter-spacing: 0.06em;
+  letter-spacing: 0.055em;
 
   opacity: 0;
 
@@ -156,25 +174,31 @@
 }
 
 .signal i {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
 
   border-radius: 50%;
 
   background: #77e36e;
 
   box-shadow:
-    0 0 7px
-    rgba(119, 227, 110, 0.8);
+    0 0 8px
+    rgba(119, 227, 110, 0.75);
 }
 
 .signal i:nth-of-type(2) {
-  background: #f0b34c;
+  background: #d8a24a;
 
   box-shadow:
-    0 0 7px
-    rgba(240, 179, 76, 0.8);
+    0 0 8px
+    rgba(216, 162, 74, 0.65);
 }
+
+/* ======================================================
+   LANGUAGE SIDE
+====================================================== */
 
 .languageArea {
   display: flex;
@@ -225,23 +249,25 @@
     0
     48px;
 
-  color: #706e66;
+  color: #625f57;
 
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 500;
 
   text-transform: uppercase;
 
-  letter-spacing: 0.09em;
+  letter-spacing: 0.08em;
 }
 
 .languages {
   border-top:
     1px solid
-    rgba(17,17,17,0.16);
+    rgba(17, 17, 17, 0.16);
 }
 
 .languages button {
   width: 100%;
+  min-height: 96px;
 
   display: grid;
 
@@ -255,13 +281,13 @@
   gap: 20px;
 
   padding:
-    24px 0;
+    26px 0;
 
   border: 0;
 
   border-bottom:
     1px solid
-    rgba(17,17,17,0.16);
+    rgba(17, 17, 17, 0.16);
 
   background: transparent;
 
@@ -274,27 +300,37 @@
   cursor: pointer;
 
   transition:
-    padding 0.25s ease,
+    padding 0.3s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
     color 0.25s ease,
     background 0.25s ease;
 }
 
+.languages button:disabled {
+  cursor: default;
+}
+
 .languages button > span {
-  color: #706e66;
+  color: #625f57;
 
   font-family:
     var(--font-space-mono),
     monospace;
 
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .languages button strong {
   font-size:
     clamp(
-      30px,
+      32px,
       3vw,
-      48px
+      50px
     );
 
   font-weight: 500;
@@ -304,44 +340,191 @@
 }
 
 .languages button i {
-  color: #2454ff;
+  color: #ff5c4d;
 
-  font-size: 24px;
+  font-size: 27px;
 
   font-style: normal;
 
   transition:
-    transform 0.25s ease;
+    transform 0.3s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
 }
 
-.languages button:hover,
+.languages button:hover:not(:disabled),
 .languages button:focus-visible {
-  padding-left: 18px;
+  padding-left: 20px;
 
   background:
     rgba(
-      36,
-      84,
       255,
-      0.05
+      92,
+      77,
+      0.065
     );
 }
 
-.languages button:hover i,
+.languages button:hover:not(:disabled) i,
 .languages button:focus-visible i {
   transform:
-    translateX(6px);
+    translateX(7px);
+}
+
+.languages button:focus-visible {
+  outline:
+    3px solid
+    #ff5c4d;
+
+  outline-offset: -3px;
 }
 
 .activeLanguage strong {
-  color: #2454ff;
+  color: #ff5c4d;
 }
 
-.exit {
+/* ======================================================
+   SINGLE ANGLED CURTAIN
+====================================================== */
+
+.curtain {
+  position: absolute;
+
+  z-index: 20;
+
+  left: -15vw;
+  bottom: -42vh;
+
+  width: 130vw;
+  height: 155vh;
+
+  pointer-events: none;
+
+  overflow: hidden;
+
+  background: #ff5c4d;
+
+  box-shadow:
+    0 -30px 90px
+    rgba(17, 17, 17, 0.2);
+
+  transform:
+    translateY(112%)
+    rotate(-4deg);
+
+  transform-origin:
+    center center;
+
+  transition:
+    transform 0.62s
+    cubic-bezier(
+      0.76,
+      0,
+      0.24,
+      1
+    );
+}
+
+.curtainTexture {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.1;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.09)
+      1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.07)
+      1px,
+      transparent 1px
+    );
+
+  background-size:
+    44px 44px;
+}
+
+.curtainStamp {
+  position: absolute;
+
+  left: 10vw;
+  top: 19%;
+
+  color:
+    rgba(
+      17,
+      17,
+      17,
+      0.72
+    );
+
+  font-family:
+    var(--font-space-mono),
+    monospace;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.09em;
+}
+
+/* Curtain covers intro */
+
+.cover .curtain {
+  transform:
+    translateY(-13%)
+    rotate(-4deg);
+}
+
+.cover .grid {
+  opacity: 0.2;
+
+  transform:
+    scale(0.985);
+}
+
+.cover .languageArea {
+  pointer-events: none;
+}
+
+/* Curtain continues upward */
+
+.reveal {
+  background: transparent;
+
+  pointer-events: none;
+}
+
+.reveal .grid {
   opacity: 0;
 
   visibility: hidden;
+
+  transform:
+    scale(0.985);
 }
+
+.reveal .curtain {
+  transition-duration:
+    0.72s;
+
+  transform:
+    translateY(-126%)
+    rotate(-4deg);
+}
+
+/* ======================================================
+   ANIMATION
+====================================================== */
 
 @keyframes introMonogram {
   to {
@@ -358,6 +541,10 @@
     opacity: 1;
   }
 }
+
+/* ======================================================
+   TABLET / MOBILE
+====================================================== */
 
 @media (max-width: 900px) {
   .grid {
@@ -392,7 +579,7 @@
   .signal {
     margin-top: 32px;
 
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .languageArea {
@@ -403,33 +590,65 @@
 
   .languageTitle {
     margin-bottom: 25px;
+
+    font-size: 13px;
   }
 
   .languages button {
+    min-height: 72px;
+
     padding:
-      16px 0;
+      17px 0;
   }
 
   .languages button strong {
     font-size:
       clamp(
-        24px,
+        26px,
         7vw,
-        34px
+        36px
       );
   }
+
+  .curtain {
+    left: -25vw;
+
+    width: 150vw;
+
+    transform:
+      translateY(115%)
+      rotate(-6deg);
+  }
+
+  .cover .curtain {
+    transform:
+      translateY(-12%)
+      rotate(-6deg);
+  }
+
+  .reveal .curtain {
+    transform:
+      translateY(-128%)
+      rotate(-6deg);
+  }
 }
+
+/* ======================================================
+   ACCESSIBILITY
+====================================================== */
 
 @media (
   prefers-reduced-motion:
   reduce
 ) {
   .overlay,
+  .grid,
   .monogram,
   .signal,
   .languageArea,
   .languages button,
-  .languages button i {
+  .languages button i,
+  .curtain {
     animation: none;
     transition: none;
   }

@@ -1,75 +1,250 @@
-const experience = [
-  {
-    period: "2025 — Present",
-    company:
-      "Corporate Facility Supply",
-    role:
-      "Digital / UX / E-Commerce",
-    description:
-      "Digital campaigns, e-commerce experiences, CRM, website optimization and internal business systems.",
-  },
+"use client";
 
-  {
-    period: "Independent",
-    company:
-      "Digital Experience Development",
-    role:
-      "UX/UI + Development",
-    description:
-      "Designing and building interfaces and digital experiences from research and concept through implementation.",
-  },
+import {
+  useState,
+} from "react";
 
-  {
-    period: "Ongoing",
-    company:
-      "Project Tokyo",
-    role:
-      "UX/UI Designer + Developer",
-    description:
-      "Designing and building a connected CRM, inventory and business operations platform from the ground up.",
-  },
-];
+import {
+  useLanguage,
+} from "./LanguageProvider";
 
 export default function Experience() {
+  const { copy } =
+    useLanguage();
+
+  const content =
+    copy.experience;
+
+  const experience =
+    content.entries;
+
+  const [
+    openIndex,
+    setOpenIndex,
+  ] =
+    useState<
+      number | null
+    >(null);
+
   return (
-    <section className="experience-section">
+    <section
+      className="experience-section"
+      id="experience"
+    >
       <div className="experience-heading">
         <span>
-          Selected experience
+          {
+            content.meta
+          }
         </span>
 
-        <h2>
-          Working across
-          <br />
-          disciplines.
-        </h2>
+        <div>
+          <h2>
+            {
+              content.titleLine1
+            }
+
+            <br />
+
+            {
+              content.titleLine2
+            }
+          </h2>
+
+          <div className="experience-heading-bottom">
+            <p className="experience-helper">
+              {
+                content.helper
+              }
+            </p>
+
+            <span>
+              {
+                content.contextCount
+              }
+            </span>
+          </div>
+        </div>
       </div>
 
       <div className="experience-list">
-        {experience.map((item) => (
-          <article
-            className="experience-row"
-            key={item.company}
-          >
-            <span className="experience-period">
-              {item.period}
-            </span>
+        {experience.map(
+          (
+            item,
+            index
+          ) => {
+            const isOpen =
+              openIndex ===
+              index;
 
-            <div>
-              <strong>
-                {item.company}
-              </strong>
+            const panelId =
+              `experience-panel-${index}`;
 
-              <span>
-                {item.role}
-              </span>
-            </div>
+            return (
+              <article
+                className={
+                  isOpen
+                    ? "experience-row experience-row-open"
+                    : "experience-row"
+                }
+                data-open={
+                  isOpen
+                    ? "true"
+                    : "false"
+                }
+                key={
+                  item.number
+                }
+              >
+                <button
+                  type="button"
+                  className="experience-row-button"
+                  aria-expanded={
+                    isOpen
+                  }
+                  aria-controls={
+                    panelId
+                  }
+                  onClick={() =>
+                    setOpenIndex(
+                      isOpen
+                        ? null
+                        : index
+                    )
+                  }
+                >
+                  <div className="experience-index">
+                    <span>
+                      {
+                        item.number
+                      }
+                    </span>
 
-            <p>
-              {item.description}
-            </p>
-          </article>
-        ))}
+                    <small>
+                      {
+                        item.period
+                      }
+                    </small>
+                  </div>
+
+                  <div className="experience-role">
+                    <strong>
+                      {
+                        item.company
+                      }
+                    </strong>
+
+                    <span>
+                      {
+                        item.role
+                      }
+                    </span>
+                  </div>
+
+                  <p>
+                    {
+                      item.description
+                    }
+                  </p>
+
+                  <div className="experience-action">
+                    <small>
+                      {isOpen
+                        ? content.close
+                        : content.explore}
+                    </small>
+
+                    <span className="experience-toggle">
+                      {isOpen
+                        ? "−"
+                        : "+"}
+                    </span>
+                  </div>
+                </button>
+
+                <div
+                  id={
+                    panelId
+                  }
+                  className="experience-expand-shell"
+                  aria-hidden={
+                    !isOpen
+                  }
+                >
+                  <div className="experience-expand-inner">
+                    <div className="experience-expanded">
+                      <div className="experience-expanded-column">
+                        <span>
+                          {
+                            content.contribution
+                          }
+                        </span>
+
+                        <p>
+                          {
+                            item.contribution
+                          }
+                        </p>
+                      </div>
+
+                      <div className="experience-expanded-column">
+                        <span>
+                          {
+                            content.areas
+                          }
+                        </span>
+
+                        <div className="experience-tags">
+                          {item.areas.map(
+                            (
+                              area
+                            ) => (
+                              <strong
+                                key={
+                                  area
+                                }
+                              >
+                                {
+                                  area
+                                }
+                              </strong>
+                            )
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="experience-expanded-column">
+                        <span>
+                          {
+                            content.tools
+                          }
+                        </span>
+
+                        <div className="experience-tools">
+                          {item.tools.map(
+                            (
+                              tool
+                            ) => (
+                              <strong
+                                key={
+                                  tool
+                                }
+                              >
+                                {
+                                  tool
+                                }
+                              </strong>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            );
+          }
+        )}
       </div>
     </section>
   );

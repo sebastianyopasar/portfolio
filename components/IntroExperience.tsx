@@ -19,7 +19,8 @@ import styles from "./IntroExperience.module.css";
 type Stage =
   | "intro"
   | "language"
-  | "exit";
+  | "cover"
+  | "reveal";
 
 export default function IntroExperience() {
   const {
@@ -41,14 +42,13 @@ export default function IntroExperience() {
 
     if (reducedMotion) {
       setStage("language");
-
       return;
     }
 
     const timer =
       window.setTimeout(() => {
         setStage("language");
-      }, 1050);
+      }, 950);
 
     return () =>
       window.clearTimeout(timer);
@@ -59,32 +59,70 @@ export default function IntroExperience() {
   ) => {
     setLocale(selectedLocale);
 
-    setStage("exit");
+    const reducedMotion =
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+    if (reducedMotion) {
+      setVisible(false);
+      return;
+    }
+
+    /*
+      PHASE 1
+      The angled curtain rises
+      from the bottom and covers
+      the language experience.
+    */
+
+    setStage("cover");
+
+    /*
+      PHASE 2
+      Once the screen is covered,
+      the curtain continues upward
+      and reveals the portfolio.
+    */
+
+    window.setTimeout(() => {
+      setStage("reveal");
+    }, 620);
+
+    /*
+      Remove the intro completely
+      after the reveal finishes.
+    */
 
     window.setTimeout(() => {
       setVisible(false);
-    }, 650);
+    }, 1370);
   };
 
   if (!visible) return null;
 
+  const transitionLocked =
+    stage === "cover" ||
+    stage === "reveal";
+
   return (
     <div
-      className={`${styles.overlay} ${
-        styles[stage]
-      }`}
+      className={`${styles.overlay} ${styles[stage]}`}
       role="dialog"
       aria-modal="true"
       aria-label="Choose portfolio language"
     >
       <div className={styles.grid}>
+        {/* =========================================
+            IDENTITY
+        ========================================== */}
+
         <div className={styles.identity}>
           <div
             className={styles.monogram}
             aria-hidden="true"
           >
             <span>S</span>
-
             <span>Y</span>
           </div>
 
@@ -103,6 +141,10 @@ export default function IntroExperience() {
           </div>
         </div>
 
+        {/* =========================================
+            LANGUAGE
+        ========================================== */}
+
         <div className={styles.languageArea}>
           <p className={styles.languageTitle}>
             Language · Langue · Idioma
@@ -117,31 +159,25 @@ export default function IntroExperience() {
                 <button
                   key={language.code}
                   type="button"
+                  disabled={transitionLocked}
                   className={
-                    locale ===
-                    language.code
+                    locale === language.code
                       ? styles.activeLanguage
                       : ""
                   }
                   onClick={() =>
-                    enter(
-                      language.code
-                    )
+                    enter(language.code)
                   }
                 >
                   <span>
-                    {
-                      language.short
-                    }
+                    {language.short}
                   </span>
 
                   <strong>
-                    {
-                      language.label
-                    }
+                    {language.label}
                   </strong>
 
-                  <i>
+                  <i aria-hidden="true">
                     →
                   </i>
                 </button>
@@ -149,6 +185,25 @@ export default function IntroExperience() {
             )}
           </div>
         </div>
+      </div>
+
+      {/* =========================================
+          SINGLE ANGLED CURTAIN
+      ========================================== */}
+
+      <div
+        className={styles.curtain}
+        aria-hidden="true"
+      >
+        <div
+          className={styles.curtainTexture}
+        />
+
+        <span
+          className={styles.curtainStamp}
+        >
+          SY / PORTFOLIO
+        </span>
       </div>
     </div>
   );

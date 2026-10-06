@@ -1,73 +1,119 @@
 "use client";
 
-import { useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
+
 import Reveal from "./Reveal";
 
-const processSteps = [
-  {
-    number: "01",
-    title: "Identify",
-    description:
-      "Understand the problem before designing the solution. I look at users, context, business needs, constraints and existing friction.",
-    focus:
-      "Users · Context · Constraints · Friction",
-  },
-  {
-    number: "02",
-    title: "Propose",
-    description:
-      "Turn what I learned into possible directions, priorities and hypotheses that can be discussed before committing to execution.",
-    focus:
-      "Direction · Priorities · Opportunities",
-  },
-  {
-    number: "03",
-    title: "Prototype",
-    description:
-      "Make ideas tangible through flows, wireframes and interactive prototypes so the experience can be understood before it is fully built.",
-    focus:
-      "Flows · Hierarchy · Interaction",
-  },
-  {
-    number: "04",
-    title: "Evaluate",
-    description:
-      "Test assumptions and identify usability problems, confusing interactions or gaps in the proposed solution.",
-    focus:
-      "Usability · Logic · Assumptions",
-  },
-  {
-    number: "05",
-    title: "Refine",
-    description:
-      "Use feedback and findings to simplify the experience, resolve edge cases and improve clarity before launch.",
-    focus:
-      "Clarity · Feedback · Edge Cases",
-  },
-  {
-    number: "06",
-    title: "Launch",
-    description:
-      "Bring the solution into a real environment through implementation, quality assurance and attention to the details that shape the final experience.",
-    focus:
-      "Execution · QA · Implementation",
-  },
-  {
-    number: "07",
-    title: "Iterate",
-    description:
-      "A launch is not the end. Real usage creates new information, so I use what we learn to continue improving the product.",
-    focus:
-      "Usage · Learning · Improvement",
-  },
-];
+import {
+  useLanguage,
+} from "./LanguageProvider";
 
 export default function HowIWork() {
-  const [activeStep, setActiveStep] =
-    useState(0);
+  const { copy } =
+    useLanguage();
+
+  const content =
+    copy.process;
+
+  const processSteps =
+    content.steps;
+
+  const [
+    activeStep,
+    setActiveStep,
+  ] = useState(0);
+
+  const [
+    interactionPaused,
+    setInteractionPaused,
+  ] = useState(false);
+
+  const [
+    autoCycle,
+    setAutoCycle,
+  ] = useState(true);
+
+  const [
+    reducedMotion,
+    setReducedMotion,
+  ] = useState(false);
+
+  useEffect(() => {
+    const query =
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+    const update = () => {
+      const reduced =
+        query.matches;
+
+      setReducedMotion(
+        reduced
+      );
+
+      if (reduced) {
+        setAutoCycle(
+          false
+        );
+      }
+    };
+
+    update();
+
+    query.addEventListener(
+      "change",
+      update
+    );
+
+    return () => {
+      query.removeEventListener(
+        "change",
+        update
+      );
+    };
+  }, []);
+
+  const paused =
+    interactionPaused ||
+    !autoCycle ||
+    reducedMotion;
+
+  useEffect(() => {
+    if (paused) {
+      return;
+    }
+
+    const timer =
+      window.setTimeout(
+        () => {
+          setActiveStep(
+            (current) =>
+              (current + 1) %
+              processSteps.length
+          );
+        },
+        7000
+      );
+
+    return () => {
+      window.clearTimeout(
+        timer
+      );
+    };
+  }, [
+    activeStep,
+    paused,
+    processSteps.length,
+  ]);
 
   const active =
-    processSteps[activeStep];
+    processSteps[
+      activeStep
+    ];
 
   return (
     <section
@@ -79,117 +125,261 @@ export default function HowIWork() {
           <header className="process-heading">
             <div className="process-heading-meta">
               <span>
-                03 / How I Work
+                {
+                  content.meta
+                }
               </span>
 
               <span>
-                Iterative by design
+                {
+                  content.metaContext
+                }
               </span>
             </div>
 
             <div className="process-heading-main">
               <h2>
-                Design isn&apos;t
+                {
+                  content.title
+                }
+
                 <br />
+
                 <span>
-                  a straight line.
+                  {
+                    content.titleAccent
+                  }
                 </span>
               </h2>
 
-              <p>
-                My process moves between
-                understanding, testing,
-                building and learning. Each
-                step informs the next — and
-                sometimes sends us back to
-                an earlier one.
-              </p>
+              <div className="process-heading-copy">
+                <p>
+                  {
+                    content.description
+                  }
+                </p>
+
+                <span>
+                  {
+                    content.helper
+                  }
+                </span>
+              </div>
             </div>
           </header>
         </Reveal>
 
-        <Reveal delay={100}>
-          <div className="process-map">
-            {processSteps.map(
-              (step, index) => (
-                <button
-                  type="button"
-                  key={step.number}
-                  className={
-                    index === activeStep
-                      ? "process-step active"
-                      : "process-step"
-                  }
-                  onMouseEnter={() =>
-                    setActiveStep(index)
-                  }
-                  onFocus={() =>
-                    setActiveStep(index)
-                  }
-                  onClick={() =>
-                    setActiveStep(index)
-                  }
-                >
-                  <span className="process-step-dot" />
+        <Reveal delay={70}>
+          <div className="process-controls-row">
+            <div className="process-controls-hint">
+              <span>
+                {
+                  content.stages
+                }
+              </span>
 
-                  <small>
-                    {step.number}
-                  </small>
+              <i />
 
-                  <strong>
-                    {step.title}
-                  </strong>
-                </button>
+              <span>
+                {
+                  content.interactive
+                }
+              </span>
+            </div>
+
+            <button
+              type="button"
+              className="process-auto-toggle"
+              aria-pressed={
+                autoCycle
+              }
+              onClick={() =>
+                setAutoCycle(
+                  (current) =>
+                    !current
+                )
+              }
+            >
+              <i
+                className={
+                  autoCycle
+                    ? "process-auto-light active"
+                    : "process-auto-light"
+                }
+              />
+
+              <span>
+                {
+                  content.auto
+                }
+              </span>
+
+              <strong>
+                {autoCycle
+                  ? content.on
+                  : content.off}
+              </strong>
+
+              <small>
+                {autoCycle
+                  ? content.pause
+                  : content.resume}
+              </small>
+            </button>
+          </div>
+        </Reveal>
+
+        <Reveal delay={110}>
+          <div
+            className="process-map"
+            role="tablist"
+            aria-label={
+              content.tablistLabel
+            }
+            data-paused={
+              paused
+                ? "true"
+                : "false"
+            }
+            onPointerEnter={() =>
+              setInteractionPaused(
+                true
               )
+            }
+            onPointerLeave={() =>
+              setInteractionPaused(
+                false
+              )
+            }
+          >
+            {processSteps.map(
+              (
+                step,
+                index
+              ) => {
+                const isActive =
+                  index ===
+                  activeStep;
+
+                return (
+                  <button
+                    id={`process-tab-${index}`}
+                    type="button"
+                    role="tab"
+                    key={
+                      step.number
+                    }
+                    aria-selected={
+                      isActive
+                    }
+                    aria-controls="process-detail-panel"
+                    className={
+                      isActive
+                        ? "process-step active"
+                        : "process-step"
+                    }
+                    onFocus={() =>
+                      setInteractionPaused(
+                        true
+                      )
+                    }
+                    onBlur={() =>
+                      setInteractionPaused(
+                        false
+                      )
+                    }
+                    onClick={() =>
+                      setActiveStep(
+                        index
+                      )
+                    }
+                  >
+                    <span className="process-step-dot" />
+
+                    <small>
+                      {
+                        step.number
+                      }
+                    </small>
+
+                    <strong>
+                      {
+                        step.title
+                      }
+                    </strong>
+
+                    <span className="process-step-action">
+                      {
+                        content.explore
+                      }
+                    </span>
+
+                    {isActive &&
+                      autoCycle &&
+                      !reducedMotion && (
+                        <span
+                          key={
+                            step.number
+                          }
+                          className="process-step-progress"
+                          aria-hidden="true"
+                        />
+                      )}
+                  </button>
+                );
+              }
             )}
           </div>
         </Reveal>
 
-        <Reveal delay={160}>
-          <div
-            className="process-detail"
-            key={active.number}
-          >
-            <span className="process-detail-number">
-              {active.number}
-            </span>
+        <div
+          id="process-detail-panel"
+          role="tabpanel"
+          aria-labelledby={`process-tab-${activeStep}`}
+          className="process-detail"
+          key={
+            `${active.number}-${copy.process.meta}`
+          }
+        >
+          <span className="process-detail-number">
+            {
+              active.number
+            }
+          </span>
 
-            <div className="process-detail-title">
-              <small>
-                Current stage
-              </small>
+          <div className="process-detail-title">
+            <small>
+              {
+                content.currentStage
+              }
+            </small>
 
-              <h3>
-                {active.title}
-              </h3>
-            </div>
-
-            <p>
-              {active.description}
-            </p>
-
-            <div className="process-detail-focus">
-              <span>
-                I&apos;m looking at
-              </span>
-
-              <strong>
-                {active.focus}
-              </strong>
-            </div>
+            <h3>
+              {
+                active.title
+              }
+            </h3>
           </div>
-        </Reveal>
-
-        <div className="process-loop">
-          <span>07</span>
-
-          <i>↺</i>
 
           <p>
-            Learn from the result.
-            <br />
-            Return when necessary.
+            {
+              active.description
+            }
           </p>
+
+          <div className="process-detail-focus">
+            <span>
+              {
+                content.lookingAt
+              }
+            </span>
+
+            <strong>
+              {
+                active.focus
+              }
+            </strong>
+          </div>
         </div>
       </div>
     </section>
