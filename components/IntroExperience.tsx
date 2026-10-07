@@ -11,6 +11,7 @@ import {
 } from "@/lib/homeTranslations";
 
 import {
+  LANGUAGE_STORAGE_KEY,
   useLanguage,
 } from "./LanguageProvider";
 
@@ -35,6 +36,42 @@ export default function IntroExperience() {
     useState(true);
 
   useEffect(() => {
+    const savedLanguage =
+      window.localStorage.getItem(
+        LANGUAGE_STORAGE_KEY
+      );
+
+    const validSavedLanguage =
+      savedLanguage === "en" ||
+      savedLanguage === "fr" ||
+      savedLanguage === "es";
+
+    /*
+      RETURNING VISITOR
+
+      If the visitor already selected
+      a language during a previous visit,
+      restore it and skip the intro.
+    */
+
+    if (validSavedLanguage) {
+      setLocale(
+        savedLanguage as Locale
+      );
+
+      setVisible(false);
+
+      return;
+    }
+
+    /*
+      FIRST VISIT
+
+      No saved preference exists,
+      so show the introduction and
+      language selection normally.
+    */
+
     const reducedMotion =
       window.matchMedia(
         "(prefers-reduced-motion: reduce)"
@@ -52,12 +89,19 @@ export default function IntroExperience() {
 
     return () =>
       window.clearTimeout(timer);
-  }, []);
+  }, [setLocale]);
 
   const enter = (
     selectedLocale: Locale
   ) => {
-    setLocale(selectedLocale);
+    /*
+      setLocale also saves the language
+      preference in localStorage.
+    */
+
+    setLocale(
+      selectedLocale
+    );
 
     const reducedMotion =
       window.matchMedia(
@@ -71,6 +115,7 @@ export default function IntroExperience() {
 
     /*
       PHASE 1
+
       The angled curtain rises
       from the bottom and covers
       the language experience.
@@ -80,6 +125,7 @@ export default function IntroExperience() {
 
     /*
       PHASE 2
+
       Once the screen is covered,
       the curtain continues upward
       and reveals the portfolio.
@@ -99,7 +145,9 @@ export default function IntroExperience() {
     }, 1370);
   };
 
-  if (!visible) return null;
+  if (!visible) {
+    return null;
+  }
 
   const transitionLocked =
     stage === "cover" ||
@@ -123,6 +171,7 @@ export default function IntroExperience() {
             aria-hidden="true"
           >
             <span>S</span>
+
             <span>Y</span>
           </div>
 
@@ -157,24 +206,35 @@ export default function IntroExperience() {
             {languageOptions.map(
               (language) => (
                 <button
-                  key={language.code}
+                  key={
+                    language.code
+                  }
                   type="button"
-                  disabled={transitionLocked}
+                  disabled={
+                    transitionLocked
+                  }
                   className={
-                    locale === language.code
+                    locale ===
+                    language.code
                       ? styles.activeLanguage
                       : ""
                   }
                   onClick={() =>
-                    enter(language.code)
+                    enter(
+                      language.code
+                    )
                   }
                 >
                   <span>
-                    {language.short}
+                    {
+                      language.short
+                    }
                   </span>
 
                   <strong>
-                    {language.label}
+                    {
+                      language.label
+                    }
                   </strong>
 
                   <i aria-hidden="true">
@@ -196,11 +256,15 @@ export default function IntroExperience() {
         aria-hidden="true"
       >
         <div
-          className={styles.curtainTexture}
+          className={
+            styles.curtainTexture
+          }
         />
 
         <span
-          className={styles.curtainStamp}
+          className={
+            styles.curtainStamp
+          }
         >
           SY / PORTFOLIO
         </span>
