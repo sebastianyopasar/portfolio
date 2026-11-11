@@ -23,9 +23,7 @@ export default function SelectedWork() {
         <header className="station-intro work-intro">
           <div className="station-intro-meta">
             <span>
-              {
-                content.meta
-              }
+              {content.meta}
             </span>
 
             <span>
@@ -59,9 +57,28 @@ export default function SelectedWork() {
         </header>
       </Reveal>
 
-      <div className="work-projects-list">
+      <Reveal delay={70}>
+        <div
+          className="work-interaction-note"
+          aria-hidden="true"
+        >
+          <span>
+            {
+              content.selectedCases
+            }
+          </span>
+
+          <span>
+            {
+              content.interactionHint
+            }
+          </span>
+        </div>
+      </Reveal>
+
+      <div className="projects-list">
         <Reveal
-          className="work-project-reveal"
+          className="project-reveal"
           delay={0}
         >
           <ProjectCard
@@ -70,9 +87,16 @@ export default function SelectedWork() {
               content.projects
                 .tokyo.title
             }
+            category={
+              content.projects
+                .tokyo.category
+            }
             focus={
               content.projects
                 .tokyo.focus
+            }
+            focusLabel={
+              content.focusLabel
             }
             description={
               content.projects
@@ -80,6 +104,15 @@ export default function SelectedWork() {
             }
             href="/work/tokyo"
             visual="dashboard"
+            imageSrc="/tokyo/home-dashboard.png"
+            imageAlt={
+              content.projects
+                .tokyo.imageAlt
+            }
+            imageLabel={
+              content.projects
+                .tokyo.imageLabel
+            }
             openLabel={
               content.openCaseStudy
             }
@@ -94,8 +127,8 @@ export default function SelectedWork() {
         </Reveal>
 
         <Reveal
-          className="work-project-reveal"
-          delay={70}
+          className="project-reveal"
+          delay={80}
         >
           <ProjectCard
             number="02"
@@ -103,9 +136,16 @@ export default function SelectedWork() {
               content.projects
                 .ecommerce.title
             }
+            category={
+              content.projects
+                .ecommerce.category
+            }
             focus={
               content.projects
                 .ecommerce.focus
+            }
+            focusLabel={
+              content.focusLabel
             }
             description={
               content.projects
@@ -113,6 +153,15 @@ export default function SelectedWork() {
             }
             href="/work/ecommerce"
             visual="commerce"
+            imageSrc="/ecommerce/home.png"
+            imageAlt={
+              content.projects
+                .ecommerce.imageAlt
+            }
+            imageLabel={
+              content.projects
+                .ecommerce.imageLabel
+            }
             openLabel={
               content.openCaseStudy
             }
@@ -127,8 +176,8 @@ export default function SelectedWork() {
         </Reveal>
 
         <Reveal
-          className="work-project-reveal"
-          delay={140}
+          className="project-reveal"
+          delay={160}
         >
           <ProjectCard
             number="03"
@@ -136,9 +185,16 @@ export default function SelectedWork() {
               content.projects
                 .identidad.title
             }
+            category={
+              content.projects
+                .identidad.category
+            }
             focus={
               content.projects
                 .identidad.focus
+            }
+            focusLabel={
+              content.focusLabel
             }
             description={
               content.projects
@@ -146,6 +202,15 @@ export default function SelectedWork() {
             }
             href="/work/niwa?enter=1"
             visual="concept"
+            imageSrc="/identidad/identidad-co.png"
+            imageAlt={
+              content.projects
+                .identidad.imageAlt
+            }
+            imageLabel={
+              content.projects
+                .identidad.imageLabel
+            }
             openLabel={
               content.openCaseStudy
             }
@@ -173,7 +238,7 @@ export default function SelectedWork() {
               content.processLink
             }
 
-            <span aria-hidden="true">
+            <span>
               ↓
             </span>
           </a>
