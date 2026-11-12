@@ -1,274 +1,73 @@
 "use client";
 
-import {
-  useEffect,
-  useState,
-} from "react";
-
-import {
-  languageOptions,
-  type Locale,
-} from "@/lib/homeTranslations";
-
-import {
-  LANGUAGE_STORAGE_KEY,
-  useLanguage,
-} from "./LanguageProvider";
-
+import { useEffect, useRef, useState } from "react";
+import { languageOptions, type Locale } from "@/lib/homeTranslations";
+import { useLanguage } from "./LanguageProvider";
 import styles from "./IntroExperience.module.css";
 
-type Stage =
-  | "intro"
-  | "language"
-  | "cover"
-  | "reveal";
+type Stage = "ready" | "cover" | "reveal";
+const STORAGE_KEY = "sebastian-portfolio-language";
 
 export default function IntroExperience() {
-  const {
-    locale,
-    setLocale,
-  } = useLanguage();
-
-  const [stage, setStage] =
-    useState<Stage>("intro");
-
-  const [visible, setVisible] =
-    useState(true);
+  const { setLocale } = useLanguage();
+  const [visible, setVisible] = useState(true);
+  const [stage, setStage] = useState<Stage>("ready");
+  const timers = useRef<number[]>([]);
 
   useEffect(() => {
-    const savedLanguage =
-      window.localStorage.getItem(
-        LANGUAGE_STORAGE_KEY
-      );
-
-    const validSavedLanguage =
-      savedLanguage === "en" ||
-      savedLanguage === "fr" ||
-      savedLanguage === "es";
-
-    /*
-      RETURNING VISITOR
-
-      If the visitor already selected
-      a language during a previous visit,
-      restore it and skip the intro.
-    */
-
-    if (validSavedLanguage) {
-      setLocale(
-        savedLanguage as Locale
-      );
-
-      setVisible(false);
-
-      return;
+    const activeTimers = timers.current;
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    if (saved === "en" || saved === "fr" || saved === "es") {
+      activeTimers.push(window.setTimeout(() => setVisible(false), 0));
     }
+    return () => { activeTimers.forEach((timer) => window.clearTimeout(timer)); };
+  }, []);
 
-    /*
-      FIRST VISIT
+  useEffect(() => {
+    if (!visible) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previous; };
+  }, [visible]);
 
-      No saved preference exists,
-      so show the introduction and
-      language selection normally.
-    */
-
-    const reducedMotion =
-      window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-
-    if (reducedMotion) {
-      setStage("language");
-      return;
-    }
-
-    const timer =
-      window.setTimeout(() => {
-        setStage("language");
-      }, 950);
-
-    return () =>
-      window.clearTimeout(timer);
-  }, [setLocale]);
-
-  const enter = (
-    selectedLocale: Locale
-  ) => {
-    /*
-      setLocale also saves the language
-      preference in localStorage.
-    */
-
-    setLocale(
-      selectedLocale
-    );
-
-    const reducedMotion =
-      window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-
-    if (reducedMotion) {
-      setVisible(false);
-      return;
-    }
-
-    /*
-      PHASE 1
-
-      The angled curtain rises
-      from the bottom and covers
-      the language experience.
-    */
-
+  const choose = (language: Locale) => {
+    if (stage !== "ready") return;
+    setLocale(language);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) { setVisible(false); return; }
     setStage("cover");
-
-    /*
-      PHASE 2
-
-      Once the screen is covered,
-      the curtain continues upward
-      and reveals the portfolio.
-    */
-
-    window.setTimeout(() => {
-      setStage("reveal");
-    }, 620);
-
-    /*
-      Remove the intro completely
-      after the reveal finishes.
-    */
-
-    window.setTimeout(() => {
-      setVisible(false);
-    }, 1370);
+    timers.current.push(window.setTimeout(() => setStage("reveal"), 790));
+    timers.current.push(window.setTimeout(() => setVisible(false), 1550));
   };
 
-  if (!visible) {
-    return null;
-  }
-
-  const transitionLocked =
-    stage === "cover" ||
-    stage === "reveal";
+  if (!visible) return null;
 
   return (
-    <div
-      className={`${styles.overlay} ${styles[stage]}`}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Choose portfolio language"
-    >
-      <div className={styles.grid}>
-        {/* =========================================
-            IDENTITY
-        ========================================== */}
-
-        <div className={styles.identity}>
-          <div
-            className={styles.monogram}
-            aria-hidden="true"
-          >
-            <span>S</span>
-
-            <span>Y</span>
+    <div className={`${styles.overlay} ${styles[stage]}`} role="dialog" aria-modal="true" aria-label="Choose portfolio language">
+      <div className={styles.shell}>
+        <div className={styles.left}>
+          <span className={styles.name}>Sebastián Yopasá<span>.</span></span>
+          <div className={styles.introCopy}>
+            <h2>Different ideas.<br /><span>One way of thinking.</span></h2>
+            <p>Digital products, thoughtful interfaces and experiences made to work.</p>
           </div>
-
-          <div className={styles.signal}>
-            <i />
-
-            <span>
-              UX/UI DESIGNER
-            </span>
-
-            <i />
-
-            <span>
-              WHO ALSO BUILDS
-            </span>
-          </div>
+          <span className={styles.corner} aria-hidden="true">SY / 2026</span>
         </div>
-
-        {/* =========================================
-            LANGUAGE
-        ========================================== */}
-
-        <div className={styles.languageArea}>
-          <p className={styles.languageTitle}>
-            Language · Langue · Idioma
-          </p>
-
-          <div
-            className={styles.languages}
-            aria-label="Select language"
-          >
-            {languageOptions.map(
-              (language) => (
-                <button
-                  key={
-                    language.code
-                  }
-                  type="button"
-                  disabled={
-                    transitionLocked
-                  }
-                  className={
-                    locale ===
-                    language.code
-                      ? styles.activeLanguage
-                      : ""
-                  }
-                  onClick={() =>
-                    enter(
-                      language.code
-                    )
-                  }
-                >
-                  <span>
-                    {
-                      language.short
-                    }
-                  </span>
-
-                  <strong>
-                    {
-                      language.label
-                    }
-                  </strong>
-
-                  <i aria-hidden="true">
-                    →
-                  </i>
-                </button>
-              )
-            )}
+        <div className={styles.right}>
+          <h3>Where should<br />we begin?</h3>
+          <p className={styles.hint}>Choose your language / Choisissez votre langue / Elige tu idioma</p>
+          <div className={styles.languages} role="group" aria-label="Portfolio language">
+            {languageOptions.map((lang) => (
+              <button key={lang.code} type="button" disabled={stage !== "ready"} onClick={() => choose(lang.code)}>
+                <span className={styles.languageName}>{lang.label}</span>
+                <span className={styles.languageArrow} aria-hidden="true">↗</span>
+              </button>
+            ))}
           </div>
         </div>
       </div>
-
-      {/* =========================================
-          SINGLE ANGLED CURTAIN
-      ========================================== */}
-
-      <div
-        className={styles.curtain}
-        aria-hidden="true"
-      >
-        <div
-          className={
-            styles.curtainTexture
-          }
-        />
-
-        <span
-          className={
-            styles.curtainStamp
-          }
-        >
-          SY / PORTFOLIO
-        </span>
-      </div>
+      <div className={styles.curtainCoral} aria-hidden="true" />
+      <div className={styles.curtainBlue} aria-hidden="true" />
     </div>
   );
 }

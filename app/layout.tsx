@@ -5,6 +5,7 @@ import type {
 import {
   Geist,
   Manrope,
+  Montserrat,
   Space_Mono,
   Syne,
 } from "next/font/google";
@@ -32,6 +33,12 @@ const manrope =
 
     subsets: ["latin"],
   });
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
 
 const spaceMono =
   Space_Mono({
@@ -64,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geist.variable} ${syne.variable} ${manrope.variable} ${spaceMono.variable}`}
+        className={`${geist.variable} ${syne.variable} ${manrope.variable} ${montserrat.variable} ${spaceMono.variable}`}
       >
         {children}
       </body>

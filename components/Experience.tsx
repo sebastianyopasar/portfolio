@@ -67,7 +67,7 @@ export default function Experience() {
         </div>
       </div>
 
-      <div className="experience-list-v11">
+      <div className="experience-list">
         {experience.map(
           (
             item,
@@ -82,11 +82,11 @@ export default function Experience() {
 
             return (
               <article
-                className={`experience-entry ${
+                className={
                   isOpen
-                    ? "experience-entry-open"
-                    : ""
-                }`}
+                    ? "experience-row experience-row-open"
+                    : "experience-row"
+                }
                 data-open={
                   isOpen
                     ? "true"
@@ -98,7 +98,7 @@ export default function Experience() {
               >
                 <button
                   type="button"
-                  className="experience-entry-button"
+                  className="experience-row-button"
                   aria-expanded={
                     isOpen
                   }
@@ -113,7 +113,7 @@ export default function Experience() {
                     )
                   }
                 >
-                  <div className="experience-entry-index">
+                  <div className="experience-index">
                     <span>
                       {
                         item.number
@@ -127,7 +127,7 @@ export default function Experience() {
                     </small>
                   </div>
 
-                  <div className="experience-entry-role">
+                  <div className="experience-role">
                     <strong>
                       {
                         item.company
@@ -141,23 +141,20 @@ export default function Experience() {
                     </span>
                   </div>
 
-                  <p className="experience-entry-description">
+                  <p>
                     {
                       item.description
                     }
                   </p>
 
-                  <div className="experience-entry-action">
+                  <div className="experience-action">
                     <small>
                       {isOpen
                         ? content.close
                         : content.explore}
                     </small>
 
-                    <span
-                      className="experience-entry-toggle"
-                      aria-hidden="true"
-                    >
+                    <span className="experience-toggle">
                       {isOpen
                         ? "−"
                         : "+"}
@@ -169,15 +166,15 @@ export default function Experience() {
                   id={
                     panelId
                   }
-                  className="experience-panel-shell-v11"
+                  className="experience-expand-shell"
                   aria-hidden={
                     !isOpen
                   }
                 >
-                  <div className="experience-panel-inner-v11">
-                    <div className="experience-panel-v11">
-                      <div>
-                        <span className="experience-panel-label">
+                  <div className="experience-expand-inner">
+                    <div className="experience-expanded">
+                      <div className="experience-expanded-column">
+                        <span>
                           {
                             content.contribution
                           }
@@ -190,14 +187,14 @@ export default function Experience() {
                         </p>
                       </div>
 
-                      <div>
-                        <span className="experience-panel-label">
+                      <div className="experience-expanded-column">
+                        <span>
                           {
                             content.areas
                           }
                         </span>
 
-                        <div className="experience-panel-tags">
+                        <div className="experience-tags">
                           {item.areas.map(
                             (
                               area
@@ -216,14 +213,14 @@ export default function Experience() {
                         </div>
                       </div>
 
-                      <div>
-                        <span className="experience-panel-label">
+                      <div className="experience-expanded-column">
+                        <span>
                           {
                             content.tools
                           }
                         </span>
 
-                        <div className="experience-panel-tags">
+                        <div className="experience-tools">
                           {item.tools.map(
                             (
                               tool

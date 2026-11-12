@@ -5,26 +5,37 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  scroll-behavior: smooth;
-  scroll-padding-top: 0;
+  scroll-behavior:
+    smooth;
 
-  overscroll-behavior-y: contain;
+  scroll-padding-top:
+    0;
 
-  scrollbar-width: thin;
-  scrollbar-gutter: stable;
+  overscroll-behavior-y:
+    contain;
 
-  background: #f2f0e8;
+  scrollbar-width:
+    thin;
+
+  scrollbar-gutter:
+    stable;
+
+  background:
+    #f2f0e8;
 }
 
 
 /* =========================================
    GUIDED MODE
-   Strong station-to-station snapping
+
+   Sections gently snap when close,
+   without trapping the user inside
+   large sections.
 ========================================= */
 
 .guided {
   scroll-snap-type:
-    y mandatory;
+    y proximity;
 }
 
 
@@ -40,6 +51,7 @@
 
 .content {
   width: 100%;
+
   min-width: 0;
 }
 
@@ -49,49 +61,38 @@
   position: relative;
 
   width: 100%;
-  min-width: 0;
 
-  min-height: 100svh;
+  min-width: 0;
 
   scroll-snap-align:
     start;
 
   scroll-snap-stop:
-    always;
+    normal;
 }
 
 
-/* =========================================
-   TABLET + MOBILE
-
-   We keep the same strong station logic.
-   Sections are allowed to grow beyond 100svh
-   whenever their content needs more room.
-========================================= */
-
-@media (max-width: 900px) {
-  .guided {
-    scroll-snap-type:
-      y mandatory;
-  }
-
+@media (min-width: 901px) {
   .content >
   [data-station-id] {
     min-height:
       100svh;
-
-    scroll-snap-align:
-      start;
-
-    scroll-snap-stop:
-      always;
   }
 }
 
 
-/* =========================================
-   REDUCED MOTION
-========================================= */
+@media (max-width: 900px) {
+  .guided {
+    scroll-snap-type:
+      y proximity;
+  }
+
+  .content >
+  [data-station-id] {
+    min-height: 0;
+  }
+}
+
 
 @media (
   prefers-reduced-motion:
@@ -105,11 +106,5 @@
   .guided {
     scroll-snap-type:
       none;
-  }
-
-  .content >
-  [data-station-id] {
-    scroll-snap-stop:
-      normal;
   }
 }

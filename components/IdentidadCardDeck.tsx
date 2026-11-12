@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import type { Locale } from "@/lib/homeTranslations";
 import { useEffect, useState } from "react";
 
 type Card = {
@@ -10,7 +11,7 @@ type Card = {
   subtitle: string;
 };
 
-const cards: Card[] = [
+const baseCards: Card[] = [
   {
     src: "/identidad/cards/card-01.png",
     alt: "Coffee journey card featuring a Colombian coffee farmer",
@@ -31,7 +32,15 @@ const cards: Card[] = [
   },
 ];
 
-export default function IdentidadCardDeck() {
+const localeLabels: Record<Locale, { names: string[]; subtitles: string[]; hint: string; open: string; close: string }> = {
+  en: { names: ["The Journey Begins", "A Nation in Every Sack", "Coffee as Community"], subtitles: ["Origin + territory", "Coffee + national identity", "Connection + shared culture"], hint: "Hover to explore · Click a card to expand", open: "Open", close: "Close card" },
+  es: { names: ["Comienza el viaje", "Un país en cada saco", "El café nos conecta"], subtitles: ["Origen + territorio", "Café + identidad nacional", "Conexión + cultura compartida"], hint: "Pasa el cursor para explorar · Haz clic para ampliar", open: "Abrir", close: "Cerrar tarjeta" },
+  fr: { names: ["Le voyage commence", "Un pays dans chaque sac", "Le café nous rassemble"], subtitles: ["Origine + territoire", "Café + identité nationale", "Lien + culture partagée"], hint: "Survolez pour explorer · Cliquez pour agrandir", open: "Ouvrir", close: "Fermer la carte" },
+};
+
+export default function IdentidadCardDeck({ locale = "en" }: { locale?: Locale }) {
+  const dictionary = localeLabels[locale];
+  const cards = baseCards.map((card, index) => ({ ...card, title: dictionary.names[index], subtitle: dictionary.subtitles[index] }));
   const [selectedCard, setSelectedCard] = useState<Card | null>(null);
 
   useEffect(() => {
@@ -62,7 +71,7 @@ export default function IdentidadCardDeck() {
               className={`identidad-stack-card identidad-stack-card-${index + 1}`}
               key={card.src}
               onClick={() => setSelectedCard(card)}
-              aria-label={`Open ${card.title}`}
+              aria-label={`${dictionary.open}: ${card.title}`}
             >
               <div className="identidad-stack-image">
                 <Image
@@ -83,7 +92,7 @@ export default function IdentidadCardDeck() {
         </div>
 
         <p className="identidad-deck-hint">
-          Hover to explore · Click a card to expand
+          {dictionary.hint}
         </p>
       </div>
 
@@ -99,7 +108,7 @@ export default function IdentidadCardDeck() {
             type="button"
             className="identidad-card-modal-close"
             onClick={() => setSelectedCard(null)}
-            aria-label="Close card"
+            aria-label={dictionary.close}
           >
             ×
           </button>

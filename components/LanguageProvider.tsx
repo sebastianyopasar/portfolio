@@ -31,7 +31,7 @@ const LanguageContext =
     null
   );
 
-export const LANGUAGE_STORAGE_KEY =
+const STORAGE_KEY =
   "sebastian-portfolio-language";
 
 export function LanguageProvider({
@@ -45,7 +45,7 @@ export function LanguageProvider({
   useEffect(() => {
     const saved =
       window.localStorage.getItem(
-        LANGUAGE_STORAGE_KEY
+        STORAGE_KEY
       );
 
     if (
@@ -67,7 +67,7 @@ export function LanguageProvider({
       setLocaleState(nextLocale);
 
       window.localStorage.setItem(
-        LANGUAGE_STORAGE_KEY,
+        STORAGE_KEY,
         nextLocale
       );
     },
@@ -80,10 +80,7 @@ export function LanguageProvider({
       setLocale,
       copy: homeCopy[locale],
     }),
-    [
-      locale,
-      setLocale,
-    ]
+    [locale, setLocale]
   );
 
   return (

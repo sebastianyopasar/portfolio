@@ -1,4 +1,16 @@
+"use client";
+
+import {
+  useLanguage,
+} from "./LanguageProvider";
+
 export default function Contact() {
+  const { copy } =
+    useLanguage();
+
+  const content =
+    copy.contact;
+
   return (
     <section
       className="contact-section"
@@ -7,44 +19,72 @@ export default function Contact() {
       <div className="contact-inner">
         <div className="contact-top">
           <span>
-            07 / Contact
+            {
+              content.meta
+            }
           </span>
 
           <span>
-            Have a project,
-            opportunity or idea?
+            {
+              content.question
+            }
           </span>
         </div>
 
         <div className="contact-main">
           <h2>
-            LET&apos;S BUILD
+            {
+              content.line1
+            }
+
             <br />
 
-            SOMETHING
+            {
+              content.line2
+            }
+
             <br />
 
             <span>
-              USEFUL.
+              {
+                content.line3
+              }
             </span>
           </h2>
 
           <div className="contact-context">
-            <span>
-              Product Design
-            </span>
+            {content.contexts.map(
+              (
+                context,
+                index
+              ) => (
+                <span
+                  key={
+                    context
+                  }
+                  style={{
+                    display:
+                      "contents",
+                  }}
+                >
+                  <span>
+                    {
+                      context
+                    }
+                  </span>
 
-            <i />
-
-            <span>
-              UX / UI
-            </span>
-
-            <i />
-
-            <span>
-              Development
-            </span>
+                  {index <
+                    content
+                      .contexts
+                      .length -
+                      1 && (
+                    <i
+                      aria-hidden="true"
+                    />
+                  )}
+                </span>
+              )
+            )}
           </div>
         </div>
 
@@ -55,11 +95,15 @@ export default function Contact() {
           >
             <span className="contact-primary-copy">
               <small>
-                Start a conversation
+                {
+                  content.start
+                }
               </small>
 
               <strong>
-                Email me
+                {
+                  content.email
+                }
               </strong>
             </span>
 
@@ -76,16 +120,24 @@ export default function Contact() {
               href="https://www.linkedin.com/in/sebasti%C3%A1n-yopas%C3%A1-reyes/"
               target="_blank"
               rel="noreferrer"
-              aria-label="Visit Sebastián Yopasá on LinkedIn, opens in a new tab"
+              aria-label={
+                content.linkedinAria
+              }
             >
-              LinkedIn
+              {
+                content.linkedin
+              }
+
               <span aria-hidden="true">
                 ↗
               </span>
             </a>
 
             <a href="#top">
-              Back to top
+              {
+                content.backToTop
+              }
+
               <span aria-hidden="true">
                 ↑
               </span>
